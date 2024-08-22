@@ -3,13 +3,39 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { DashboardLayout } from './Layout/DashboardLayout';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { LoginPg } from './Page/LoginPg';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+const router = createBrowserRouter(
+
+  [
+    {
+      path:"/",
+      element:<LoginPg/>,
+    },
+{
+  element:<DashboardLayout/>,
+  //내부 화면만 교체
+  children:[
+{
+      
+  path: "/main",
+  element: <></>
+},
+
+]
+}
+
+],
+
+);
 root.render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router}/>
   </React.StrictMode>
 );
 
