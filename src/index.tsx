@@ -3,9 +3,10 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { DashboardLayout } from './Layout/DashboardLayout';
+import { Dashboard } from './Layout/Dashboard';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { LoginPg } from './Page/LoginPg';
+import { Main } from './content/Main';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -18,13 +19,13 @@ const router = createBrowserRouter(
       element:<LoginPg/>,
     },
 {
-  element:<DashboardLayout/>,
+  element:<Dashboard/>,
   //내부 화면만 교체
   children:[
 {
       
   path: "/main",
-  element: <></>
+  element: <Main/>
 },
 
 ]

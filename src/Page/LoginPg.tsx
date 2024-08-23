@@ -7,12 +7,14 @@ import { LoginTxtfield } from '../components/textfield/LoginTxtfield';
 import { blue1 } from '../const/colors';
 import { IDSearchDialog } from '../components/dialog/IDSearchDialog';
 import { SignUpDialog } from '../components/dialog/SignUpDialog';
+import { useNavigate } from 'react-router-dom';
 
 export interface ILoginProps {}
 
 export function LoginPg(props: ILoginProps) {
   const [searchOpen,setSearchOpen]=React.useState(false)
   const [signupOpen,setSignUpOpen]=React.useState(false)
+  const navigate=useNavigate()
   const onSearchClose=()=>{
     setSearchOpen(false)
   }
@@ -49,7 +51,9 @@ export function LoginPg(props: ILoginProps) {
           <span>자동 로그인</span>
         </AutoLoginRow>
       </LoginTxtFieldSet>
-<LoginBtn>로그인</LoginBtn>
+<LoginBtn
+onClick={()=>{navigate("/main")}}
+>로그인</LoginBtn>
 <SignUpRow>
 <SignUpBtn  onClick={onClickSignUp}>회원가입</SignUpBtn>
 <VerticalDivider/>
