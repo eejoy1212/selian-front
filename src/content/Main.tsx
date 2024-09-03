@@ -1,21 +1,50 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { UseInfo } from './UseInfo';
+import { Register } from './Register';
+import { Announcement } from './Announcement';
+import { ChartInfo } from './ChartInfo';
 
 export interface IMainProps {
 }
 
-export function Main (props: IMainProps) {
+export function Main(props: IMainProps) {
   return (
     <MainLayout>
-      <UseInfo/>
+      <Top>
+      <LeftTop> 
+        <UseInfo />
+        <Register />
+      </LeftTop>
+      <RightTop>
+        <Announcement/>
+      </RightTop>
+      </Top>
+      <ChartInfo/>
     </MainLayout>
   );
 }
-
-const MainLayout=styled.div`
+const Top=styled.div`
+width: 100%;
 display: flex;
 flex-direction: row;
+gap: 40px;
+// justify-content: space-between;
+`
+const LeftTop = styled.div`
+display: flex;
+flex-direction: column;
+gap : 8px;
+`
+const RightTop = styled.div`
+display: flex;
+flex-direction: column;
+gap : 20px;
+`
+const MainLayout = styled.div`
+display: flex;
+flex-direction: column;
+gap: 20px;
 margin-top: 44px;
 width: calc(100% - 60px - 60px);
 margin-left: 60px;

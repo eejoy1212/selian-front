@@ -7,6 +7,7 @@ import { Dashboard } from './Layout/Dashboard';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { LoginPg } from './Page/LoginPg';
 import { Main } from './content/Main';
+import { GiftCheck } from './content/GiftCheck';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -26,6 +27,11 @@ const router = createBrowserRouter(
       
   path: "/main",
   element: <Main/>
+},
+{
+      
+  path: "/gift-check",
+  element: <GiftCheck/>
 },
 
 ]

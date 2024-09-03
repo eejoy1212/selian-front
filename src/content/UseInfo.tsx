@@ -61,7 +61,7 @@ font-size: 20px;
 color: #666666;
 display: flex;
 flex-direction:row;
-margin-bottom: 23px;
+margin-bottom: 20px;
 `
 const Highlight=styled.div`
 color:${orange1}`
@@ -83,11 +83,11 @@ position: relative;
 display: flex;
 flex-direction: row;
 align-items: center;
-margin-bottom: 31px;
+margin-top: 0px;
 `
 const PlanTitle=styled.div`
-margin-top:31px;
-margin-bottom: 12px;
+margin-top:10px;
+margin-bottom: 0px;
 color: #333333;
 font-size: 22px;
 font-weight: 600;
@@ -96,7 +96,7 @@ export const MainCard=styled.div`
 background-color: white;
 border: 1px solid #E4E3E3;
 `
-const InfoCardContent=styled.div`
+export const InfoCardContent=styled.div`
 background-color: white;
 border: 1px solid #d9d9d9;
 margin: 10px 13px;
@@ -123,20 +123,20 @@ color: #333333;
 font-size: 14px;
 font-weight: 400;
 `
-const UseInfoTitleRow = styled.div`
+export const UseInfoTitleRow = styled.div`
 width:calc(100% - 22px);
 margin-left: 22px;
 display: flex;
 flex-direction: row;
 justify-content: space-between;
 `
-const Dot = styled.div`
+export const Dot = styled.div`
 width: 10px;
 height:10px;
 border-radius: 50%;
 background-color: ${blue2};
 `
-const UseInfoTitle = styled.div`
+export const UseInfoTitle = styled.div`
 display: flex;
 align-items: center;
 gap: 16px;
@@ -145,6 +145,7 @@ font-weight: 400;
 `
 const UseInfoWrapper = styled.div`
 width: 775px;
+height: 230px;
 display: flex;
 flex-direction: column;
 gap: 12px;
