@@ -63,7 +63,13 @@ export function Dashboard(props: IDashboardProps) {
           {/* 상품관리 메뉴 */}
           <DefaultMenu>
             <DefaultMenuTitle>상품 관리</DefaultMenuTitle>
-            <DefaultMenuItem>수집 상품 관리</DefaultMenuItem>
+            <DefaultMenuItem
+              onClick={() => {
+                navigate('/collect-check');
+              }}
+            >  {location.pathname === '/collect-check' && <MenuIndicator />}
+              <span>수집 상품 관리</span>
+             </DefaultMenuItem>
             <DefaultMenuItem>마켓 등록 상품 관리</DefaultMenuItem>
             <DefaultMenuItem>전체상품 내역</DefaultMenuItem>
           </DefaultMenu>
@@ -516,16 +522,18 @@ const DashboardLayout = styled.div`
   display: flex;
   flex-direction: column;
   width: 100vw;
-  height: 100vh;
+  // height: 100vh;
   min-height: 900px;
-`;
+//  overflow-x: hidden;
+  `;
 
 const DashboardWrapper = styled.div`
   width: 100vw;
-  height: calc(100vh - 60px);
+  // height: calc(100vh - 60px);
   display: flex;
   flex-direction: row;
   background-color: ${blue3};
+   
 `;
 
 const SideBar = styled.div`

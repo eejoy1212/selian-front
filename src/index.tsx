@@ -9,6 +9,7 @@ import { LoginPg } from './Page/LoginPg';
 import { Main } from './content/Main';
 import { GiftCheck } from './content/GiftCheck';
 import { GiftRegister } from './content/GiftRegister';
+import { CollectCheck } from './content/CollectCheck';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -38,6 +39,11 @@ const router = createBrowserRouter(
       
   path: "/gift-register",
   element: <GiftRegister/>
+},
+{
+      
+  path: "/collect-check",
+  element: <CollectCheck/>
 },
 
 ]
