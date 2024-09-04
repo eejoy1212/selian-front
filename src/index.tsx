@@ -8,6 +8,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { LoginPg } from './Page/LoginPg';
 import { Main } from './content/Main';
 import { GiftCheck } from './content/GiftCheck';
+import { GiftRegister } from './content/GiftRegister';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -32,6 +33,11 @@ const router = createBrowserRouter(
       
   path: "/gift-check",
   element: <GiftCheck/>
+},
+{
+      
+  path: "/gift-register",
+  element: <GiftRegister/>
 },
 
 ]

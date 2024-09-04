@@ -50,7 +50,14 @@ export function Dashboard(props: IDashboardProps) {
               {location.pathname === '/gift-check' && <MenuIndicator />}
               <span>상품수집 및 검수</span>
             </DefaultMenuItem>
-            <DefaultMenuItem>상품 마켓 등록</DefaultMenuItem>
+            <DefaultMenuItem
+              onClick={() => {
+                navigate('/gift-register');
+              }}
+            >
+              {location.pathname === '/gift-register' && <MenuIndicator />}
+              <span>상품 마켓 등록</span>
+              </DefaultMenuItem>
           </DefaultMenu>
           <MenuLine />
           {/* 상품관리 메뉴 */}
@@ -269,6 +276,7 @@ export function Dashboard(props: IDashboardProps) {
             </SaveBtns>
           </OptionWrapper>
         </OptionFilter>}
+        {/* 내용 */}
         <Outlet />
       </DashboardWrapper>
     </DashboardLayout>
