@@ -70,19 +70,80 @@ export function Dashboard(props: IDashboardProps) {
             >  {location.pathname === '/collect-check' && <MenuIndicator />}
               <span>수집 상품 관리</span>
              </DefaultMenuItem>
-            <DefaultMenuItem>마켓 등록 상품 관리</DefaultMenuItem>
-            <DefaultMenuItem>전체상품 내역</DefaultMenuItem>
+            <DefaultMenuItem
+            onClick={() => {
+              navigate('/market-register');
+            }}
+            >
+               {location.pathname === '/market-register' && <MenuIndicator />}
+             <span>마켓 등록 상품 관리</span>
+              </DefaultMenuItem>
+            <DefaultMenuItem
+            onClick={() => {
+              navigate('/all-gift');
+            }}
+            > {location.pathname === '/all-gift' && <MenuIndicator />}
+              <span>전체상품 내역</span></DefaultMenuItem>
           </DefaultMenu>
           <MenuLine />
           {/* 설정 메뉴 */}
           <DefaultMenu>
             <DefaultMenuTitle>설정</DefaultMenuTitle>
-            <DefaultMenuItem>금지어/브랜드관리</DefaultMenuItem>
-            <DefaultMenuItem>치환어 관리</DefaultMenuItem>
-            <DefaultMenuItem>금지 코드 관리</DefaultMenuItem>
-            <DefaultMenuItem>사이트 API</DefaultMenuItem>
-            <DefaultMenuItem>템플릿 관리</DefaultMenuItem>
-            <DefaultMenuItem>기타 설정</DefaultMenuItem>
+            <DefaultMenuItem
+              onClick={() => {
+                navigate('/ban-manage');
+              }}
+            >
+               {(location.pathname === '/ban-manage'||location.pathname === '/ban-brand-manage') && <MenuIndicator />}
+             <span>금지어/브랜드관리</span>
+              </DefaultMenuItem>
+            <DefaultMenuItem
+            
+            onClick={() => {
+              navigate('/substitution-word-manage');
+            }}>
+                {location.pathname === '/substitution-word-manage' && <MenuIndicator />}
+              <span>치환어 관리</span>
+              </DefaultMenuItem>
+            <DefaultMenuItem
+            onClick={() => {
+              navigate('/ban-code-manage');
+            }}
+            >
+               {location.pathname === '/ban-code-manage' && <MenuIndicator />}
+              <span>금지 코드 관리</span>
+              </DefaultMenuItem>
+            <DefaultMenuItem
+              onClick={() => {
+                navigate('/smart-store');
+              }}
+            >
+                {(location.pathname === '/smart-store'||
+                  location.pathname === '/coupang'||
+                  location.pathname === '/eleven'||
+                  location.pathname === '/gmarket'||
+                  location.pathname === '/auction'||
+                  location.pathname === '/interpark'||
+                  location.pathname === '/lotte-on'
+                ) && <MenuIndicator />}
+              
+              <span>사이트 API</span>
+              </DefaultMenuItem>
+            <DefaultMenuItem
+             onClick={() => {
+              navigate('/delivery-template');
+            }}
+            >
+              {location.pathname === '/delivery-template' && <MenuIndicator />}
+              <span>템플릿 관리</span>
+              </DefaultMenuItem>
+            <DefaultMenuItem
+              onClick={() => {
+                navigate('/etc-setting');
+              }}
+            >
+                    {location.pathname === '/etc-setting' && <MenuIndicator />}
+              <span>기타 설정</span></DefaultMenuItem>
           </DefaultMenu>
           <MenuLine />
           {/* 로그아웃 메뉴 */}
