@@ -49,4 +49,5 @@ margin-top: 44px;
 width: calc(100% - 60px - 60px);
 margin-left: 60px;
 margin-right: 60px;
+min-height: calc(100vh - 60px - 45px);
 `
