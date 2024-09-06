@@ -205,7 +205,9 @@ placeholder='URL 입력'
       </GiftNumRow>
       <TableWrapper> 
       <TableContainer component={Paper} sx={{ boxShadow: 'none'}}>
-        <Table sx={{ minWidth: 1200,}} aria-label="simple table">
+        <Table 
+        size='small'
+        sx={{ minWidth: 1200,}} aria-label="simple table">
           <StyledTableHead>
             <TableRow>
               <StyledTableCell align="left">선택</StyledTableCell>
@@ -450,7 +452,9 @@ placeholder='URL 입력'
       </GiftNumRow>
       <TableWrapper> 
       <TableContainer component={Paper} sx={{ boxShadow: 'none'}}>
-        <Table sx={{ minWidth: 1200,}} aria-label="simple table">
+        <Table 
+        size='small'
+        sx={{ minWidth: 1200,}} aria-label="simple table">
           <StyledTableHead>
             <TableRow>
               <StyledTableCell align="left">선택</StyledTableCell>
@@ -647,7 +651,7 @@ color: #333333;
 
 margin-right: 37px;
 `
-const CollectSelect=styled.select`
+export const CollectSelect=styled.select`
   background-color: #e8e8e8;
   border: 1px solid #e8e8e8;
   font-size: 14px;

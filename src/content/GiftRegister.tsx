@@ -774,7 +774,7 @@ placeholder='URL 입력'
       </SearchRow>
       <TableWrapper> 
       <TableContainer component={Paper} sx={{ boxShadow: 'none',height: "615px" }}>
-        <Table sx={{ }} aria-label="simple table">
+        <Table size='small' aria-label="simple table">
           <StyledTableHead>
             <TableRow>
               <StyledTableCell align="center">선택</StyledTableCell>

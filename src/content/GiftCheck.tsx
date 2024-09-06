@@ -86,7 +86,9 @@ export function GiftCheck(props: IGiftCheckProps) {
       </SearchRow>
       <TableWrapper> 
       <TableContainer component={Paper} sx={{ boxShadow: 'none',height: "615px" }}>
-        <Table sx={{ minWidth: 1200,}} aria-label="simple table">
+        <Table 
+        size='small'
+        sx={{ minWidth: 1200,}} aria-label="simple table">
           <StyledTableHead>
             <TableRow>
               <StyledTableCell align="left">선택</StyledTableCell>

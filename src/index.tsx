@@ -170,7 +170,7 @@ const router = createBrowserRouter(
   path: "/tag-template",
   element: <TagTemplate/>
 
-},
+}
 ]
 }
 
