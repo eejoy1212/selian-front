@@ -28,7 +28,7 @@ export function SubstitutionWordManage (props: ISubstitutionWordManageProps) {
         />
       <BanManageTabs>
       <BanManageActiveTab>치환어 관리</BanManageActiveTab>
-     
+     <EmptyTab/>
       </BanManageTabs>
       <BanManagePaper>
         <FilterRow>
@@ -183,6 +183,12 @@ onClick={onClickOpenUpload}
     </BanManageLayout>
   );
 }
+export const EmptyTab=styled.div`
+width: 100%;
+height: 49px;
+border-bottom: 1px solid #d9d9d9;
+border-left: 1px solid #d9d9d9;
+`
 export const DelBtn=styled.button`
 cursor: pointer;
 border: 1px solid #666666;

@@ -6,6 +6,7 @@ import { CustomCheck } from '../components/Btn/CustomCheck';
 import { ArrowBackIos, ArrowForwardIos } from '@mui/icons-material';
 import { ExcelUploadDialog } from '../components/dialog/ExcelUploadDialog';
 import { useNavigate } from 'react-router-dom';
+import { EmptyTab } from './SubstitutionWord';
 
 export interface IBanCodeManageProps {
 }
@@ -28,7 +29,7 @@ export function BanCodeManage (props: IBanCodeManageProps) {
         />
       <BanManageTabs>
       <BanManageActiveTab>금지코드 관리</BanManageActiveTab>
-     
+     <EmptyTab/>
       </BanManageTabs>
       <BanManagePaper>
         <FilterRow>
