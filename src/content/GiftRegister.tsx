@@ -9,16 +9,74 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Dialog, DialogActions, DialogContent, DialogTitle, IconButton } from '@mui/material';
-import { CloseSharp } from '@mui/icons-material';
+import { ArrowForwardIos, CloseSharp, Pause, PauseCircleFilled, PlayArrow } from '@mui/icons-material';
 import { CustomCheck } from '../components/Btn/CustomCheck';
 import AliSrc from '../images/company/ali.png'
 import TaobaoSrc from '../images/company/taobao.png'
 import AmazonSrc from '../images/company/amazon.png'
+import { Line } from 'react-chartjs-2';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+import { CustomCheckbox } from '../components/Btn/CustomCheckbox';
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
+
+// 차트 데이터와 옵션 설정
+const data = {
+  labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+  datasets: [
+    {
+      label: 'Sample Dataset',
+      data: [65, 59, 80, 81, 56, 55, 40],
+      fill: false,
+      borderColor: 'rgba(75,192,192,1)',
+      tension: 0.1,
+    },
+  ],
+};
+
+const options = {
+  responsive: true,
+  maintainAspectRatio: false,
+  plugins: {
+    legend: {
+      position: 'top' as const,
+    },
+    title: {
+      display: true,
+      text: 'Chart.js Line Chart',
+    },
+  },
+};
+
 export interface GiftRegisterProps {}
 
 export function GiftRegister(props: GiftRegisterProps) {
   const [openUload,setOpenUpload]=React.useState(false)
   const [openMarketDialog,setOpenMarketDialog]=React.useState(false)
+  const [registerOpen,setRegisterOpen]=React.useState(false)
+  const onClickOpenRegisterDialog=()=>{
+    setRegisterOpen(true)
+  }
+  const onClickCloseRegisterDialog=()=>{
+    setRegisterOpen(false)
+  }
   const onClickOpenMarketDialog=()=>{
     setOpenMarketDialog(true)
   }
@@ -33,6 +91,302 @@ export function GiftRegister(props: GiftRegisterProps) {
   }
   return (
     <GiftCheckLayout>
+      {/* 상품 마켓 등록 현황 창 */}
+      <Dialog open={registerOpen}
+     sx={{
+      '& .MuiDialog-paper': {
+          minWidth: '1700px'
+      }
+  }}
+      >
+        <DialogTitle
+        sx={{
+textAlign:"center"
+        }}
+        >상품 마켓 등록</DialogTitle>
+        <DialogContent
+        sx={{
+          display: "flex",
+          flexDirection:"row",
+          gap: "79px"
+        }}
+        >
+<RegisterLeft>
+<RegisterTitle>등록현황</RegisterTitle>
+<ChartWrapper>
+              <Line data={data} options={options} />
+            </ChartWrapper>
+            <MarketRegisterTitle>마켓 등록 템플릿</MarketRegisterTitle>
+            <MarketRegisterSelect>
+              <option>등록 템플릿 1</option>
+            </MarketRegisterSelect>
+            <RegisterOptionTitle>등록 옵션</RegisterOptionTitle>
+            <RegisterChkRow>
+              <CustomCheckbox/>
+              <span>상품 코드 중복검사</span>
+            </RegisterChkRow>
+            <OptionRow>
+              <RegisterChkRow>
+              <CustomCheckbox/>
+              <span>상품명 중복 검사</span>
+            </RegisterChkRow>
+            <RegisterChkRow>
+              <CustomCheckbox/>
+              <span>중복 상품 삭제후 재등록</span>
+            </RegisterChkRow>
+            </OptionRow>
+            <SameTimeRow>
+              <span>동시 등록 마켓수</span>
+            <SameTimeSelect>
+              <option>10개 마켓 동시 등록</option>
+            </SameTimeSelect>
+            </SameTimeRow>
+</RegisterLeft>
+<RegisterRight>
+  <DialogTableRow>
+  <TableContainer component={Paper} sx={{  minWidth: "481px",maxWidth: "481px",boxShadow: 'none'}}>
+        <Table
+        size="small"
+        sx={{border:"1px solid #d9d9d9"}} aria-label="simple table">
+          <StyledDialogTableHead>
+            <TableRow>
+              <StyledDialogTableCell align="center">번호</StyledDialogTableCell>
+              <StyledDialogTableCell align="center">마켓</StyledDialogTableCell>
+              <StyledDialogTableCell align="center">마켓이름</StyledDialogTableCell>
+              <StyledDialogTableCell align="center"></StyledDialogTableCell>
+            
+            </TableRow>
+          </StyledDialogTableHead>
+         {/* 1.데이터가 있는경우 */}
+         <TableBody
+       
+          >
+
+           {rows2.map((row,index) => (
+              <TableRow
+                key={row.name}
+                sx={{ '&:last-child td, &:last-child th': { 
+                  
+                  border: 0 } }}
+              >
+             
+                <TableCell align="center">{rows2.length-index}</TableCell>
+                <TableCell align="center">스마트 스토어</TableCell>
+                <TableCell align="center">
+                네이버-A
+                </TableCell>
+                <TableCell align="center">
+                  <MarketAddBtn>
+                    <span>추가하기</span>                    
+                  <ArrowForwardIos sx={{
+                    width:"12px"
+                  }}/>
+                  </MarketAddBtn>
+                </TableCell>
+            
+           
+
+              </TableRow>
+            ))}
+          </TableBody>
+    
+        </Table>     
+
+        {/* 2.데이터가 없는 경우 */}
+         {/* <NoDataPaper>
+<span>수집중입니다.</span>
+<span>수집률: 0%</span>
+</NoDataPaper>  */}
+        
+      </TableContainer>
+      <CircleArrow>
+      <ArrowForwardIos sx={{
+                    width:"12px"
+                  }}/>
+      </CircleArrow>
+      <RegisterMarketTableCol>
+<RegisterMarketSearchRow>
+<RegisterMarketSearchInput placeholder='마켓 이름을 검색해 주세요.'/>
+<SearchBtn>검색</SearchBtn>
+</RegisterMarketSearchRow>
+        <RegisterMarketTitle>등록 마켓</RegisterMarketTitle>
+        <TableContainer component={Paper} sx={{  minWidth: "392px",maxWidth: "392px",boxShadow: 'none'}}>
+        <Table
+        size="small"
+        sx={{border:"1px solid #d9d9d9"}} aria-label="simple table">
+          <StyledDialogTableHead>
+            <TableRow>
+              <StyledDialogTableCell align="center">번호</StyledDialogTableCell>
+              <StyledDialogTableCell align="center">마켓</StyledDialogTableCell>
+              <StyledDialogTableCell align="center">마켓이름</StyledDialogTableCell>
+            
+            </TableRow>
+          </StyledDialogTableHead>
+         {/* 1.데이터가 있는경우 */}
+         <TableBody
+       
+          >
+
+           {rows2.slice(0,3).map((row,index) => (
+              <TableRow
+                key={row.name}
+                sx={{ '&:last-child td, &:last-child th': { 
+                  
+                  border: 0 } }}
+              >
+             
+                <TableCell align="center">{3-index}</TableCell>
+                <TableCell align="center">스마트 스토어</TableCell>
+                <TableCell align="center">
+                네이버-A
+                </TableCell>
+               
+            
+           
+
+              </TableRow>
+            ))}
+          </TableBody>
+    
+        </Table>     
+
+        {/* 2.데이터가 없는 경우 */}
+         {/* <NoDataPaper>
+<span>수집중입니다.</span>
+<span>수집률: 0%</span>
+</NoDataPaper>  */}
+        
+      </TableContainer>
+      </RegisterMarketTableCol>
+  </DialogTableRow>
+  {/* 등록상품 정보 */}
+<FolderLayout>
+  <FolderTabs>
+    <InfoTab>등록 상품 정보</InfoTab>
+    <EmptyTab/>
+    </FolderTabs>
+
+<TableContainer component={Paper} sx={{  minWidth: "100%",maxWidth: "100%",boxShadow: 'none'}}>
+        <Table
+        size="small"
+      aria-label="simple table">
+          <StyledDialogTableHead>
+            <TableRow>
+              <StyledDialogTableCell align="center">번호</StyledDialogTableCell>
+              <StyledDialogTableCell align="center">상품명</StyledDialogTableCell>
+              <StyledDialogTableCell align="center">판매가</StyledDialogTableCell>
+              <StyledDialogTableCell align="center">수집일</StyledDialogTableCell>
+            
+            </TableRow>
+          </StyledDialogTableHead>
+         {/* 1.데이터가 있는경우 */}
+         <TableBody
+       
+          >
+
+           {rows2.slice(0,3).map((row,index) => (
+              <TableRow
+                key={row.name}
+                sx={{ '&:last-child td, &:last-child th': { 
+                  
+                  border: 0 } }}
+              >
+             
+                <TableCell align="center">{3-index}</TableCell>
+                <TableCell align="center">스마트 스토어</TableCell>
+                <TableCell align="center">
+                64,000
+                </TableCell>
+                <TableCell align="center">
+                2023.12.25 14:00
+                </TableCell>
+            
+           
+
+              </TableRow>
+            ))}
+          </TableBody>
+    
+        </Table>     
+
+        {/* 2.데이터가 없는 경우 */}
+         {/* <NoDataPaper>
+<span>수집중입니다.</span>
+<span>수집률: 0%</span>
+</NoDataPaper>  */}
+        
+      </TableContainer>
+</FolderLayout>
+  {/* 등록 상태 */}
+  <FolderLayout>
+  <FolderTabs>
+    <InfoTab>등록 상태</InfoTab>
+    <EmptyTab/>
+    </FolderTabs>
+
+<TableContainer component={Paper} sx={{  minWidth: "100%",maxWidth: "100%",boxShadow: 'none'}}>
+        <Table
+        size="small"
+      aria-label="simple table">
+          <StyledDialogTableHead>
+            <TableRow>
+              <StyledDialogTableCell align="center">작업일시</StyledDialogTableCell>
+              <StyledDialogTableCell align="center">작업내용</StyledDialogTableCell>
+              <StyledDialogTableCell align="center"></StyledDialogTableCell>
+              <StyledDialogTableCell align="center"></StyledDialogTableCell>
+            </TableRow>
+          </StyledDialogTableHead>
+         {/* 1.데이터가 있는경우 */}
+         <TableBody
+       
+          >
+
+           {rows2.slice(0,3).map((row,index) => (
+              <TableRow
+                key={row.name}
+                sx={{ '&:last-child td, &:last-child th': { 
+                  
+                  border: 0 } }}
+              >
+             
+                <TableCell align="center">2023.12.25 14:00</TableCell>
+                <TableCell align="center">[상품명][등록마켓]등록</TableCell>
+                <TableCell align="center">
+                </TableCell>
+                <TableCell align="center">
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+    
+        </Table>     
+
+        {/* 2.데이터가 없는 경우 */}
+         {/* <NoDataPaper>
+<span>수집중입니다.</span>
+<span>수집률: 0%</span>
+</NoDataPaper>  */}
+        
+      </TableContainer>
+</FolderLayout>
+<Flex/>
+<RegisterBtns>
+<Flex/>
+  <StartBtn>
+    <span>등록시작</span>
+    <PlayArrow/>
+    </StartBtn>
+    <PauseBtn>
+    <span>등록시작</span>
+    <Pause/>
+    </PauseBtn>
+    <EndBtn>등록 종료</EndBtn>
+    <Flex/>
+    <StartBtn onClick={onClickCloseRegisterDialog}>닫기</StartBtn>
+</RegisterBtns>
+</RegisterRight>
+        </DialogContent>
+      </Dialog>
         {/* 상품마켓등록 창 */}
         <Dialog
         open={openMarketDialog}
@@ -170,11 +524,11 @@ placeholder='URL 입력'
       </SearchRow>
       <TableWrapper> 
       <TableContainer component={Paper} sx={{ boxShadow: 'none',height: "615px" }}>
-        <Table sx={{ minWidth: 1200,}} aria-label="simple table">
+        <Table sx={{ }} aria-label="simple table">
           <StyledTableHead>
             <TableRow>
-              <StyledTableCell align="left">선택</StyledTableCell>
-              <StyledTableCell align="left">No.</StyledTableCell>
+              <StyledTableCell align="center">선택</StyledTableCell>
+              <StyledTableCell align="center">No.</StyledTableCell>
               <StyledTableCell align="center">태그</StyledTableCell>
               <StyledTableCell align="center">이미지</StyledTableCell>
               <StyledTableCell align="center">글자수</StyledTableCell>
@@ -189,6 +543,7 @@ placeholder='URL 입력'
               <StyledTableCell align="center">수정</StyledTableCell>
               <StyledTableCell align="center">삭제</StyledTableCell>
               <StyledTableCell align="center">URL</StyledTableCell>
+            
             </TableRow>
           </StyledTableHead>
          {/* 1.데이터가 있는경우 */}
@@ -269,6 +624,217 @@ onClick={onOpenUpload}
     </GiftCheckLayout>
   );
 }
+const EndBtn=styled.button`
+height: 30px;
+border: 1px solid #335A97;
+border-radius: 5px;
+color: white;
+background-color: #335A97;
+display: flex;
+align-items: center;
+font-size: 14px;
+`
+const PauseBtn=styled.button`
+height: 30px;
+border: 1px solid #335A97;
+border-radius: 5px;
+color: #335A97;
+background-color: #E6EEFA;
+display: flex;
+align-items: center;
+font-size: 14px;
+`
+const StartBtn=styled.button`
+height: 30px;
+border: 1px solid #335A97;
+border-radius: 5px;
+color: #335A97;
+background-color: white;
+display: flex;
+align-items: center;
+font-size: 14px;
+`
+const RegisterBtns=styled.div`
+display: flex;
+flex-direction: row;
+gap: 28px;
+align-items: center;
+justify-content: flex-end;
+`
+const FolderTabs=styled.div`
+display: flex;
+flex-direction: row;
+`
+const EmptyTab=styled.div`
+width: 100%;
+height: 37px;
+border-bottom : 1px solid #d9d9d9;
+`
+const InfoTab=styled.div`
+background-color: white;
+width: 246px;
+height: 37px;
+display: flex;
+align-items: center;
+justify-content: center; 
+font-size: 18px;
+font-weight: 400;
+color: #101010;
+border-right: 1px solid #d9d9d9;
+border-bottom: 1px solid white;
+`
+const FolderLayout=styled.div`
+width: 100%;
+display: flex;
+flex-direction: column;
+margin-top: 19px;
+border: 1px solid #d9d9d9;
+background-color: #f9f9f9;
+`
+const SearchBtn=styled.button`
+width: 71px;
+height: 34px;
+border-radius: 8px;
+border: none;
+cursor: pointer;
+background-color: #37508B;
+font-size: 14px;
+font-weight: 700;
+color: white;
+`
+const RegisterMarketSearchInput=styled.input`
+width: 361px;
+height: 34px;
+border: 1px solid #d9d9d9;
+border-radius: 5px;
+text-indent: 16px;
+`
+const RegisterMarketSearchRow=styled.div`
+display: flex;
+flex-direction: row;
+align-items: center;
+gap: 25px;
+margin-left: -39px;
+`
+const RegisterMarketTitle=styled.div`
+text-indent: 19px;
+font-size: 20px;
+font-weight: 700;
+color: #666666;
+margin-bottom: 20px;
+`
+const RegisterMarketTableCol=styled.div`
+display: flex;
+flex-direction:column;
+justify-content: space-between;
+`
+const DialogTableRow=styled.div`
+width: 1010px;
+display: flex;
+flex-direction: row;
+`
+const CircleArrow=styled.div`
+width: 27px;
+height: 27px;
+border-radius: 50px;
+display: flex;
+align-items: center;
+justify-content: center;
+background-color: #D9D9D9;
+margin-top: 196px;
+margin-left: 40px;
+margin-right: 37px;
+`
+const MarketAddBtn=styled.button`
+width: 96px;
+height: 30px;
+border-radius: 5px;
+border: 1px solid #335A97;
+color: #335A97;
+cursor: pointer;
+font-size: 14px;
+font-weight: 400;
+background-color: white;
+display: flex;
+align-items: center;
+gap: 6px;
+text-indent: 5px;
+`
+const RegisterRight=styled.div`
+display: flex;
+flex-direction: column;
+
+`
+const SameTimeSelect=styled.select`
+width: 228px;
+height: 34px;
+border: 1px solid #d9d9d9;
+color: #666666;
+border-radius: 5px;
+`
+const SameTimeRow=styled.div`
+display: flex;
+flex-direction: row;
+align-items: center;
+gap: 10px;
+font-size: 14px;
+font-weight: 400;
+color: #333333;
+`
+const OptionRow=styled.div`
+display: flex;
+flex-direction: row;
+align-items: center;
+gap: 37px;
+margin-top: 15px;
+margin-bottom: 24px;
+`
+const RegisterChkRow=styled.div`
+display: flex;
+flex-direction: row;
+align-items: center;
+gap: 9px;
+font-size: 14px;
+color: #333333;
+`
+const RegisterOptionTitle=styled.div`
+margin-top: 35px;
+font-size: 20px;
+font-weight: 700;
+color: #666666;
+margin-bottom: 15px;
+`
+const MarketRegisterSelect=styled.select`
+width: 347px;
+height: 34px;
+border: 1px solid #d9d9d9;
+color: #666666;
+border-radius: 5px;
+`
+const ChartWrapper = styled.div`
+  width: 531px;
+  height: 405px;
+`;
+const MarketRegisterTitle=styled.div`
+margin-top: 46px;
+margin-bottom: 8px;
+font-family: Satoshi;
+font-size: 20px;
+font-weight: 700;
+color: #666666;
+`
+const RegisterLeft=styled.div`
+display: flex;
+flex-direction: column;
+`
+const RegisterTitle=styled.div`
+font-size: 20px;
+font-weight: 700;
+color: #666666;
+margin-bottom: 26px;
+`
+
+
 const ConfirmBtn=styled.button`
 margin-top: 42px;
 cursor: pointer;
@@ -669,11 +1235,19 @@ const StyledTableHead = styled(TableHead)`
   border-bottom: 1px solid #f6f6f6;
   box-shadow: none; /* 그림자 제거 */
 `;
+const StyledDialogTableHead = styled(TableHead)`
+border-top: none;  
+background-color: white;
+  border-bottom: 1px solid #e4d49;
+  box-shadow: none; 
+`;
 
 const StyledTableCell = styled(TableCell)`
   border-top: 1px solid #6a6a6a;
 `;
-
+const StyledDialogTableCell = styled(TableCell)`
+  border-top: none;
+`;
 function createData(
   name: string,
   calories: number,

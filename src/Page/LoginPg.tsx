@@ -1,19 +1,23 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import WhiteLogo from '../images/logo/white-logo.png';
 import WithTxtLogo from '../images/logo/with-txt-logo.png';
-import LoginBg from '../images/login/login-bg.jpg';
+import LoginBg from '../images/login/login-bg.png';
 import { Checkbox } from '@mui/material';
 import { LoginTxtfield } from '../components/textfield/LoginTxtfield';
 import { blue1 } from '../const/colors';
 import { IDSearchDialog } from '../components/dialog/IDSearchDialog';
 import { SignUpDialog } from '../components/dialog/SignUpDialog';
 import { useNavigate } from 'react-router-dom';
+import { DetailDialog } from '../components/dialog/DetailDialog';
 
 export interface ILoginProps {}
 
 export function LoginPg(props: ILoginProps) {
   const [searchOpen,setSearchOpen]=React.useState(false)
   const [signupOpen,setSignUpOpen]=React.useState(false)
+  const [openDetail,setOpenDetail]=React.useState(false)
+
   const navigate=useNavigate()
   const onSearchClose=()=>{
     setSearchOpen(false)
@@ -27,13 +31,25 @@ export function LoginPg(props: ILoginProps) {
   const onClickSignUp=()=>{
     setSignUpOpen(true)
   }
+   const onClickOpenDetail=()=>{
+     setOpenDetail(true)
+   }
+   const onClickCloseDetail=()=>{
+     setOpenDetail(false)
+   }
   return (
-    <LoginPageLayout>
+    <LoginPageLayout>  
+      <WhiteLogoImg src={WhiteLogo} />
+      {/* 자세히보기 다이얼로그 */}
+      <DetailDialog open={openDetail} onClose={onClickCloseDetail}/>
       {/* 회원가입 다이얼로그 */}
-      <SignUpDialog open={signupOpen} onClose={onSignUpClose}/>
+      <SignUpDialog open={signupOpen} 
+      onOpenDetail={onClickOpenDetail}
+      onClose={onSignUpClose}/>
         {/* 아이디 비밀번호 찾기 다이얼로그 */}
         <IDSearchDialog open={searchOpen} onClose={onSearchClose}/>
-        <LoginImage src={LoginBg} alt="Login Background" />
+<LoginImage src={LoginBg} alt="Login Background" />
+
       <LoginContainer>
       <img src={WithTxtLogo} width={"138px"} alt="With Logo" />
       <LoginTxtFieldSet>
@@ -68,16 +84,26 @@ onClick={()=>{navigate("/main")}}
     </LoginPageLayout>
   );
 }
+const WhiteLogoImg = styled.img`
+  position: absolute;
+  z-index: 999;
+  width: 140px;
+  top: 53px; /* top 값을 더 작은 값으로 */
+  left: 56px; /* left 값을 더 작은 값으로 */
+`;
+
+
 const LoginImage = styled.img`
-  width: 600px;
+z-index: 900;
+  height: 900px;
   height: 100vh;
-  min-height: 900px;
   object-fit: cover;
 `;
 
 const LoginPageLayout=styled.div`
 display: flex;
 flex-direction: row;
+ position: relative; 
 `
 export const VerticalDivider=styled.div`
 width: 1px;

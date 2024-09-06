@@ -473,6 +473,7 @@ height: 30px;
 font-size: 12px;
 `
 const SaveBtns=styled.div`
+margin-top: 10px;
 width: 100%;
 display: flex;
 align-items: center;
@@ -533,7 +534,7 @@ const TranslateSet = styled.div`
   gap: 11px;
   margin-top: 15px;
   font-size: 14px;
-  margin-bottom: 28px;
+  margin-bottom: 20px;
 `;
 
 const KeywordLi = styled.li`
@@ -574,7 +575,7 @@ const KeywordSet = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px;
-  font-size: 15px;
+  font-size: 14px;
   margin-bottom: 20px;
 `;
 const NumInput=styled.input`
@@ -599,7 +600,7 @@ const SourcingSiteSet = styled.div`
   flex-direction: column;
   gap: 11px;
   margin-bottom: 18px;
-  font-size: 15px;
+  font-size: 14px;
 `;
 
 const OptionWrapper = styled.div`

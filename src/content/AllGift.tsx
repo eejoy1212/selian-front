@@ -1075,7 +1075,7 @@ color: #1F7145;
 border: 1px solid #1F7145;
 background-color: white;
 `
-const Flex=styled.div`
+export const Flex=styled.div`
 flex:1
 `
 const SearchBtn=styled.button`
