@@ -83,8 +83,8 @@ export function BanCodeManage (props: IBanCodeManageProps) {
         sx={{ minWidth: 1200,minHeight:320}} aria-label="simple table">
           <StyledTableHead>
             <TableRow>
-              <StyledTableCell align="left">선택</StyledTableCell>
-              <StyledTableCell align="left">No.</StyledTableCell>
+              <StyledTableCell align="center">선택</StyledTableCell>
+              <StyledTableCell align="center">No.</StyledTableCell>
               <StyledTableCell align="center">금지코드</StyledTableCell>
               <StyledTableCell align="center">상품명</StyledTableCell>
               <StyledTableCell align="center">소싱 사이트</StyledTableCell>
@@ -105,14 +105,14 @@ export function BanCodeManage (props: IBanCodeManageProps) {
                   
                   border: 0 } }}
               >
-                <TableCell align="left"
+                <TableCell align="center"
                 
                 scope="row">
                   <CustomCheck
                   checked={true}
                   />
                 </TableCell>
-                <TableCell align="left">{rows2.length-index}</TableCell>
+                <TableCell align="center">{rows2.length-index}</TableCell>
                 <TableCell align="center">금지코드</TableCell>
                 <TableCell align="center">상품명</TableCell>
                 <TableCell align="center">아마존</TableCell>

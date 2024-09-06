@@ -93,8 +93,8 @@ export function BanManage (props: IBanManageProps) {
         sx={{ minWidth: 1200,minHeight:320}} aria-label="simple table">
           <StyledTableHead>
             <TableRow>
-              <StyledTableCell align="left">선택</StyledTableCell>
-              <StyledTableCell align="left">No.</StyledTableCell>
+              <StyledTableCell align="center">선택</StyledTableCell>
+              <StyledTableCell align="center">No.</StyledTableCell>
               <StyledTableCell align="center">금지어</StyledTableCell>
               <StyledTableCell align="center">등록일자</StyledTableCell>
               <StyledTableCell align="center">삭제</StyledTableCell>
@@ -113,14 +113,14 @@ export function BanManage (props: IBanManageProps) {
                   
                   border: 0 } }}
               >
-                <TableCell align="left"
+                <TableCell align="center"
                 
                 scope="row">
                   <CustomCheck
                   checked={true}
                   />
                 </TableCell>
-                <TableCell align="left">{rows2.length-index}</TableCell>
+                <TableCell align="center">{rows2.length-index}</TableCell>
                 <TableCell align="center">금지어</TableCell>
                 <TableCell align="center">
                 2023.12.25 14:00

@@ -90,6 +90,7 @@ export function Dashboard(props: IDashboardProps) {
             <span
               style={{
                 textIndent: location.pathname === '/main' ? '4px' : '40px',
+                fontWeight:location.pathname === '/main'?700:500
               }}
             >
               대시보드
@@ -105,7 +106,11 @@ export function Dashboard(props: IDashboardProps) {
               }}
             >
               {location.pathname === '/gift-check' && <MenuIndicator />}
-              <span>상품수집 및 검수</span>
+              <span
+              style={{
+                fontWeight:location.pathname === '/gift-check'?700:500
+              }}
+              >상품수집 및 검수</span>
             </DefaultMenuItem>
             <DefaultMenuItem
               onClick={() => {
@@ -113,7 +118,11 @@ export function Dashboard(props: IDashboardProps) {
               }}
             >
               {location.pathname === '/gift-register' && <MenuIndicator />}
-              <span>상품 마켓 등록</span>
+              <span
+               style={{
+                fontWeight:location.pathname === '/gift-register'?700:500
+              }}
+              >상품 마켓 등록</span>
               </DefaultMenuItem>
           </DefaultMenu>
           <MenuLine />
@@ -125,7 +134,11 @@ export function Dashboard(props: IDashboardProps) {
                 navigate('/collect-check');
               }}
             >  {location.pathname === '/collect-check' && <MenuIndicator />}
-              <span>수집 상품 관리</span>
+              <span
+                 style={{
+                  fontWeight:location.pathname === '/collect-check'?700:500
+                }}
+              >수집 상품 관리</span>
              </DefaultMenuItem>
             <DefaultMenuItem
             onClick={() => {
@@ -133,14 +146,22 @@ export function Dashboard(props: IDashboardProps) {
             }}
             >
                {location.pathname === '/market-register' && <MenuIndicator />}
-             <span>마켓 등록 상품 관리</span>
+             <span
+              style={{
+                fontWeight:location.pathname === '/market-register'?700:500
+              }}
+             >마켓 등록 상품 관리</span>
               </DefaultMenuItem>
             <DefaultMenuItem
             onClick={() => {
               navigate('/all-gift');
             }}
             > {location.pathname === '/all-gift' && <MenuIndicator />}
-              <span>전체상품 내역</span></DefaultMenuItem>
+              <span
+               style={{
+                fontWeight:location.pathname === '/all-gift'?700:500
+              }}
+              >전체상품 내역</span></DefaultMenuItem>
           </DefaultMenu>
           <MenuLine />
           {/* 설정 메뉴 */}
@@ -152,7 +173,11 @@ export function Dashboard(props: IDashboardProps) {
               }}
             >
                {(location.pathname === '/ban-manage'||location.pathname === '/ban-brand-manage') && <MenuIndicator />}
-             <span>금지어/브랜드관리</span>
+             <span
+              style={{
+                fontWeight:(location.pathname === '/ban-manage'||location.pathname === '/ban-brand-manage')?700:500
+              }}
+             >금지어/브랜드관리</span>
               </DefaultMenuItem>
             <DefaultMenuItem
             
@@ -160,7 +185,11 @@ export function Dashboard(props: IDashboardProps) {
               navigate('/substitution-word-manage');
             }}>
                 {location.pathname === '/substitution-word-manage' && <MenuIndicator />}
-              <span>치환어 관리</span>
+              <span
+                style={{
+                  fontWeight:location.pathname === '/substitution-word-manage'?700:500
+                }}
+              >치환어 관리</span>
               </DefaultMenuItem>
             <DefaultMenuItem
             onClick={() => {
@@ -168,7 +197,11 @@ export function Dashboard(props: IDashboardProps) {
             }}
             >
                {location.pathname === '/ban-code-manage' && <MenuIndicator />}
-              <span>금지 코드 관리</span>
+              <span
+              style={{
+                fontWeight:location.pathname === '/ban-code-manage'?700:500
+              }}
+              >금지 코드 관리</span>
               </DefaultMenuItem>
             <DefaultMenuItem
               onClick={() => {
@@ -184,15 +217,40 @@ export function Dashboard(props: IDashboardProps) {
                   location.pathname === '/lotte-on'
                 ) && <MenuIndicator />}
               
-              <span>사이트 API</span>
+              <span
+              style={{
+                fontWeight:(location.pathname === '/smart-store'||
+                  location.pathname === '/coupang'||
+                  location.pathname === '/eleven'||
+                  location.pathname === '/gmarket'||
+                  location.pathname === '/auction'||
+                  location.pathname === '/interpark'||
+                  location.pathname === '/lotte-on'
+                )?700:500
+              }}
+              >사이트 API</span>
               </DefaultMenuItem>
             <DefaultMenuItem
              onClick={() => {
               navigate('/delivery-template');
             }}
             >
-              {location.pathname === '/delivery-template' && <MenuIndicator />}
-              <span>템플릿 관리</span>
+              {(location.pathname === '/delivery-template'||
+                location.pathname === '/market-template'||
+                location.pathname === '/img-template'||
+                location.pathname === '/margin-template'||
+                location.pathname === '/tag-template'
+              ) && <MenuIndicator />}
+              <span
+           style={{
+            fontWeight:(location.pathname === '/delivery-template'||
+              location.pathname === '/market-template'||
+              location.pathname === '/img-template'||
+              location.pathname === '/margin-template'||
+              location.pathname === '/tag-template'
+            )?700:500
+          }}
+              >템플릿 관리</span>
               </DefaultMenuItem>
             <DefaultMenuItem
               onClick={() => {
@@ -200,7 +258,11 @@ export function Dashboard(props: IDashboardProps) {
               }}
             >
                     {location.pathname === '/etc-setting' && <MenuIndicator />}
-              <span>기타 설정</span></DefaultMenuItem>
+              <span
+               style={{
+                fontWeight:location.pathname === '/etc-setting'?700:500
+              }}
+              >기타 설정</span></DefaultMenuItem>
           </DefaultMenu>
           <MenuLine />
           {/* 로그아웃 메뉴 */}
