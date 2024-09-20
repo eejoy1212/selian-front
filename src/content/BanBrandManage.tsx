@@ -1,12 +1,13 @@
 import { Paper, Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
 import * as React from 'react';
 import styled from 'styled-components';
-import { ActivePageBtn, InactivePageBtn, PageBtns, PageBtnsWrapper, rows2, StyledTableCell, StyledTableHead } from './AllGift';
+import { ActivePageBtn, Flex, InactivePageBtn, PageBtns, PageBtnsWrapper, rows2, StyledTableCell, StyledTableHead } from './AllGift';
 import { CustomCheck } from '../components/Btn/CustomCheck';
 import { ArrowBackIos, ArrowForwardIos } from '@mui/icons-material';
 import { ExcelUploadDialog } from '../components/dialog/ExcelUploadDialog';
-import { AddBtn, AddCol, BanListInput, BanListSelect, BanManageActiveTab, BanManageInActiveTab, BanManageLayout, BanManagePaper, BanManageTabs, BanTemplateTitle, DateInput, DateRow, DelBtn, EditBtnRow, ExcelAddBtn, ExcelDownloadBtn, FilterRow, InitBtn, RangeTxt, RegisterChip, RegisterRow, SearchBtn, SearchBtnRow, SearchCol, SearchInput, SearchRow, SelDelBtn, SelectRow, TableBtnsRow, TableWrapper } from './BanManage';
+import { AddBtn, AddCol, BanListInput, BanListSelect, BanManageActiveTab, BanManageInActiveTab, BanManageLayout, BanManagePaper, BanManageTabs, BanOptionRow, BanTemplateTitle, DateInput, DateRow, DelBtn, EditBtnRow, ExcelAddBtn, ExcelDownloadBtn, FilterRow, InitBtn, RangeTxt, RegisterChip, RegisterRow, SearchBtn, SearchBtnRow, SearchCol, SearchInput, SearchRow, SelDelBtn, SelectRow, TableBtnsRow, TableWrapper } from './BanManage';
 import { useNavigate } from 'react-router-dom';
+import { ShowSelect } from './MarketRegister';
 
 export interface IBanBrandManageProps {
 }
@@ -86,6 +87,13 @@ export function BanBrandManage (props: IBanBrandManageProps) {
 
 
 </SearchBtnRow>
+<BanOptionRow>
+           <Flex/>
+        <ShowSelect>
+      <option>
+        10개씩보기
+      </option>
+      </ShowSelect></BanOptionRow>
 {/* 테이블 */}
 <TableWrapper> 
       <TableContainer 

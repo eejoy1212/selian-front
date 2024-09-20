@@ -16,6 +16,8 @@ import TaobaoSrc from '../images/company/taobao.png'
 import AmazonSrc from '../images/company/amazon.png'
 import { CustomCheckbox } from '../components/Btn/CustomCheckbox';
 import { ExcelUploadDialog } from '../components/dialog/ExcelUploadDialog';
+import { OptionRow } from './GiftCheck';
+import { ShowSelect } from './MarketRegister';
 export interface CollectCheckProps {}
 
 export function CollectCheck(props: CollectCheckProps) {
@@ -203,6 +205,13 @@ placeholder='URL 입력'
         <GiftToggle>상품키워드 추가</GiftToggle>
         <GiftToggle>상품명 원상복구</GiftToggle>
       </GiftNumRow>
+      <OptionRow>
+           <Flex/>
+        <ShowSelect>
+      <option>
+        10개씩보기
+      </option>
+      </ShowSelect></OptionRow>
       <TableWrapper> 
       <TableContainer 
       variant='elevation'
@@ -453,8 +462,17 @@ placeholder='URL 입력'
         <GiftToggle>상품키워드 추가</GiftToggle>
         <GiftToggle>상품명 원상복구</GiftToggle>
       </GiftNumRow>
+      <OptionRow>
+           <Flex/>
+        <ShowSelect>
+      <option>
+        10개씩보기
+      </option>
+      </ShowSelect></OptionRow>
       <TableWrapper> 
-      <TableContainer component={Paper} sx={{ boxShadow: 'none'}}>
+      <TableContainer 
+      variant='elevation'
+      component={Paper}>
         <Table 
         size='small'
         sx={{ minWidth: 1200,}} aria-label="simple table">

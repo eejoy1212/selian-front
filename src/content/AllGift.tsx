@@ -11,6 +11,8 @@ import { Dialog, DialogContent, DialogTitle, IconButton } from '@mui/material';
 import { ArrowBackIos, ArrowForwardIos } from '@mui/icons-material';
 import { CustomCheck } from '../components/Btn/CustomCheck';
 import { IoClose } from 'react-icons/io5';
+import { OptionRow } from './GiftCheck';
+import { CollectName, ShowSelect } from './MarketRegister';
 export interface AllGiftProps {}
 
 export function AllGift(props: AllGiftProps) {
@@ -419,9 +421,15 @@ onClick={onClickOpenSearch}
 
       </ToggleRow>
       {/* 검색건수 줄 */}
-      <SearchResult>
-        검색건수:0
-      </SearchResult>
+
+      <OptionRow>
+      <CollectName>검색건수:0</CollectName>
+           <Flex/>
+        <ShowSelect>
+      <option>
+        10개씩보기
+      </option>
+      </ShowSelect></OptionRow>
       <TableWrapper> 
       <TableContainer 
       variant='elevation'
@@ -836,6 +844,7 @@ const TableWrapper = styled.div`
   width: calc(100% - 60px - 60px);
   margin-left: 60px;
   margin-right: 60px;
+  margin-top: 20px;
 `;
 
 

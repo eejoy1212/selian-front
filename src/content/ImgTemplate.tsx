@@ -3,13 +3,14 @@ import {  BanManageLayout, BanManagePaper, DelBtn, TableWrapper } from './BanMan
 import { SiteApiTabs } from '../components/Btn/SiteApiTabs';
 import { TemplateTabs } from '../components/Btn/TemplateTabs';
 import { Dialog, DialogContent, DialogTitle, IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
-import { ActivePageBtn, InactivePageBtn, PageBtns, PageBtnsWrapper, rows2, StyledTableCell, StyledTableHead } from './AllGift';
+import { ActivePageBtn, Flex, InactivePageBtn, PageBtns, PageBtnsWrapper, rows2, StyledTableCell, StyledTableHead } from './AllGift';
 import { CustomCheck } from '../components/Btn/CustomCheck';
 import styled from 'styled-components';
 import { ArrowBackIos, ArrowForwardIos, CloseSharp } from '@mui/icons-material';
 import { CustomCheckbox } from '../components/Btn/CustomCheckbox';
 import { AddBtn, CopyBtn, CostInput, CostRow, CostTitle, DialogBtns, DialogSubTitle, ExcelDownloadBtn, ExcelDownloadRow, FeeInput, FeeRow, FeeSet, FreeInput, FreeRow, OptionLi, OptionUl, TemplateBtn, TemplateBtnRow, TemplateDelBtn, TemplateDialogWrapper, TemplateNameInput } from './Template';
 import { CustomRadio } from '../components/Btn/CustomRadio';
+import { ShowSelect } from './MarketRegister';
 
 export interface IImgTemplateProps {
 }
@@ -112,6 +113,12 @@ export function ImgTemplate (props: IImgTemplateProps) {
             <TemplateBtnRow>
 <TemplateBtn
 onClick={onClickOpenTemplateAdd}>이미지 템플릿 추가하기</TemplateBtn>
+  <Flex/>
+        <ShowSelect>
+      <option>
+        10개씩보기
+      </option>
+      </ShowSelect>
             </TemplateBtnRow>
 <TableWrapper> 
       <TableContainer 

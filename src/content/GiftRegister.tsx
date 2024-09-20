@@ -27,6 +27,7 @@ import {
 } from 'chart.js';
 import { CustomCheckbox } from '../components/Btn/CustomCheckbox';
 import { ActivePageBtn, InactivePageBtn, PageBtns, PageBtnsWrapper } from './AllGift';
+import { ShowSelect } from './MarketRegister';
 
 ChartJS.register(
   CategoryScale,
@@ -776,7 +777,15 @@ placeholder='URL 입력'
       <option value="taobao">타오바오</option>
     </SourcingSelect>
       </SearchRow>
-      <TableWrapper> 
+    
+      <TableWrapper>  
+        <OptionRow>
+           <Flex/>
+        <ShowSelect>
+      <option>
+        10개씩보기
+      </option>
+      </ShowSelect></OptionRow> 
       <TableContainer 
       variant='elevation'
       component={Paper}>

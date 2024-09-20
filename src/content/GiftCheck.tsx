@@ -15,6 +15,7 @@ import AliSrc from '../images/company/ali.png'
 import TaobaoSrc from '../images/company/taobao.png'
 import AmazonSrc from '../images/company/amazon.png'
 import { ActivePageBtn, InactivePageBtn, PageBtns, PageBtnsWrapper } from './AllGift';
+import { ShowSelect } from './MarketRegister';
 export interface IGiftCheckProps {}
 
 export function GiftCheck(props: IGiftCheckProps) {
@@ -85,6 +86,15 @@ export function GiftCheck(props: IGiftCheckProps) {
           <CustomRadio checked={false} />
         </RadioSet>
       </SearchRow>
+   
+      <OptionRow>
+           <Flex/>
+        <ShowSelect>
+      <option>
+        10개씩보기
+      </option>
+      </ShowSelect></OptionRow>
+      
       <TableWrapper> 
       <TableContainer 
      variant='elevation'
@@ -216,6 +226,13 @@ onClick={onOpenUpload}
     </GiftCheckLayout>
   );
 }
+export const OptionRow=styled.div`
+margin-left: 62px;
+margin-right: 62px;
+display: flex;
+flex-direction: row;
+align-items: center;
+`
 const DelBtn=styled.button`
 cursor: pointer;
 border: 1px solid #666666;

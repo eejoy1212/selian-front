@@ -3,7 +3,7 @@ import {  BanManageLayout, BanManagePaper, DelBtn, TableWrapper } from './BanMan
 import { SiteApiTabs } from '../components/Btn/SiteApiTabs';
 import { TemplateTabs } from '../components/Btn/TemplateTabs';
 import { Dialog, DialogContent, DialogTitle, IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
-import { ActivePageBtn, InactivePageBtn, PageBtns, PageBtnsWrapper, rows2, StyledTableCell, StyledTableHead } from './AllGift';
+import { ActivePageBtn, Flex, InactivePageBtn, PageBtns, PageBtnsWrapper, rows2, StyledTableCell, StyledTableHead } from './AllGift';
 import { CustomCheck } from '../components/Btn/CustomCheck';
 import styled from 'styled-components';
 import { ArrowBackIos, ArrowForwardIos, CloseSharp } from '@mui/icons-material';
@@ -12,6 +12,7 @@ import { AddBtn, CopyBtn, CostInput, CostRow, CostTitle, DialogBtns, DialogSubTi
 import { CustomRadio } from '../components/Btn/CustomRadio';
 import { ExcelUploadDialog } from '../components/dialog/ExcelUploadDialog';
 import { TagInput } from './MarginTemplate';
+import { ShowSelect } from './MarketRegister';
 
 export interface ITagTemplateProps {
 }
@@ -130,6 +131,12 @@ export function TagTemplate (props: ITagTemplateProps) {
             <TemplateBtnRow>
 <TemplateBtn
 onClick={onClickOpenTemplateAdd}>태그 템플릿 추가하기</TemplateBtn>
+  <Flex/>
+        <ShowSelect>
+      <option>
+        10개씩보기
+      </option>
+      </ShowSelect>
             </TemplateBtnRow>
 <TableWrapper> 
       <TableContainer 

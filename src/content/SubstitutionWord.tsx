@@ -1,11 +1,13 @@
 import { Paper, Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
 import * as React from 'react';
 import styled from 'styled-components';
-import { ActivePageBtn, InactivePageBtn, PageBtns, PageBtnsWrapper, rows2, StyledTableCell, StyledTableHead } from './AllGift';
+import { ActivePageBtn, Flex, InactivePageBtn, PageBtns, PageBtnsWrapper, rows2, StyledTableCell, StyledTableHead } from './AllGift';
 import { CustomCheck } from '../components/Btn/CustomCheck';
 import { ArrowBackIos, ArrowForwardIos } from '@mui/icons-material';
 import { ExcelUploadDialog } from '../components/dialog/ExcelUploadDialog';
 import { useNavigate } from 'react-router-dom';
+import { BanOptionRow } from './BanManage';
+import { ShowSelect } from './MarketRegister';
 
 export interface ISubstitutionWordManageProps {
 }
@@ -86,6 +88,13 @@ export function SubstitutionWordManage (props: ISubstitutionWordManageProps) {
 
 
 </SearchBtnRow>
+<BanOptionRow>
+           <Flex/>
+        <ShowSelect>
+      <option>
+        10개씩보기
+      </option>
+      </ShowSelect></BanOptionRow>
 {/* 테이블 */}
 <TableWrapper> 
       <TableContainer 

@@ -3,11 +3,12 @@ import { BanManageLayout, BanManagePaper, DelBtn, TableWrapper } from './BanMana
 import { SiteApiTabs } from '../components/Btn/SiteApiTabs';
 import { TemplateTabs } from '../components/Btn/TemplateTabs';
 import { Dialog, DialogContent, DialogTitle, IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
-import { ActivePageBtn, InactivePageBtn, PageBtns, PageBtnsWrapper, rows2, StyledTableCell, StyledTableHead } from './AllGift';
+import { ActivePageBtn, Flex, InactivePageBtn, PageBtns, PageBtnsWrapper, rows2, StyledTableCell, StyledTableHead } from './AllGift';
 import { CustomCheck } from '../components/Btn/CustomCheck';
 import styled from 'styled-components';
 import { ArrowBackIos, ArrowForwardIos, CloseSharp } from '@mui/icons-material';
 import { CustomCheckbox } from '../components/Btn/CustomCheckbox';
+import { ShowSelect } from './MarketRegister';
 
 export interface ITemplateProps {
 }
@@ -142,7 +143,14 @@ export function Template (props: ITemplateProps) {
             <TemplateBtnRow>
 <TemplateBtn
 onClick={onClickOpenTemplateAdd}>배송 템플릿 추가하기</TemplateBtn>
+           <Flex/>
+        <ShowSelect>
+      <option>
+        10개씩보기
+      </option>
+      </ShowSelect>
             </TemplateBtnRow>
+            
 <TableWrapper> 
       <TableContainer 
       variant='elevation'
@@ -407,12 +415,13 @@ margin-bottom: 34px;
 `
 export const TemplateBtnRow=styled.div`
 display: flex;
-width: calc(100% - 32px);
+width: calc(100% - 64px);
 flex-direction: row;
 align-items: center;
 justify-content: flex-end;
 margin-top: 34px;
 margin-bottom: 14px;
+margin-left: 32px;
 margin-right: 32px;
 `
 export const TemplateBtn=styled.button`

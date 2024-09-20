@@ -1,11 +1,13 @@
 import { Paper, Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
 import * as React from 'react';
 import styled from 'styled-components';
-import { ActivePageBtn, InactivePageBtn, PageBtns, PageBtnsWrapper, rows2, StyledTableCell, StyledTableHead } from './AllGift';
+import { ActivePageBtn, Flex, InactivePageBtn, PageBtns, PageBtnsWrapper, rows2, StyledTableCell, StyledTableHead } from './AllGift';
 import { CustomCheck } from '../components/Btn/CustomCheck';
 import { ArrowBackIos, ArrowForwardIos } from '@mui/icons-material';
 import { ExcelUploadDialog } from '../components/dialog/ExcelUploadDialog';
 import { useNavigate } from 'react-router-dom';
+import { OptionRow } from './GiftCheck';
+import { ShowSelect } from './MarketRegister';
 export interface IBanManageProps {
 }
 export function BanManage (props: IBanManageProps) {
@@ -83,6 +85,13 @@ export function BanManage (props: IBanManageProps) {
 
 
 </SearchBtnRow>
+<BanOptionRow>
+           <Flex/>
+        <ShowSelect>
+      <option>
+        10개씩보기
+      </option>
+      </ShowSelect></BanOptionRow>
 {/* 테이블 */}
 <TableWrapper> 
       <TableContainer 
@@ -180,6 +189,14 @@ onClick={onClickOpenUpload}
     </BanManageLayout>
   );
 }
+export const BanOptionRow=styled.div`
+margin-left: 30px;
+margin-right: 30px;
+margin-bottom: 20px;
+display: flex;
+flex-direction: row;
+align-items: center;
+`
 export const DelBtn=styled.button`
 cursor: pointer;
 border: 1px solid #666666;

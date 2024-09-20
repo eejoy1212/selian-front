@@ -231,7 +231,7 @@ export function MarketRegister(props: MarketRegisterProps) {
 const TableIcon=styled.img`
 width: 26px;
 `
-const ShowSelect=styled.select`
+export const ShowSelect=styled.select`
   background-color: #e8e8e8;
   border: 1px solid #e8e8e8;
   font-size: 14px;
@@ -311,7 +311,7 @@ display: flex;
 flex-direction: row;
 align-items: center;
 `
-const CollectName=styled.div`
+export const CollectName=styled.div`
 font-weight: 500;
 font-size: 16px;
 color: #333333;
