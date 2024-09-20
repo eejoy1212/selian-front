@@ -88,7 +88,9 @@ export function BanBrandManage (props: IBanBrandManageProps) {
 </SearchBtnRow>
 {/* 테이블 */}
 <TableWrapper> 
-      <TableContainer component={Paper} sx={{ boxShadow: 'none'}}>
+      <TableContainer 
+      variant='elevation'
+      component={Paper} >
         <Table 
         size='small'
         sx={{ minWidth: 1200,minHeight:320}} aria-label="simple table">

@@ -132,7 +132,9 @@ export function TagTemplate (props: ITagTemplateProps) {
 onClick={onClickOpenTemplateAdd}>태그 템플릿 추가하기</TemplateBtn>
             </TemplateBtnRow>
 <TableWrapper> 
-      <TableContainer component={Paper} sx={{ boxShadow: 'none'}}>
+      <TableContainer 
+      variant='elevation'
+      component={Paper} >
         <Table 
         size='small'
         sx={{ minWidth: 1200,minHeight:320}} aria-label="simple table">

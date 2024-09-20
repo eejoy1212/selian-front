@@ -776,7 +776,9 @@ placeholder='URL 입력'
     </SourcingSelect>
       </SearchRow>
       <TableWrapper> 
-      <TableContainer component={Paper} sx={{ boxShadow: 'none',height: "615px" }}>
+      <TableContainer 
+      variant='elevation'
+      component={Paper}>
         <Table size='small' aria-label="simple table">
           <StyledTableHead>
             <TableRow>
@@ -854,6 +856,11 @@ placeholder='URL 입력'
 </NoDataPaper>  */}
         
       </TableContainer></TableWrapper>
+      <div
+      style={{
+        height:"100%"
+      }}
+      />
     {/* 전체선택  */}
 <AllRow>
   <CustomRadio checked/>
@@ -1527,6 +1534,7 @@ const CheckBtns=styled.div`
 width:calc(100% - 60px - 60px);
 margin-left: 60px;
 margin-right: 60px;
+margin-bottom: 20px;
 display: flex;
 flex-direction: row;
 gap: 22px;
@@ -1625,11 +1633,11 @@ const StyledDialogTableHead = styled(TableHead)`
 border-top: none;  
 background-color: white;
   border-bottom: 1px solid #e4d49;
-  box-shadow: none; 
+  // box-shadow: none; 
 `;
 
 const StyledTableCell = styled(TableCell)`
-  border-top: 1px solid #6a6a6a;
+  // border-top: 1px solid #6a6a6a;
   font-weight: bold !important; 
 `;
 const StyledDialogTableCell = styled(TableCell)`

@@ -85,10 +85,14 @@ export function GiftCheck(props: IGiftCheckProps) {
         </RadioSet>
       </SearchRow>
       <TableWrapper> 
-      <TableContainer component={Paper} sx={{ boxShadow: 'none',height: "615px" }}>
+      <TableContainer 
+     variant='elevation'
+      component={Paper} sx={{ }}>
         <Table 
         size='small'
-        sx={{ minWidth: 1200,}} aria-label="simple table">
+      
+        sx={{
+          minWidth: 1200,}} aria-label="simple table">
           <StyledTableHead>
             <TableRow>
               <StyledTableCell align="left" >선택</StyledTableCell>
@@ -162,6 +166,11 @@ export function GiftCheck(props: IGiftCheckProps) {
 </NoDataPaper>  */}
         
       </TableContainer></TableWrapper>
+      <div
+      style={{
+        height:"100%"
+      }}
+      />
     {/* 전체선택  */}
 <AllRow>
   <CustomRadio checked/>
@@ -300,6 +309,7 @@ const CheckBtns=styled.div`
 width:calc(100% - 60px - 60px);
 margin-left: 60px;
 margin-right: 60px;
+margin-bottom: 20px;
 display: flex;
 flex-direction: row;
 gap: 22px;
@@ -387,11 +397,11 @@ const RadioSet = styled.div`
 const StyledTableHead = styled(TableHead)`
   background-color: #f6f6f6;
   border-bottom: 1px solid #f6f6f6;
-  box-shadow: none; /* 그림자 제거 */
+  // box-shadow: none; /* 그림자 제거 */
 `;
 
 const StyledTableCell = styled(TableCell)`
-  border-top: 1px solid #6a6a6a;
+  // border-top: 1px solid #6a6a6a;
   font-weight: bold !important; 
 `;
 

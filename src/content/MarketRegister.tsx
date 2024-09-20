@@ -122,7 +122,9 @@ export function MarketRegister(props: MarketRegisterProps) {
       </CollectRow>
      
       <TableWrapper> 
-      <TableContainer component={Paper} sx={{ boxShadow: 'none'}}>
+      <TableContainer 
+      variant='elevation'
+      component={Paper} >
         <Table 
         size='small'
         sx={{ minWidth: 1200,}} aria-label="simple table">
@@ -462,11 +464,11 @@ const RadioSet = styled.div`
 const StyledTableHead = styled(TableHead)`
   background-color: #f6f6f6;
   border-bottom: 1px solid #f6f6f6;
-  box-shadow: none; /* 그림자 제거 */
+  // box-shadow: none; /* 그림자 제거 */
 `;
 
 const StyledTableCell = styled(TableCell)`
-  border-top: 1px solid #6a6a6a;
+  // border-top: 1px solid #6a6a6a;
   font-weight: bold !important; 
 `;
 

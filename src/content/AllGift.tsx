@@ -73,7 +73,9 @@ onClick={onClickCloseDetail}
              <DetailSubTitle>상품정보</DetailSubTitle>
  {/* 다이얼로그 테이블 1 */}
         
-            <TableContainer component={Paper} sx={{ boxShadow: 'none'}}>
+            <TableContainer 
+            variant='elevation'
+            component={Paper}>
         <Table 
         sx={{ minWidth: 1200,}} aria-label="simple table">
           <StyledTableHead>
@@ -221,7 +223,9 @@ onClick={onClickCloseSearch}
              <DetailSubTitle>상품정보</DetailSubTitle>
  {/* 다이얼로그 테이블 1 */}
         
-            <TableContainer component={Paper} sx={{ boxShadow: 'none'}}>
+            <TableContainer
+            variant='elevation'
+            component={Paper} >
         <Table sx={{ minWidth: 1200,}} aria-label="simple table">
           <StyledTableHead>
             <TableRow>
@@ -297,7 +301,9 @@ onClick={onClickCloseSearch}
         </MarginTemplateSelect>
     </MarginTemplateCol>
      {/* 다이얼로그 테이블 2 */}
-     <TableContainer component={Paper} sx={{ boxShadow: 'none'}}>
+     <TableContainer 
+     variant='elevation'
+     component={Paper} >
         <Table sx={{ minWidth: 893,}} aria-label="simple table">
           <StyledTableHead>
             <TableRow>
@@ -417,10 +423,14 @@ onClick={onClickOpenSearch}
         검색건수:0
       </SearchResult>
       <TableWrapper> 
-      <TableContainer component={Paper} sx={{ boxShadow: 'none'}}>
+      <TableContainer 
+      variant='elevation'
+    
+      component={Paper} >
         <Table 
         size='small'
-        sx={{ minWidth: 1200,}} aria-label="simple table">
+     
+     aria-label="simple table">
           <StyledTableHead>
             <TableRow>
               <StyledTableCell align="left">선택</StyledTableCell>
@@ -883,11 +893,11 @@ const SearchInput = styled.input`
 export const StyledTableHead = styled(TableHead)`
   background-color: #f6f6f6;
   border-bottom: 1px solid #f6f6f6;
-  box-shadow: none; /* 그림자 제거 */
+  // box-shadow: none; /* 그림자 제거 */
 `;
 
 export const StyledTableCell = styled(TableCell)`
-  border-top: 1px solid #6a6a6a;
+  // border-top: 1px solid #6a6a6a;
   font-weight: bold !important; 
 `;
 
