@@ -201,11 +201,11 @@ export function GiftCheck(props: IGiftCheckProps) {
 </PageBtns>
 
 </PageBtnsWrapper>
-      <div
+      {/* <div
       style={{
         height:"100%"
       }}
-      />
+      /> */}
     {/* 전체선택  */}
 <AllRow>
   <CustomRadio checked/>
@@ -369,6 +369,7 @@ const AllRow=styled.div`
 width:calc(100% - 60px - 60px);
 margin-left: 60px;
 margin-right: 60px;
+margin-top: 20px;
 display: flex;
 flex-direction: row;
 gap: 25px;
