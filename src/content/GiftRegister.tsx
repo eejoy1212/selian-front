@@ -9,7 +9,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Dialog, DialogActions, DialogContent, DialogTitle, IconButton } from '@mui/material';
-import { ArrowForwardIos, CheckCircle, CloseSharp, Pause, PauseCircleFilled, PlayArrow } from '@mui/icons-material';
+import { ArrowBackIos, ArrowForwardIos, CheckCircle, CloseSharp, Pause, PauseCircleFilled, PlayArrow } from '@mui/icons-material';
 import { CustomCheck } from '../components/Btn/CustomCheck';
 import AliSrc from '../images/company/ali.png'
 import TaobaoSrc from '../images/company/taobao.png'
@@ -26,6 +26,7 @@ import {
   Legend,
 } from 'chart.js';
 import { CustomCheckbox } from '../components/Btn/CustomCheckbox';
+import { ActivePageBtn, InactivePageBtn, PageBtns, PageBtnsWrapper } from './AllGift';
 
 ChartJS.register(
   CategoryScale,
@@ -856,6 +857,30 @@ placeholder='URL 입력'
 </NoDataPaper>  */}
         
       </TableContainer></TableWrapper>
+      <PageBtnsWrapper>
+
+
+<PageBtns>
+<ArrowBackIos sx={
+ {
+     width:"16px"
+ }
+}/>
+<ActivePageBtn>1</ActivePageBtn>
+<InactivePageBtn>2</InactivePageBtn>
+<InactivePageBtn>3</InactivePageBtn>
+<InactivePageBtn>4</InactivePageBtn>
+<InactivePageBtn>5</InactivePageBtn>
+<ArrowForwardIos sx={
+ {
+     width:"16px"
+ }
+}/>
+
+
+</PageBtns>
+
+</PageBtnsWrapper>
       <div
       style={{
         height:"100%"

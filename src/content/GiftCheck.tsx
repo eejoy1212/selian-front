@@ -9,11 +9,12 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Dialog, DialogActions, DialogContent, DialogTitle, IconButton } from '@mui/material';
-import { CloseSharp } from '@mui/icons-material';
+import { ArrowBackIos, ArrowForwardIos, CloseSharp } from '@mui/icons-material';
 import { CustomCheck } from '../components/Btn/CustomCheck';
 import AliSrc from '../images/company/ali.png'
 import TaobaoSrc from '../images/company/taobao.png'
 import AmazonSrc from '../images/company/amazon.png'
+import { ActivePageBtn, InactivePageBtn, PageBtns, PageBtnsWrapper } from './AllGift';
 export interface IGiftCheckProps {}
 
 export function GiftCheck(props: IGiftCheckProps) {
@@ -166,6 +167,30 @@ export function GiftCheck(props: IGiftCheckProps) {
 </NoDataPaper>  */}
         
       </TableContainer></TableWrapper>
+      <PageBtnsWrapper>
+
+
+<PageBtns>
+<ArrowBackIos sx={
+ {
+     width:"16px"
+ }
+}/>
+<ActivePageBtn>1</ActivePageBtn>
+<InactivePageBtn>2</InactivePageBtn>
+<InactivePageBtn>3</InactivePageBtn>
+<InactivePageBtn>4</InactivePageBtn>
+<InactivePageBtn>5</InactivePageBtn>
+<ArrowForwardIos sx={
+ {
+     width:"16px"
+ }
+}/>
+
+
+</PageBtns>
+
+</PageBtnsWrapper>
       <div
       style={{
         height:"100%"
