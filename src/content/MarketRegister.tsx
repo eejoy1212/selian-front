@@ -467,6 +467,7 @@ const StyledTableHead = styled(TableHead)`
 
 const StyledTableCell = styled(TableCell)`
   border-top: 1px solid #6a6a6a;
+  font-weight: bold !important; 
 `;
 
 function createData(

@@ -888,6 +888,7 @@ export const StyledTableHead = styled(TableHead)`
 
 export const StyledTableCell = styled(TableCell)`
   border-top: 1px solid #6a6a6a;
+  font-weight: bold !important; 
 `;
 
 export function createData(

@@ -6,10 +6,8 @@ import { CustomCheck } from '../components/Btn/CustomCheck';
 import { ArrowBackIos, ArrowForwardIos } from '@mui/icons-material';
 import { ExcelUploadDialog } from '../components/dialog/ExcelUploadDialog';
 import { useNavigate } from 'react-router-dom';
-
 export interface IBanManageProps {
 }
-
 export function BanManage (props: IBanManageProps) {
   const navigate=useNavigate()
   const [openUpload,setOpenUpload]=React.useState(false)

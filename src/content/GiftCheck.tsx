@@ -91,8 +91,8 @@ export function GiftCheck(props: IGiftCheckProps) {
         sx={{ minWidth: 1200,}} aria-label="simple table">
           <StyledTableHead>
             <TableRow>
-              <StyledTableCell align="left">선택</StyledTableCell>
-              <StyledTableCell align="left">No.</StyledTableCell>
+              <StyledTableCell align="left" >선택</StyledTableCell>
+              <StyledTableCell align="left" >No.</StyledTableCell>
               <StyledTableCell align="center">소싱사이트</StyledTableCell>
               <StyledTableCell align="center">태그</StyledTableCell>
               <StyledTableCell align="center">글자수</StyledTableCell>
@@ -392,6 +392,7 @@ const StyledTableHead = styled(TableHead)`
 
 const StyledTableCell = styled(TableCell)`
   border-top: 1px solid #6a6a6a;
+  font-weight: bold !important; 
 `;
 
 function createData(

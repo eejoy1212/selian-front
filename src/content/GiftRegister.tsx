@@ -711,7 +711,10 @@ placeholder='URL 입력'
             </DialogContent>
         </Dialog>
       {/* 엑셀파일 업로드 창 */}
-      <Dialog open={openUload}>
+      <Dialog 
+      // open
+      open={openUload}
+      >
 
         <DialogContent
         sx={{
@@ -1627,6 +1630,7 @@ background-color: white;
 
 const StyledTableCell = styled(TableCell)`
   border-top: 1px solid #6a6a6a;
+  font-weight: bold !important; 
 `;
 const StyledDialogTableCell = styled(TableCell)`
   border-top: none;
