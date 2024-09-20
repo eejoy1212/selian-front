@@ -93,14 +93,14 @@ export function EtcSetting (props: IEtcSettingProps) {
         <EtcSettingFormWrapper>
                 {/* 첫번째 줄 */}
 <EtcSettingFormRow>
-    <EtcSettingFormTitle>API키값</EtcSettingFormTitle>
+    <EtcSettingFormTitle>닉네임</EtcSettingFormTitle>
     <EtcSettingFormContentWrapper>
         <span
         
         style={{
             marginBottom:"23px"
         }}
-        >카카오톡</span>
+        >wonny</span>
   
     </EtcSettingFormContentWrapper>
 </EtcSettingFormRow>

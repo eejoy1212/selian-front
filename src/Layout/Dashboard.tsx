@@ -40,7 +40,11 @@ export function Dashboard(props: IDashboardProps) {
             <ProfileLi>
               결제플랜: 베이직
             </ProfileLi>
-            <ProfileLi>
+            <ProfileLi
+            onClick={()=>{
+              navigate("/etc-setting")
+            }}
+            >
               설정변경
             </ProfileLi>
           </ProfileUl>
@@ -389,6 +393,9 @@ export function Dashboard(props: IDashboardProps) {
     </DashboardLayout>
   );
 }
+const GoEtcBtn=styled.button`
+
+`
 const SrcSelect=styled.select`
 
   background-color: #ffffff;
@@ -444,7 +451,7 @@ font-weight: 400;
 line-height: 24.2px;
 text-align: left;
 color: #666666;
-
+cursor: pointer;
 `
 const ProfileUl=styled.ul`
 list-style: none;
