@@ -114,8 +114,19 @@ export function Dashboard(props: IDashboardProps) {
               style={{
                 fontWeight:location.pathname === '/gift-check'?700:500
               }}
-              >상품수집</span>
+              >상품 수집</span>
             </DefaultMenuItem>
+            <DefaultMenuItem
+              onClick={() => {
+                navigate('/collect-check');
+              }}
+            >  {location.pathname === '/collect-check' && <MenuIndicator />}
+              <span
+                 style={{
+                  fontWeight:location.pathname === '/collect-check'?700:500
+                }}
+              >수집 상품 관리</span>
+             </DefaultMenuItem>
             <DefaultMenuItem
               onClick={() => {
                 navigate('/gift-register');
@@ -133,17 +144,7 @@ export function Dashboard(props: IDashboardProps) {
           {/* 상품관리 메뉴 */}
           <DefaultMenu>
             <DefaultMenuTitle>상품 관리</DefaultMenuTitle>
-            <DefaultMenuItem
-              onClick={() => {
-                navigate('/collect-check');
-              }}
-            >  {location.pathname === '/collect-check' && <MenuIndicator />}
-              <span
-                 style={{
-                  fontWeight:location.pathname === '/collect-check'?700:500
-                }}
-              >수집 상품 관리</span>
-             </DefaultMenuItem>
+          
             <DefaultMenuItem
             onClick={() => {
               navigate('/market-register');
