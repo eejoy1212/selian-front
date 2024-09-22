@@ -15,11 +15,26 @@ export interface ISubstitutionWordManageProps {
 export function SubstitutionWordManage (props: ISubstitutionWordManageProps) {
   const navigate=useNavigate()
   const [openUpload,setOpenUpload]=React.useState(false)
+  const [leftInput,setLeftInput]=React.useState("")
+    const [rightInput,setRightInput]=React.useState("")
+    const onChangeLeftInput=(event: React.ChangeEvent<HTMLInputElement>)=>{
+    setLeftInput(event.target.value)
+  }
+
+  const onChangeRightInput=(event: React.ChangeEvent<HTMLInputElement>)=>{
+    setRightInput(event.target.value)
+  }
   const onClickOpenUpload=()=>{
     setOpenUpload(true)
   }
   const onClickCloseUpload=()=>{
     setOpenUpload(false)
+  }
+  const onAdd=()=>{
+    const isEmpty=leftInput.trim()===""
+    if (isEmpty) {
+      alert("빈칸을 채워주세요.")
+    }
   }
     return (
     <BanManageLayout>
@@ -45,13 +60,13 @@ export function SubstitutionWordManage (props: ISubstitutionWordManageProps) {
 </SelectRow>
 <BanTemplateTitle>치환어 추가</BanTemplateTitle>
 <SelectRow>
-    <BanListInput/>
+    <BanListInput value={leftInput} onChange={onChangeLeftInput}/>
     <ArrowForwardIos sx={{
         width:"16px",
         color: "#666666"
     }}/>
-    <BanListInput/>
-    <AddBtn>추가</AddBtn>
+    <BanListInput value={rightInput} onChange={onChangeRightInput}/>
+    <AddBtn onClick={onAdd}>추가</AddBtn>
 </SelectRow>
 </AddCol>
         {/* 오른쪽 검색구간 */}

@@ -94,17 +94,19 @@ export function MarketRegister(props: MarketRegisterProps) {
       <GiftNumRow>
         <GiftToggles>   
         <GiftToggle>판매가 재설정</GiftToggle>
-        <GiftToggle>배송비 재설정</GiftToggle>
+        <GiftToggle>배송비/교환비 재설정</GiftToggle>
+        <GiftToggle>업로드 마켓 변경</GiftToggle>
         <GiftToggle>태그 재설정</GiftToggle>
         <GiftToggle>카테고리 재설정</GiftToggle>
         </GiftToggles>
      
         <Flex/>
         <GiftToggles>
+        <GiftToggle>상품 정보 편집</GiftToggle>
         <GiftToggle>전체 상품 잠금</GiftToggle>
-        <GiftToggle>선택상품 마켓 등록</GiftToggle>
+        {/* <GiftToggle>선택상품 마켓 등록</GiftToggle> */}
         <GiftToggle>선택 상품 잠금</GiftToggle>
-        <GiftToggle>선택상품 잠금해제</GiftToggle>
+        {/* <GiftToggle>선택상품 잠금해제</GiftToggle> */}
         <GiftToggle>선택상품 삭제</GiftToggle>
         </GiftToggles>
       
