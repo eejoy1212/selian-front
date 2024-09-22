@@ -213,7 +213,7 @@ export function GiftCheck(props: IGiftCheckProps) {
 <DeleteBtn>전체삭제</DeleteBtn>
 </AllRow>
 <CheckBtns>
-<AllChkBtn>전체 검수</AllChkBtn>
+<AllChkBtn>검수 완료</AllChkBtn>
 <SelectChkBtn>선택상품 검수</SelectChkBtn>
 <BanCodeBtn>선택 일괄 금지코드 설정</BanCodeBtn>
 <Flex/>
