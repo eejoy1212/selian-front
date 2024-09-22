@@ -28,6 +28,7 @@ import {
 import { CustomCheckbox } from '../components/Btn/CustomCheckbox';
 import { ActivePageBtn, InactivePageBtn, PageBtns, PageBtnsWrapper } from './AllGift';
 import { ShowSelect } from './MarketRegister';
+import { DualListBox } from '../components/Table/DualListBox';
 
 ChartJS.register(
   CategoryScale,
@@ -73,6 +74,11 @@ export function GiftRegister(props: GiftRegisterProps) {
   const [openUload,setOpenUpload]=React.useState(false)
   const [openMarketDialog,setOpenMarketDialog]=React.useState(false)
   const [registerOpen,setRegisterOpen]=React.useState(false)
+  const [selectedRow, setSelectedRow] = React.useState<number | null>(null);
+
+  const handleRowClick = (index: number) => {
+    setSelectedRow(index); // 선택한 행의 인덱스를 상태로 저장
+  };
   const onClickOpenRegisterDialog=()=>{
     setRegisterOpen(true)
   }
@@ -395,122 +401,12 @@ textAlign:"center"
             </SameTimeRow>
 </RegisterLeft>
 <RegisterRight>
-  <DialogTableRow>
-  <TableContainer component={Paper} sx={{  minWidth: "481px",maxWidth: "481px",boxShadow: 'none'}}>
-        <Table
-        size="small"
-        sx={{border:"1px solid #d9d9d9"}} aria-label="simple table">
-          <StyledDialogTableHead>
-            <TableRow>
-              <StyledDialogTableCell align="center">번호</StyledDialogTableCell>
-              <StyledDialogTableCell align="center">마켓</StyledDialogTableCell>
-              <StyledDialogTableCell align="center">마켓이름</StyledDialogTableCell>
-              <StyledDialogTableCell align="center"></StyledDialogTableCell>
-            
-            </TableRow>
-          </StyledDialogTableHead>
-         {/* 1.데이터가 있는경우 */}
-         <TableBody
-       
-          >
-
-           {rows2.map((row,index) => (
-              <TableRow
-                key={row.name}
-                sx={{ '&:last-child td, &:last-child th': { 
-                  
-                  border: 0 } }}
-              >
-             
-                <TableCell align="center">{rows2.length-index}</TableCell>
-                <TableCell align="center">스마트 스토어</TableCell>
-                <TableCell align="center">
-                네이버-A
-                </TableCell>
-                <TableCell align="center">
-                  <MarketAddBtn>
-                    <span>추가하기</span>                    
-                  <ArrowForwardIos sx={{
-                    width:"12px"
-                  }}/>
-                  </MarketAddBtn>
-                </TableCell>
-            
-           
-
-              </TableRow>
-            ))}
-          </TableBody>
-    
-        </Table>     
-
-        {/* 2.데이터가 없는 경우 */}
-         {/* <NoDataPaper>
-<span>수집중입니다.</span>
-<span>수집률: 0%</span>
-</NoDataPaper>  */}
-        
-      </TableContainer>
-      <CircleArrow>
-      <ArrowForwardIos sx={{
-                    width:"12px"
-                  }}/>
-      </CircleArrow>
-      <RegisterMarketTableCol>
 <RegisterMarketSearchRow>
 <RegisterMarketSearchInput placeholder='마켓 이름을 검색해 주세요.'/>
 <SearchBtn>검색</SearchBtn>
 </RegisterMarketSearchRow>
-        <RegisterMarketTitle>등록 마켓</RegisterMarketTitle>
-        <TableContainer component={Paper} sx={{  minWidth: "392px",maxWidth: "392px",boxShadow: 'none'}}>
-        <Table
-        size="small"
-        sx={{border:"1px solid #d9d9d9"}} aria-label="simple table">
-          <StyledDialogTableHead>
-            <TableRow>
-              <StyledDialogTableCell align="center">번호</StyledDialogTableCell>
-              <StyledDialogTableCell align="center">마켓</StyledDialogTableCell>
-              <StyledDialogTableCell align="center">마켓이름</StyledDialogTableCell>
-            
-            </TableRow>
-          </StyledDialogTableHead>
-         {/* 1.데이터가 있는경우 */}
-         <TableBody
-       
-          >
 
-           {rows2.slice(0,3).map((row,index) => (
-              <TableRow
-                key={row.name}
-                sx={{ '&:last-child td, &:last-child th': { 
-                  
-                  border: 0 } }}
-              >
-             
-                <TableCell align="center">{3-index}</TableCell>
-                <TableCell align="center">스마트 스토어</TableCell>
-                <TableCell align="center">
-                네이버-A
-                </TableCell>
-               
-            
-           
-
-              </TableRow>
-            ))}
-          </TableBody>
-    
-        </Table>     
-
-        {/* 2.데이터가 없는 경우 */}
-         {/* <NoDataPaper>
-<span>수집중입니다.</span>
-<span>수집률: 0%</span>
-</NoDataPaper>  */}
-        
-      </TableContainer>
-      </RegisterMarketTableCol>
-  </DialogTableRow>
+  <DualListBox/>
   {/* 등록상품 정보 */}
 <FolderLayout>
   <FolderTabs>
@@ -1130,7 +1026,7 @@ font-weight: 700;
 color: white;
 `
 const RegisterMarketSearchInput=styled.input`
-width: 361px;
+width: 100%;
 height: 34px;
 border: 1px solid #d9d9d9;
 border-radius: 5px;
@@ -1140,8 +1036,9 @@ const RegisterMarketSearchRow=styled.div`
 display: flex;
 flex-direction: row;
 align-items: center;
+margin-bottom: 8px;
 gap: 25px;
-margin-left: -39px;
+width: 455.5px;
 `
 const RegisterMarketTitle=styled.div`
 text-indent: 19px;
@@ -1153,27 +1050,37 @@ margin-bottom: 20px;
 const RegisterMarketTableCol=styled.div`
 display: flex;
 flex-direction:column;
-justify-content: space-between;
+justify-content: flex-end;
 `
 const DialogTableRow=styled.div`
 width: 1010px;
 display: flex;
+align-items: center;
 flex-direction: row;
 `
-const CircleArrow=styled.div`
-width: 27px;
-height: 27px;
-border-radius: 50px;
+const CircleArrowCol=styled.div`
+display: flex;
+flex-direction: column;
+gap: 16px;
+`
+const CircleArrow=styled.button`
+width: 36px;
+min-width: 36px;
+min-height: 36px;
+height: 36px;
+border-radius: 6px;
 display: flex;
 align-items: center;
 justify-content: center;
-background-color: #D9D9D9;
-margin-top: 196px;
-margin-left: 40px;
-margin-right: 37px;
+background-color: #E6EEFA;
+color: #335A97;
+cursor: pointer;
+margin-left: 33px;
+margin-right: 33px;
+border: none;
 `
 const MarketAddBtn=styled.button`
-width: 96px;
+width: 70px;
 height: 30px;
 border-radius: 5px;
 border: 1px solid #335A97;
