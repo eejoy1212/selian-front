@@ -903,7 +903,7 @@ placeholder='URL 입력'
 </AllRow>
 <CheckBtns>
 <AllChkBtn>전체 등록</AllChkBtn>
-<SelectChkBtn>선택상품 검수</SelectChkBtn>
+<SelectChkBtn>선택상품 등록</SelectChkBtn>
 <BanCodeBtn>선택 일괄 금지코드 설정</BanCodeBtn>
 <BanCodeBtn
 onClick={onClickOpenMarketDialog}
