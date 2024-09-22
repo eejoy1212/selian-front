@@ -850,7 +850,7 @@ placeholder='URL 입력'
                 <TableCell align="center">0</TableCell>
                 <TableCell align="center">수집중</TableCell>
                 <TableCell align="center">6,000</TableCell>
-                <TableCell align="center"><EditBtn>수정하기</EditBtn></TableCell>
+                <TableCell align="center"><EditBtn onClick={onClickOpenRegisterDialog}>수정하기</EditBtn></TableCell>
                 <TableCell align="center"><DelBtn>삭제하기</DelBtn></TableCell>
                 <TableCell align="center"><LinkBtn>링크열기</LinkBtn></TableCell>
 
