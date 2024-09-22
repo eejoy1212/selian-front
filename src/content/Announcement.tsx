@@ -121,7 +121,7 @@ const Tab = styled.button`
   color: #101010;
   font-weight: 400;
   font-size: 20px;
-  width: 258px;
+  width: 193.75px;
   height: 50px;
   border: none;
   background-color: white;
@@ -132,7 +132,7 @@ const UnselectedTab = styled.button`
   color: #101010;
   font-weight: 400;
   font-size: 20px;
-  width: 258px;
+  width: 193.75px;
   height: 50px;
   border: none;
   background-color: #f9f9f9;
