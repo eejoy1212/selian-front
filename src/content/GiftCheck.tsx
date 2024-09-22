@@ -109,17 +109,18 @@ export function GiftCheck(props: IGiftCheckProps) {
               <StyledTableCell align="left" >선택</StyledTableCell>
               <StyledTableCell align="left" >No.</StyledTableCell>
               <StyledTableCell align="center">소싱사이트</StyledTableCell>
-              <StyledTableCell align="center">태그</StyledTableCell>
-              <StyledTableCell align="center">글자수</StyledTableCell>
+              {/* <StyledTableCell align="center">태그</StyledTableCell>
+              <StyledTableCell align="center">글자수</StyledTableCell> */}
               <StyledTableCell align="center">상품명</StyledTableCell>
-              <StyledTableCell align="center">카테고리</StyledTableCell>
+              <StyledTableCell align="center">썸네일</StyledTableCell>
+              {/* <StyledTableCell align="center">카테고리</StyledTableCell> */}
               <StyledTableCell align="center">원가</StyledTableCell>
-              <StyledTableCell align="center">관세</StyledTableCell>
-              <StyledTableCell align="center">판매가</StyledTableCell>
-              <StyledTableCell align="center">중간마진</StyledTableCell>
+              {/* <StyledTableCell align="center">관세</StyledTableCell> */}
+              <StyledTableCell align="center">할인가</StyledTableCell>
+              {/* <StyledTableCell align="center">중간마진</StyledTableCell>
               <StyledTableCell align="center">배송비</StyledTableCell>
               <StyledTableCell align="center">마켓수수료</StyledTableCell>
-              <StyledTableCell align="center">최종마진</StyledTableCell>
+              <StyledTableCell align="center">최종마진</StyledTableCell> */}
               <StyledTableCell align="center">삭제</StyledTableCell>
             </TableRow>
           </StyledTableHead>
@@ -152,17 +153,11 @@ export function GiftCheck(props: IGiftCheckProps) {
                     <li><img src={AmazonSrc}/></li>
                   </CompanyUl>
                 </TableCell>
-                <TableCell align="center">태그</TableCell>
-                <TableCell align="center">49</TableCell>
                 <TableCell align="center">MT-001</TableCell>
-                <TableCell align="center">카테고리</TableCell>
+                <TableCell align="center">썸네일</TableCell>
                 <TableCell align="center">21,000</TableCell>
-                <TableCell align="center">0</TableCell>
-                <TableCell align="center">21,000</TableCell>
-                <TableCell align="center">8,500</TableCell>
-                <TableCell align="center">0</TableCell>
-                <TableCell align="center">수집중</TableCell>
-                <TableCell align="center">6,000</TableCell>
+                <TableCell align="center">18,000</TableCell>
+               
                 <TableCell align="center"><DelBtn>삭제하기</DelBtn></TableCell>
 
               </TableRow>
