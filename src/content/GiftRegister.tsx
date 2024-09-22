@@ -661,7 +661,7 @@ textAlign:"center"
                 width:"20px"
               }}/>
             </IconButton>
-            <span>상품 마켓 등록</span>
+            <span>수동 상품 등록</span>
             <IconButton
             
             onClick={onClickCloseMarketDialog}>
@@ -907,7 +907,7 @@ placeholder='URL 입력'
 <BanCodeBtn>선택 일괄 금지코드 설정</BanCodeBtn>
 <BanCodeBtn
 onClick={onClickOpenMarketDialog}
->상품 마켓 등록</BanCodeBtn>
+>수동 상품 등록</BanCodeBtn>
 <Flex/>
 <UploadBtn
 onClick={onOpenUpload}
