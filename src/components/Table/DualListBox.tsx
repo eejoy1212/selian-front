@@ -120,9 +120,7 @@ export function DualListBox() {
             </TableRow>
           </StyledDialogTableHead>
           <TableBody
-          sx={{
-            height:"100px",
-          }}
+        
           >
             {leftData.map((row, index) => (
               <TableRow key={row.id}>

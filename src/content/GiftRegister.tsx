@@ -9,7 +9,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Dialog, DialogActions, DialogContent, DialogTitle, IconButton } from '@mui/material';
-import { ArrowBackIos, ArrowForwardIos, CheckCircle, CloseSharp, Pause, PauseCircleFilled, PlayArrow } from '@mui/icons-material';
+import { ArrowBackIos, ArrowForwardIos, CheckCircle, Close, CloseSharp, Pause, PauseCircleFilled, PlayArrow, Stop } from '@mui/icons-material';
 import { CustomCheck } from '../components/Btn/CustomCheck';
 import AliSrc from '../images/company/ali.png'
 import TaobaoSrc from '../images/company/taobao.png'
@@ -440,12 +440,20 @@ textAlign:"center"
                   border: 0 } }}
               >
              
-                <TableCell align="center">{3-index}</TableCell>
-                <TableCell align="center">스마트 스토어</TableCell>
-                <TableCell align="center">
+                <TableCell align="center"    sx={{
+                  height:"24px"
+                }}>{3-index}</TableCell>
+                <TableCell align="center"    sx={{
+                  height:"24px"
+                }}>스마트 스토어</TableCell>
+                <TableCell align="center"    sx={{
+                  height:"24px"
+                }}>
                 64,000
                 </TableCell>
-                <TableCell align="center">
+                <TableCell align="center"    sx={{
+                  height:"24px"
+                }}>
                 2023.12.25 14:00
                 </TableCell>
             
@@ -497,11 +505,25 @@ textAlign:"center"
                   border: 0 } }}
               >
              
-                <TableCell align="center">2023.12.25 14:00</TableCell>
-                <TableCell align="center">[상품명][등록마켓]등록</TableCell>
-                <TableCell align="center">
+                <TableCell align="center"
+                sx={{
+                  height:"24px"
+                }}
+                >2023.12.25 14:00</TableCell>
+                <TableCell align="center"
+                sx={{
+                  height:"24px"
+                }}
+                >[상품명][등록마켓]등록</TableCell>
+                <TableCell align="center"
+                sx={{
+                  height:"24px"
+                }}
+                >
                 </TableCell>
-                <TableCell align="center">
+                <TableCell align="center"    sx={{
+                  height:"24px"
+                }}>
                 </TableCell>
               </TableRow>
             ))}
@@ -519,18 +541,20 @@ textAlign:"center"
 </FolderLayout>
 <Flex/>
 <RegisterBtns>
-<Flex/>
+{/* <Flex/> */}
   <StartBtn>
     <span>등록시작</span>
     <PlayArrow/>
     </StartBtn>
     <PauseBtn>
-    <span>등록시작</span>
+    <span>등록정지</span>
     <Pause/>
     </PauseBtn>
-    <EndBtn>등록 종료</EndBtn>
+    <EndBtn><span>등록종료</span>
+    <Stop/>
+    </EndBtn>
     <Flex/>
-    <StartBtn onClick={onClickCloseRegisterDialog}>닫기</StartBtn>
+    <CloseBtn onClick={onClickCloseRegisterDialog}>닫기</CloseBtn>
 </RegisterBtns>
 </RegisterRight>
         </DialogContent>
@@ -948,6 +972,7 @@ flex-direction: row;
 border-top: 1px solid #e4e4e9;
 `
 const EndBtn=styled.button`
+width: 96px;
 height: 30px;
 border: 1px solid #335A97;
 border-radius: 5px;
@@ -956,8 +981,10 @@ background-color: #335A97;
 display: flex;
 align-items: center;
 font-size: 14px;
+cursor: pointer;
 `
 const PauseBtn=styled.button`
+width: 96px;
 height: 30px;
 border: 1px solid #335A97;
 border-radius: 5px;
@@ -966,8 +993,10 @@ background-color: #E6EEFA;
 display: flex;
 align-items: center;
 font-size: 14px;
+cursor: pointer;
 `
 const StartBtn=styled.button`
+width: 96px;
 height: 30px;
 border: 1px solid #335A97;
 border-radius: 5px;
@@ -975,7 +1004,22 @@ color: #335A97;
 background-color: white;
 display: flex;
 align-items: center;
+justify-content: center;
 font-size: 14px;
+cursor: pointer;
+`
+const CloseBtn=styled.button`
+width: 60px;
+height: 30px;
+border: 1px solid #335A97;
+border-radius: 5px;
+color: #335A97;
+background-color: white;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 14px;
+cursor: pointer;
 `
 const RegisterBtns=styled.div`
 display: flex;
@@ -983,6 +1027,7 @@ flex-direction: row;
 gap: 28px;
 align-items: center;
 justify-content: flex-end;
+cursor: pointer;
 `
 const FolderTabs=styled.div`
 display: flex;
