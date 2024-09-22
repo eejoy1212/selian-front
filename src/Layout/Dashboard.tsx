@@ -155,7 +155,7 @@ export function Dashboard(props: IDashboardProps) {
               style={{
                 fontWeight:location.pathname === '/market-register'?700:500
               }}
-             >마켓 등록 상품 관리</span>
+             >통계관리</span>
               </DefaultMenuItem>
             <DefaultMenuItem
             onClick={() => {
@@ -166,7 +166,7 @@ export function Dashboard(props: IDashboardProps) {
                style={{
                 fontWeight:location.pathname === '/all-gift'?700:500
               }}
-              >전체상품 내역</span></DefaultMenuItem>
+              >마켓 등록 상품관리</span></DefaultMenuItem>
           </DefaultMenu>
           <MenuLine />
           {/* 설정 메뉴 */}
