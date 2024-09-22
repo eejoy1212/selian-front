@@ -8,7 +8,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { Dialog, DialogActions, DialogContent, DialogTitle, IconButton } from '@mui/material';
+import { Alert, Button, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, Snackbar, TextareaAutosize } from '@mui/material';
 import { ArrowBackIos, ArrowForwardIos, CheckCircle, Close, CloseSharp, Pause, PauseCircleFilled, PlayArrow, Stop } from '@mui/icons-material';
 import { CustomCheck } from '../components/Btn/CustomCheck';
 import AliSrc from '../images/company/ali.png'
@@ -20,6 +20,7 @@ import { CustomCheckbox } from '../components/Btn/CustomCheckbox';
 import { ActivePageBtn, InactivePageBtn, PageBtns, PageBtnsWrapper } from './AllGift';
 import { ShowSelect } from './MarketRegister';
 import { DualListBox } from '../components/Table/DualListBox';
+import { MarketCancelBtn } from './SiteApi';
 
 // Chart.js 모듈 등록
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
@@ -75,11 +76,18 @@ const options = {
 export interface GiftRegisterProps {}
 
 export function GiftRegister(props: GiftRegisterProps) {
+  const [logs, setLogs] = React.useState<string[]>(['2023.12.25 14:00 [상품명][등록마켓]등록']);
+  const [isRunning, setIsRunning] = React.useState(false);
+  const [intervalId, setIntervalId] = React.useState<NodeJS.Timeout | null>(null);
   const [openUload,setOpenUpload]=React.useState(false)
   const [openMarketDialog,setOpenMarketDialog]=React.useState(false)
   const [registerOpen,setRegisterOpen]=React.useState(false)
   const [selectedRow, setSelectedRow] = React.useState<number | null>(null);
-
+  const [alertOpen, setAlertOpen] = React.useState(false);
+  const [agreeStop,setAgreeStop]=React.useState(false)
+  //등록 시작
+  const [startSnackbarOpen, setStartSnackbarOpen] = React.useState(false); 
+  const logsEndRef = React.useRef<HTMLTextAreaElement>(null);
   const handleRowClick = (index: number) => {
     setSelectedRow(index); // 선택한 행의 인덱스를 상태로 저장
   };
@@ -101,6 +109,73 @@ export function GiftRegister(props: GiftRegisterProps) {
   const onCloseUpload=()=>{
     setOpenUpload(false)
   }
+  //등록 종료
+
+
+
+
+  const handleConfirm = () => {
+    // 마켓 등록 중지 로직 처리
+    setAlertOpen(false);
+    if (intervalId) {
+      clearInterval(intervalId); // interval 중지
+      setIntervalId(null);
+      setIsRunning(false);
+      setLogs((prevLogs) => [...prevLogs, `${new Date().toLocaleTimeString()} 등록 종료.`]);
+    }
+ 
+    alert('마켓 등록이 중지되었습니다.');
+  };
+  // const handleConfirm = () => {
+  //   // 마켓 등록 중지 로직 처리
+  //   setAlertOpen(false);
+  //   setSnackbarOpen(true);  // 등록 중지 스낵바 열기
+  // };
+
+  const handleSnackbarClose = () => {
+    setStartSnackbarOpen(false);  // 등록 중지 스낵바 닫기
+  };
+
+
+
+  // 등록 시작 핸들러
+  const handleStartButtonClick = () => {
+    if (!isRunning) {
+      setIsRunning(true);
+      setStartSnackbarOpen(true);
+
+      // 로그가 계속 추가되도록 interval 설정
+      const id = setInterval(() => {
+        const currentTime = new Date().toLocaleTimeString();
+        setLogs((prevLogs) => [...prevLogs, `${currentTime} [상품명][등록마켓] 등록 진행 중...`]);
+      }, 3000); // 3초마다 로그 추가
+      setIntervalId(id);
+    }
+  };
+
+  // 등록 종료 핸들러
+  const handleEndButtonClick = () => {
+    setAlertOpen(true)
+ 
+   
+  };
+
+  // 알럿 다이얼로그 닫기
+  const handleAlertClose = () => {
+    setAlertOpen(false);
+  };
+
+  // 스낵바 닫기
+  const handleStartSnackbarClose = () => {
+    setStartSnackbarOpen(false);
+  };
+
+  // 로그가 추가될 때마다 자동으로 스크롤
+  React.useEffect(() => {
+    if (logsEndRef.current) {
+      logsEndRef.current.scrollTop = logsEndRef.current.scrollHeight;
+    }
+  }, [logs]);
   return (
     <GiftCheckLayout>
       {/* 결제 플랜 창 */}
@@ -476,8 +551,8 @@ textAlign:"center"
         
       </TableContainer>
 </FolderLayout>
-  {/* 등록 상태 */}
-  <FolderLayout>
+  {/* 등록 상태 ->테이블 버전*/}
+  {/* <FolderLayout>
   <FolderTabs>
     <InfoTab>등록 상태</InfoTab>
     <EmptyTab/>
@@ -495,12 +570,12 @@ textAlign:"center"
               <StyledDialogTableCell align="center"></StyledDialogTableCell>
             </TableRow>
           </StyledDialogTableHead>
-         {/* 1.데이터가 있는경우 */}
+     
          <TableBody
        
           >
 
-           {rows2.slice(0,4).map((row,index) => (
+            {rows2.slice(0,4).map((row,index) => (
               <TableRow
                 key={row.name}
                 sx={{ '&:last-child td, &:last-child th': { 
@@ -529,23 +604,27 @@ textAlign:"center"
                 }}>
                 </TableCell>
               </TableRow>
-            ))}
+            ))} 
+       
+    
           </TableBody>
     
         </Table>     
 
-        {/* 2.데이터가 없는 경우 */}
-         {/* <NoDataPaper>
-<span>수집중입니다.</span>
-<span>수집률: 0%</span>
-</NoDataPaper>  */}
+    
         
       </TableContainer>
-</FolderLayout>
+</FolderLayout> */}
+{/* 등록상태->텍스트에리어 버전 */}
+<StyledTextarea
+ value={logs.join('\n')} 
+ readOnly
+ ref={logsEndRef}  // 로그창 스크롤을 위해 ref 설정
+/>
 <Flex/>
 <RegisterBtns>
 {/* <Flex/> */}
-  <StartBtn>
+  <StartBtn onClick={handleStartButtonClick}>
     <span>등록시작</span>
     <PlayArrow/>
     </StartBtn>
@@ -553,12 +632,26 @@ textAlign:"center"
     <span>등록정지</span>
     <Pause/>
     </PauseBtn>
-    <EndBtn><span>등록종료</span>
+    <EndBtn onClick={handleEndButtonClick}><span>등록종료</span>
     <Stop/>
     </EndBtn>
     <Flex/>
     <CloseBtn onClick={onClickCloseRegisterDialog}>닫기</CloseBtn>
 </RegisterBtns>
+ {/* 알럿 다이얼로그 */}
+ <Dialog open={alertOpen} onClose={handleAlertClose}>
+        <DialogContent>
+          <span>마켓 등록을 중지하시겠습니까?</span>
+        </DialogContent>
+        <DialogActions>
+          <CancelBtn onClick={handleAlertClose} color="primary">
+            취소
+          </CancelBtn>
+          <AgreeBtn onClick={handleConfirm} color="primary">
+            확인
+          </AgreeBtn>
+        </DialogActions>
+      </Dialog>
 </RegisterRight>
         </DialogContent>
       </Dialog>
@@ -686,6 +779,28 @@ placeholder='URL 입력'
   </FileUploadBtn>      </DialogContent>
   
       </Dialog>
+       {/* 마켓 등록을 시작합니다 알림을 위한 Snackbar */}
+       {/* <Snackbar
+        open={startSnackbarOpen}
+        autoHideDuration={3000}  // 3초 후 자동 닫힘
+        onClose={handleStartSnackbarClose}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+      >
+        <CustomSnackbarAlert onClose={handleStartSnackbarClose} severity="info">
+          등록을 시작합니다.
+        </CustomSnackbarAlert>
+      </Snackbar> */}
+      <Snackbar
+         anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+         open={startSnackbarOpen}
+        onClose={handleStartSnackbarClose}
+        autoHideDuration={3000}
+      
+      >
+         <CustomSnackbarAlert onClose={handleStartSnackbarClose} severity="info">
+          등록을 시작합니다.
+        </CustomSnackbarAlert>
+      </Snackbar>
       <SearchRow>
         <SearchTxt>수집명</SearchTxt>
         <SearchInput placeholder='수집명 미입력 시 “소싱사이트+ URL 내 검색단어”로 자동입력 됩니다.' />
@@ -841,6 +956,60 @@ onClick={onOpenUpload}
     </GiftCheckLayout>
   );
 }
+const StyledTextarea = styled(TextareaAutosize)`
+margin-top: 19px;
+  width: 100%;
+  min-height: 200px;
+  max-height: 200px;
+  padding: 10px;
+  border: 1px solid #d9d9d9;
+  border-radius: 5px;
+  font-size: 16px;
+  line-height: 1.5;
+  resize: none;  /* 드래그해서 사이즈 조정 막기 */
+  background-color: #f5f5f5;
+  overflow-y: scroll;  /* 스크롤이 가능하도록 */
+  
+  &:focus {
+    outline: none;
+    border-color: #335a97;  /* 포커스 시 테두리 색 변경 */
+    box-shadow: 0 0 0 2px rgba(51, 90, 151, 0.2);  /* 포커스 시 외곽선 */
+  }
+`;
+const CustomSnackbarAlert = styled(Alert)`
+  background-color: #333333 !important;
+  color: white !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 600;
+  width: 100%;
+  justify-content: center;
+color: ;
+  & .MuiAlert-icon {
+    display: none;
+  }
+`;
+const AgreeBtn=styled.button`
+width: 79px;
+height: 30px;
+border-radius: 5px;
+background-color: white;
+cursor: pointer;
+color: white;
+background-color: #335A97;
+border: none;
+`
+const CancelBtn=styled.button`
+width: 79px;
+height: 30px;
+border-radius: 5px;
+background-color: white;
+cursor: pointer;
+color: #335A97;
+background-color: #E6EEFA;
+border: none;
+`
 const PlanBtnRow=styled.div`
 width: 100%;
 display: flex;
@@ -1025,6 +1194,7 @@ font-size: 14px;
 cursor: pointer;
 `
 const RegisterBtns=styled.div`
+width: 100%;
 display: flex;
 flex-direction: row;
 gap: 28px;
