@@ -114,7 +114,7 @@ export function Dashboard(props: IDashboardProps) {
               style={{
                 fontWeight:location.pathname === '/gift-check'?700:500
               }}
-              >상품수집 및 검수</span>
+              >상품수집</span>
             </DefaultMenuItem>
             <DefaultMenuItem
               onClick={() => {
@@ -275,7 +275,7 @@ export function Dashboard(props: IDashboardProps) {
           </DefaultMenu>
         </SideBar>
         {/* 옵션필터 */}
-      {location.pathname==="/gift-check"&&  <OptionFilter>
+      {(location.pathname==="/gift-check")&&  <OptionFilter>
           <OptionWrapper>
             {/* 소싱사이트 */}
             <SourcingSiteSet>
