@@ -11,7 +11,10 @@ export interface IAuctionProps {
 
 export function Auction (props: IAuctionProps) {
     const [checked, setChecked] = React.useState(false);
-
+    const [formNumber,setFormNumber]=React.useState(1)
+    const addForm=()=>{
+         setFormNumber(p=>p+1)
+       }
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       setChecked(event.target.checked);
     };
@@ -21,12 +24,13 @@ export function Auction (props: IAuctionProps) {
       <BanManagePaper>
         <MarketAddRow>
             <MarketApiSelect>
-                <option>옥션 템플릿 1번</option>
+                <option>신규 마켓</option>
             </MarketApiSelect>
-<MarketAddBtn>마켓 추가</MarketAddBtn>
+<MarketAddBtn onClick={addForm}>마켓 추가</MarketAddBtn>
 <IOSSwitch/>
         </MarketAddRow>
-<MarketFormWrapper>
+        {Array.from({ length: formNumber }).map(v=>
+          <MarketFormWrapper>
     {/* 첫번째 줄 */}
 <MarketFormRow>
     <MarketFormTitle>키값(ID)</MarketFormTitle>
@@ -91,6 +95,8 @@ export function Auction (props: IAuctionProps) {
     </MarketFormContentWrapper>
 </MarketFormRow>
 </MarketFormWrapper>
+        )}
+
       </BanManagePaper>
       <MarketApiBtns>
         <MarketDelBtn>API 삭제</MarketDelBtn>

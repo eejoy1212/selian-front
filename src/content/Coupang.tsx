@@ -4,14 +4,18 @@ import styled from 'styled-components';
 import IOSSwitch from '../components/Btn/IOSSwitch';
 import { CustomRadio } from '../components/Btn/CustomRadio';
 import { SiteApiTabs } from '../components/Btn/SiteApiTabs';
-import { ChangeInput, ImgChangeBtn, ImgTxtfieldRow, ImgTxtfieldSet, MarketAddBtn, MarketAddRow, MarketApiBtns, MarketApiSelect, MarketCancelBtn, MarketDelBtn, MarketEditBtn, MarketFormContentWrapper, MarketFormInput, MarketFormRow, MarketFormTitle, MarketFormWrapper, RadioRow, RadioSet, SendTemplateSelect, TxtFieldSet, TxtfieldTitle } from './SiteApi';
+import { APIChkBtn, ChangeInput, ImgChangeBtn, ImgTxtfieldRow, ImgTxtfieldSet, MarketAddBtn, MarketAddRow, MarketApiBtns, MarketApiSelect, MarketCancelBtn, MarketDelBtn, MarketEditBtn, MarketFormContentWrapper, MarketFormInput, MarketFormRow, MarketFormTitle, MarketFormWrapper, RadioRow, RadioSet, SendTemplateSelect, TxtFieldSet, TxtfieldTitle } from './SiteApi';
 
 export interface ICoupangProps {
 }
 
 export function Coupang (props: ICoupangProps) {
     const [checked, setChecked] = React.useState(false);
-
+    const [formNumber,setFormNumber]=React.useState(1)
+    const addForm=()=>{
+        setFormNumber(p=>p+1)
+      }
+    
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       setChecked(event.target.checked);
     };
@@ -21,12 +25,12 @@ export function Coupang (props: ICoupangProps) {
       <BanManagePaper>
         <MarketAddRow>
             <MarketApiSelect>
-                <option>쿠팡템플릿 1번</option>
+                <option>신규 마켓</option>
             </MarketApiSelect>
-<MarketAddBtn>마켓 추가</MarketAddBtn>
+<MarketAddBtn onClick={addForm}>마켓 추가</MarketAddBtn>
 <IOSSwitch/>
         </MarketAddRow>
-<MarketFormWrapper>
+        {Array.from({ length: formNumber }).map(v=> <MarketFormWrapper>
     {/* 첫번째 줄 */}
 <MarketFormRow>
     <MarketFormTitle>API키값</MarketFormTitle>
@@ -42,6 +46,7 @@ export function Coupang (props: ICoupangProps) {
     </TxtFieldSet>
     <TxtFieldSet><TxtfieldTitle>시크릿 키</TxtfieldTitle>
     <MarketFormInput/>
+    <APIChkBtn>검증</APIChkBtn>
     </TxtFieldSet>
     </MarketFormContentWrapper>
 </MarketFormRow>
@@ -98,7 +103,8 @@ export function Coupang (props: ICoupangProps) {
   </ImgTxtfieldRow>
     </MarketFormContentWrapper>
 </MarketFormRow>
-</MarketFormWrapper>
+</MarketFormWrapper>)}
+
       </BanManagePaper>
       <MarketApiBtns>
         <MarketDelBtn>API 삭제</MarketDelBtn>

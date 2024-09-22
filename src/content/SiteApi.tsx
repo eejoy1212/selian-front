@@ -10,88 +10,94 @@ export interface ISiteApiProps {
 
 export function SiteApi (props: ISiteApiProps) {
     const [checked, setChecked] = React.useState(false);
-
+    const [formNumber,setFormNumber]=React.useState(1)
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       setChecked(event.target.checked);
     };
+    const addForm=()=>{
+      setFormNumber(p=>p+1)
+    }
+  
   return (
     <BanManageLayout>
 <SiteApiTabs/>
       <BanManagePaper>
         <MarketAddRow>
             <MarketApiSelect>
-                <option>스마트스토어(미국)</option>
+                <option>신규 마켓</option>
             </MarketApiSelect>
-<MarketAddBtn>마켓 추가</MarketAddBtn>
+<MarketAddBtn onClick={addForm}>마켓 추가</MarketAddBtn>
 <IOSSwitch/>
         </MarketAddRow>
-<MarketFormWrapper>
-    {/* 첫번째 줄 */}
-<MarketFormRow>
-    <MarketFormTitle>API키값</MarketFormTitle>
-    <MarketFormContentWrapper>
-    <TxtFieldSet><TxtfieldTitle>애플리케이션 ID</TxtfieldTitle>
-    <MarketFormInput/>
-    </TxtFieldSet>
-    <TxtFieldSet><TxtfieldTitle>시크릿 키</TxtfieldTitle>
-    <MarketFormInput/>
-    </TxtFieldSet>
-    </MarketFormContentWrapper>
-</MarketFormRow>
-{/* 두번째 줄 */}
-<MarketFormRow>
-    <MarketFormTitle>배송 템플릿</MarketFormTitle>
-    <MarketFormContentWrapper>
-   <SendTemplateSelect>
-    <option>배송비 템플릿 1</option>
-   </SendTemplateSelect>
-    </MarketFormContentWrapper>
-</MarketFormRow>
-{/* 세번째 줄 */}
-<MarketFormRow>
-    <MarketFormTitle>교환비</MarketFormTitle>
-    <MarketFormContentWrapper>
-   <ChangeInput placeholder='3000원'/>
-    </MarketFormContentWrapper>
-</MarketFormRow>
-{/* 네번째 줄 */}
-<MarketFormRow>
-    <MarketFormTitle>반품비</MarketFormTitle>
-    <MarketFormContentWrapper>
-   <ChangeInput placeholder='5000원'/>
-    </MarketFormContentWrapper>
-</MarketFormRow>
-{/* 다섯번째 줄 */}
-<MarketFormRow>
-    <MarketFormTitle>상하단 이미지</MarketFormTitle>
-    <MarketFormContentWrapper>
-  <RadioRow>
-    <RadioSet><span>URL</span>
-    <CustomRadio checked/>
-    </RadioSet>
-    <RadioSet><span>이미지 파일</span>
-    <CustomRadio checked={false}/>
-    </RadioSet>
-  </RadioRow>
-  <ImgTxtfieldRow>
-  <span>상단</span>
-  <ImgTxtfieldSet>
-  <ChangeInput
-  placeholder='파일을 첨부해 주세요'
-  />
-  <ImgChangeBtn>변경</ImgChangeBtn>
-  </ImgTxtfieldSet>
-  </ImgTxtfieldRow>
-  <ImgTxtfieldRow>
-  <span>하단</span>
-  <ImgTxtfieldSet>
-  <ChangeInput   placeholder='파일을 첨부해 주세요'/>
-  <ImgChangeBtn>변경</ImgChangeBtn>
-  </ImgTxtfieldSet>
-  </ImgTxtfieldRow>
-    </MarketFormContentWrapper>
-</MarketFormRow>
-</MarketFormWrapper>
+        {Array.from({ length: formNumber }).map(v=> <MarketFormWrapper>
+          {/* 첫번째 줄 */}
+      <MarketFormRow>
+          <MarketFormTitle>API키값</MarketFormTitle>
+          <MarketFormContentWrapper>
+          <TxtFieldSet><TxtfieldTitle>애플리케이션 ID</TxtfieldTitle>
+          <MarketFormInput/>
+          </TxtFieldSet>
+          <TxtFieldSet><TxtfieldTitle>시크릿 키</TxtfieldTitle>
+          <MarketFormInput/>
+         <APIChkBtn>검증</APIChkBtn>
+          </TxtFieldSet>
+          </MarketFormContentWrapper>
+      </MarketFormRow>
+      {/* 두번째 줄 */}
+      <MarketFormRow>
+          <MarketFormTitle>배송 템플릿</MarketFormTitle>
+          <MarketFormContentWrapper>
+         <SendTemplateSelect>
+          <option>배송비 템플릿 1</option>
+         </SendTemplateSelect>
+          </MarketFormContentWrapper>
+      </MarketFormRow>
+      {/* 세번째 줄 */}
+      <MarketFormRow>
+          <MarketFormTitle>교환비</MarketFormTitle>
+          <MarketFormContentWrapper>
+         <ChangeInput placeholder='3000원'/>
+          </MarketFormContentWrapper>
+      </MarketFormRow>
+      {/* 네번째 줄 */}
+      <MarketFormRow>
+          <MarketFormTitle>반품비</MarketFormTitle>
+          <MarketFormContentWrapper>
+         <ChangeInput placeholder='5000원'/>
+          </MarketFormContentWrapper>
+      </MarketFormRow>
+      {/* 다섯번째 줄 */}
+      <MarketFormRow>
+          <MarketFormTitle>상하단 이미지</MarketFormTitle>
+          <MarketFormContentWrapper>
+        <RadioRow>
+          <RadioSet><span>URL</span>
+          <CustomRadio checked/>
+          </RadioSet>
+          <RadioSet><span>이미지 파일</span>
+          <CustomRadio checked={false}/>
+          </RadioSet>
+        </RadioRow>
+        <ImgTxtfieldRow>
+        <span>상단</span>
+        <ImgTxtfieldSet>
+        <ChangeInput
+        placeholder='파일을 첨부해 주세요'
+        />
+        <ImgChangeBtn>변경</ImgChangeBtn>
+        </ImgTxtfieldSet>
+        </ImgTxtfieldRow>
+        <ImgTxtfieldRow>
+        <span>하단</span>
+        <ImgTxtfieldSet>
+        <ChangeInput   placeholder='파일을 첨부해 주세요'/>
+        <ImgChangeBtn>변경</ImgChangeBtn>
+        </ImgTxtfieldSet>
+        </ImgTxtfieldRow>
+          </MarketFormContentWrapper>
+      </MarketFormRow>
+      </MarketFormWrapper>)}
+
       </BanManagePaper>
       <MarketApiBtns>
         <MarketDelBtn>API 삭제</MarketDelBtn>
@@ -136,6 +142,18 @@ justify-content: center;
 gap: 20px;
 margin-top: 34px;
 margin-bottom: 34px;
+`
+export const APIChkBtn=styled.button`
+height: 37px;
+background-color: #335A97;
+border: none;
+border-radius: 5px;
+color: white;
+font-size: 14px;
+min-width: 64px;
+border-radius: 5px;
+cursor: pointer;
+margin-left: 16px;
 `
 export const ImgChangeBtn=styled.button`
 height: 37px;

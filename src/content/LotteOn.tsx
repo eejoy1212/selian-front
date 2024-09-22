@@ -11,7 +11,10 @@ export interface ILotteOnProps {
 
 export function LotteOn (props: ILotteOnProps) {
     const [checked, setChecked] = React.useState(false);
-
+    const [formNumber,setFormNumber]=React.useState(1)
+    const addForm=()=>{
+         setFormNumber(p=>p+1)
+       }
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       setChecked(event.target.checked);
     };
@@ -21,12 +24,12 @@ export function LotteOn (props: ILotteOnProps) {
       <BanManagePaper>
         <MarketAddRow>
             <MarketApiSelect>
-                <option>롯데온 템플릿 1번</option>
+                <option>신규 마켓</option>
             </MarketApiSelect>
-<MarketAddBtn>마켓 추가</MarketAddBtn>
+<MarketAddBtn onClick={addForm}>마켓 추가</MarketAddBtn>
 <IOSSwitch/>
         </MarketAddRow>
-<MarketFormWrapper>
+        {Array.from({ length: formNumber }).map(v=><MarketFormWrapper>
     {/* 첫번째 줄 */}
 <MarketFormRow>
     <MarketFormTitle>API 키값(ID)</MarketFormTitle>
@@ -90,7 +93,8 @@ export function LotteOn (props: ILotteOnProps) {
   </ImgTxtfieldRow>
     </MarketFormContentWrapper>
 </MarketFormRow>
-</MarketFormWrapper>
+</MarketFormWrapper>)}
+
       </BanManagePaper>
       <MarketApiBtns>
         <MarketDelBtn>API 삭제</MarketDelBtn>
