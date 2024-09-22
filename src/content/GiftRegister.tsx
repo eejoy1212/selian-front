@@ -902,7 +902,7 @@ placeholder='URL 입력'
 <DeleteBtn>전체삭제</DeleteBtn>
 </AllRow>
 <CheckBtns>
-<AllChkBtn>전체 검수</AllChkBtn>
+<AllChkBtn>전체 등록</AllChkBtn>
 <SelectChkBtn>선택상품 검수</SelectChkBtn>
 <BanCodeBtn>선택 일괄 금지코드 설정</BanCodeBtn>
 <BanCodeBtn
