@@ -14,56 +14,60 @@ import { CustomCheck } from '../components/Btn/CustomCheck';
 import AliSrc from '../images/company/ali.png'
 import TaobaoSrc from '../images/company/taobao.png'
 import AmazonSrc from '../images/company/amazon.png'
-import { Line } from 'react-chartjs-2';
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-} from 'chart.js';
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, PointElement, LineElement } from 'chart.js';
+import { Bar } from 'react-chartjs-2';
 import { CustomCheckbox } from '../components/Btn/CustomCheckbox';
 import { ActivePageBtn, InactivePageBtn, PageBtns, PageBtnsWrapper } from './AllGift';
 import { ShowSelect } from './MarketRegister';
 import { DualListBox } from '../components/Table/DualListBox';
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend
-);
+// Chart.js 모듈 등록
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 // 차트 데이터와 옵션 설정
+// 가로 바 차트 데이터
 const data = {
-  labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+  labels: ['스마트 스토어', '쿠팡', '11번가', '알리', '인터파크', '옥션'],
   datasets: [
     {
-      label: 'Sample Dataset',
-      data: [65, 59, 80, 81, 56, 55, 40],
-      fill: false,
-      borderColor: 'rgba(75,192,192,1)',
-      tension: 0.1,
+      label: '등록 진행 현황',
+      data: [80, 65, 59, 90, 81],  // 예시 데이터
+      backgroundColor: [
+        'rgba(51, 90, 151, 0.6)',  // 연한 #335A97
+        'rgba(252, 111, 33, 0.6)',  // 연한 #FC6F21
+        'rgba(254, 179, 5, 0.6)',  // 연한 #FEB305
+        'rgba(51, 90, 151, 0.6)',  // 연한 #335A97
+        'rgba(252, 111, 33, 0.6)',  // 연한 #FC6F21
+      ],
+      borderColor: [
+        '#335A97', 
+        '#FC6F21', 
+        '#FEB305',
+        '#335A97', 
+        '#FC6F21',
+      ],
+      borderWidth: 1,
     },
   ],
 };
 
 const options = {
+  indexAxis: 'y' as const, // 수평 차트를 만들기 위한 설정
   responsive: true,
-  maintainAspectRatio: false,
+  maintainAspectRatio: false, // 차트의 비율 유지 안함
   plugins: {
     legend: {
-      position: 'top' as const,
+      display: false, // Legend 숨기기
     },
     title: {
-      display: true,
-      text: 'Chart.js Line Chart',
+      display: false,
+      // text: '마켓 등록 진행 현황',
+    },
+  },
+  scales: {
+    x: {
+      beginAtZero: true, // x축이 0부터 시작
+      max: 100, // 차트의 최대값을 100으로 설정
     },
   },
 };
@@ -372,7 +376,7 @@ textAlign:"center"
 <RegisterLeft>
 <RegisterTitle>등록현황</RegisterTitle>
 <ChartWrapper>
-              <Line data={data} options={options} />
+<Bar data={data} options={options} height={490}/>
             </ChartWrapper>
             <MarketRegisterTitle>마켓 등록 템플릿</MarketRegisterTitle>
             <MarketRegisterSelect>
@@ -383,16 +387,15 @@ textAlign:"center"
               <CustomCheckbox/>
               <span>상품 코드 중복검사</span>
             </RegisterChkRow>
-            <OptionRow>
-              <RegisterChkRow>
+             <RegisterChkRow>
               <CustomCheckbox/>
               <span>상품명 중복 검사</span>
             </RegisterChkRow>
-            <RegisterChkRow>
+               <RegisterChkRow>
               <CustomCheckbox/>
               <span>중복 상품 삭제후 재등록</span>
             </RegisterChkRow>
-            </OptionRow>
+        
             <SameTimeRow>
               <span>동시 등록 마켓수</span>
             <SameTimeSelect>
@@ -432,7 +435,7 @@ textAlign:"center"
        
           >
 
-           {rows2.slice(0,3).map((row,index) => (
+           {rows2.slice(0,4).map((row,index) => (
               <TableRow
                 key={row.name}
                 sx={{ '&:last-child td, &:last-child th': { 
@@ -497,7 +500,7 @@ textAlign:"center"
        
           >
 
-           {rows2.slice(0,3).map((row,index) => (
+           {rows2.slice(0,4).map((row,index) => (
               <TableRow
                 key={row.name}
                 sx={{ '&:last-child td, &:last-child th': { 
@@ -1028,6 +1031,7 @@ gap: 28px;
 align-items: center;
 justify-content: flex-end;
 cursor: pointer;
+margin-top: 30px;
 `
 const FolderTabs=styled.div`
 display: flex;
@@ -1175,6 +1179,7 @@ align-items: center;
 gap: 9px;
 font-size: 14px;
 color: #333333;
+margin-bottom: 16px;
 `
 const RegisterOptionTitle=styled.div`
 margin-top: 35px;
@@ -1192,7 +1197,7 @@ border-radius: 5px;
 `
 const ChartWrapper = styled.div`
   width: 531px;
-  height: 405px;
+  height: 360px;
 `;
 const MarketRegisterTitle=styled.div`
 margin-top: 46px;
