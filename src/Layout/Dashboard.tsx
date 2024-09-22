@@ -127,7 +127,7 @@ export function Dashboard(props: IDashboardProps) {
                 }}
               >수집 상품 관리</span>
              </DefaultMenuItem>
-            <DefaultMenuItem
+            {/* <DefaultMenuItem
               onClick={() => {
                 navigate('/gift-register');
               }}
@@ -138,7 +138,7 @@ export function Dashboard(props: IDashboardProps) {
                 fontWeight:location.pathname === '/gift-register'?700:500
               }}
               >상품 마켓 등록</span>
-              </DefaultMenuItem>
+              </DefaultMenuItem> */}
           </DefaultMenu>
           <MenuLine />
           {/* 상품관리 메뉴 */}

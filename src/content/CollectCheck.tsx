@@ -185,9 +185,9 @@ placeholder='URL 입력'
       <option>접기</option>
       </CollectSelect>
            <Flex/> 
-           <AllChkBtn>전체 검수</AllChkBtn>
-<SelectChkBtn>선택상품 검수</SelectChkBtn>
-<BanCodeBtn>선택 일괄 금지코드 설정</BanCodeBtn>
+           <AllChkBtn>전체 수집</AllChkBtn>
+<SelectChkBtn>선택 수집</SelectChkBtn>
+{/* <BanCodeBtn>선택 일괄 금지코드 설정</BanCodeBtn> */}
 
 
       </CollectRow>
@@ -279,7 +279,7 @@ placeholder='URL 입력'
                 <TableCell align="center">0</TableCell>
                 <TableCell align="center">수집중</TableCell>
                 <TableCell align="center">6,000</TableCell>
-                <TableCell align="center"><EditBtn>수정하기</EditBtn></TableCell>
+                <TableCell align="center"><EditBtn onClick={onClickOpenMarketDialog}>수정하기</EditBtn></TableCell>
                 <TableCell align="center"><DelBtn>삭제하기</DelBtn></TableCell>
                 <TableCell align="center"><LinkBtn>링크열기</LinkBtn></TableCell>
 
@@ -304,6 +304,9 @@ placeholder='URL 입력'
     >
     <UploadsWrapper>
     <AllChkBtn>상품수집</AllChkBtn>
+    <UploadBtn
+onClick={onOpenUpload}
+>엑셀파일 업로드</UploadBtn>
 <DownloadBtn>엑셀파일 다운로드</DownloadBtn>
 </UploadsWrapper>
 
@@ -330,6 +333,9 @@ placeholder='URL 입력'
 </PageBtns>
 <UploadsWrapper>
 <AllChkBtn>상품수집</AllChkBtn>
+<UploadBtn
+onClick={onOpenUpload}
+>엑셀파일 업로드</UploadBtn>
 <DownloadBtn>엑셀파일 다운로드</DownloadBtn>
 </UploadsWrapper>
    </PageBtnsWrapper>
@@ -442,9 +448,9 @@ placeholder='URL 입력'
       <option>접기</option>
       </CollectSelect>
            <Flex/> 
-           <AllChkBtn>전체 검수</AllChkBtn>
-<SelectChkBtn>선택상품 검수</SelectChkBtn>
-<BanCodeBtn>선택 일괄 금지코드 설정</BanCodeBtn>
+           <AllChkBtn>전체 수집</AllChkBtn>
+<SelectChkBtn>선택 수집</SelectChkBtn>
+{/* <BanCodeBtn>선택 일괄 금지코드 설정</BanCodeBtn> */}
 
 
       </CollectRow>
@@ -535,7 +541,7 @@ placeholder='URL 입력'
                 <TableCell align="center">0</TableCell>
                 <TableCell align="center">수집중</TableCell>
                 <TableCell align="center">6,000</TableCell>
-                <TableCell align="center"><EditBtn>수정하기</EditBtn></TableCell>
+                <TableCell align="center"><EditBtn onClick={onClickOpenMarketDialog}>수정하기</EditBtn></TableCell>
                 <TableCell align="center"><DelBtn>삭제하기</DelBtn></TableCell>
                 <TableCell align="center"><LinkBtn>링크열기</LinkBtn></TableCell>
 
@@ -560,6 +566,9 @@ placeholder='URL 입력'
     >
     <UploadsWrapper>
     <AllChkBtn>상품수집</AllChkBtn>
+    <UploadBtn
+onClick={onOpenUpload}
+>엑셀파일 업로드</UploadBtn>
 <DownloadBtn>엑셀파일 다운로드</DownloadBtn>
 </UploadsWrapper>
 
@@ -586,6 +595,9 @@ placeholder='URL 입력'
 </PageBtns>
 <UploadsWrapper>
 <AllChkBtn>상품수집</AllChkBtn>
+<UploadBtn
+onClick={onOpenUpload}
+>엑셀파일 업로드</UploadBtn>
 <DownloadBtn>엑셀파일 다운로드</DownloadBtn>
 </UploadsWrapper>
    </PageBtnsWrapper>
@@ -602,15 +614,20 @@ height:100px
 const UploadsWrapper=styled.div`
 display: flex;
 flex-direction: row;
-gap: 41px;
+gap: 30px;
 align-items: flex-end;
 // margin-right: 165px;
+
 `
 const PageBtnsWrapper=styled.div`
+width: calc(100% - 60px - 60px);
+margin-left: 60px;
+margin-right: 60px;
+
 display: flex;
 flex-direction: row;
 align-items: flex-end;
-justify-content: space-around;
+justify-content: space-between;
 `
 const CollectCheckWrapper=styled.div`
 display: flex;
@@ -627,6 +644,7 @@ align-items: center;
 justify-content: center;
 gap: 10px;
 margin-top: 26px;
+
 `
 const ActivePageBtn=styled.button`
 width: 28px;
@@ -1008,6 +1026,7 @@ color: #335A97;
 border: 1px solid #335A97;
 background-color: #E6EEFA;
 margin-right: 15px;
+cursor: pointer;
 `
 const AllChkBtn=styled.button`
 width: 75px;
@@ -1018,6 +1037,7 @@ color: #335A97;
 border: 1px solid #335A97;
 background-color: white;
 margin-right: 15px;
+cursor: pointer;
 `
 const CheckBtns=styled.div`
 width:calc(100% - 60px - 60px);

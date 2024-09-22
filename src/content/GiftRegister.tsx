@@ -802,7 +802,7 @@ placeholder='URL 입력'
         </CustomSnackbarAlert>
       </Snackbar>
       <SearchRow>
-        <SearchTxt>수집명</SearchTxt>
+        <SearchTxt>수집 URL</SearchTxt>
         <SearchInput placeholder='수집명 미입력 시 “소싱사이트+ URL 내 검색단어”로 자동입력 됩니다.' />
         <RegisterDateTxt>등록일자:</RegisterDateTxt>
         <DateInput/>
