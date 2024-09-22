@@ -36,14 +36,14 @@ export function BanCodeManage (props: IBanCodeManageProps) {
       <BanManagePaper>
         <FilterRow>
             {/* 왼쪽 추가 구간 */}
-<AddCol>
+{/* <AddCol>
     <BanTemplateTitle>금지코드 추가</BanTemplateTitle>
 <SelectRow>
 <BanListInput/>
     <AddBtn> 추가</AddBtn>
 </SelectRow>
 
-</AddCol>
+</AddCol> */}
         {/* 오른쪽 검색구간 */}
         <SearchCol>
         <SearchRow>
