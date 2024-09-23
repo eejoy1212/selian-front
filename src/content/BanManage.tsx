@@ -8,6 +8,7 @@ import { ExcelUploadDialog } from '../components/dialog/ExcelUploadDialog';
 import { useNavigate } from 'react-router-dom';
 import { OptionRow } from './GiftCheck';
 import { ShowSelect } from './MarketRegister';
+import { grey2, grey6 } from '../const/colors';
 export interface IBanManageProps {
 }
 export function BanManage (props: IBanManageProps) {
@@ -199,9 +200,9 @@ align-items: center;
 `
 export const DelBtn=styled.button`
 cursor: pointer;
-border: 1px solid #666666;
-background-color: white;
-color:#666666;
+border: none;
+background-color: ${grey6};
+color: ${grey2};
 height: 30px;
 font-size: 14px;
 border-radius: 5px;

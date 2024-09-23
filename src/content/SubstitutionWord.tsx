@@ -8,6 +8,7 @@ import { ExcelUploadDialog } from '../components/dialog/ExcelUploadDialog';
 import { useNavigate } from 'react-router-dom';
 import { BanOptionRow } from './BanManage';
 import { ShowSelect } from './MarketRegister';
+import { blue8, grey2, grey6 } from '../const/colors';
 
 export interface ISubstitutionWordManageProps {
 }
@@ -217,9 +218,9 @@ border-left: 1px solid #d9d9d9;
 `
 export const DelBtn=styled.button`
 cursor: pointer;
-border: 1px solid #666666;
-background-color: white;
-color:#666666;
+border: none;
+background-color: ${grey6};
+color: ${grey2};
 height: 30px;
 font-size: 14px;
 border-radius: 5px;
@@ -239,7 +240,7 @@ font-size: 14px;
 border-radius: 5px;
 color: #335A97;
 border: 1px solid #335A97;
-background-color: white;
+background-color: ${blue8};
 margin-right: 15px;
 `
 export const ExcelAddBtn=styled.button`

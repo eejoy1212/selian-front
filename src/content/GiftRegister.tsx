@@ -21,6 +21,7 @@ import { ActivePageBtn, InactivePageBtn, PageBtns, PageBtnsWrapper } from './All
 import { ShowSelect } from './MarketRegister';
 import { DualListBox } from '../components/Table/DualListBox';
 import { MarketCancelBtn } from './SiteApi';
+import { blue7 } from '../const/colors';
 
 // Chart.js 모듈 등록
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
@@ -429,232 +430,7 @@ export function GiftRegister(props: GiftRegisterProps) {
         </PlanRow>
       </Dialog>
       {/* 상품 마켓 등록 현황 창 */}
-      <Dialog open={registerOpen}
-     sx={{
-      '& .MuiDialog-paper': {
-          minWidth: '1700px'
-      }
-  }}
-      >
-        <DialogTitle
-        sx={{
-textAlign:"center"
-        }}
-        >상품 마켓 등록</DialogTitle>
-        <DialogContent
-        sx={{
-          display: "flex",
-          flexDirection:"row",
-          gap: "79px"
-        }}
-        >
-<RegisterLeft>
-<RegisterTitle>등록현황</RegisterTitle>
-<ChartWrapper>
-<Bar data={data} options={options} height={490}/>
-            </ChartWrapper>
-            <MarketRegisterTitle>마켓 등록 템플릿</MarketRegisterTitle>
-            <MarketRegisterSelect>
-              <option>등록 템플릿 1</option>
-            </MarketRegisterSelect>
-            <RegisterOptionTitle>등록 옵션</RegisterOptionTitle>
-            <RegisterChkRow>
-              <CustomCheckbox/>
-              <span>상품 코드 중복검사</span>
-            </RegisterChkRow>
-             <RegisterChkRow>
-              <CustomCheckbox/>
-              <span>상품명 중복 검사</span>
-            </RegisterChkRow>
-               <RegisterChkRow>
-              <CustomCheckbox/>
-              <span>중복 상품 삭제후 재등록</span>
-            </RegisterChkRow>
-        
-            <SameTimeRow>
-              <span>동시 등록 마켓수</span>
-            <SameTimeSelect>
-              <option>10개 마켓 동시 등록</option>
-            </SameTimeSelect>
-            </SameTimeRow>
-</RegisterLeft>
-<RegisterRight>
-<RegisterMarketSearchRow>
-<RegisterMarketSearchInput placeholder='마켓 이름을 검색해 주세요.'/>
-<SearchBtn>검색</SearchBtn>
-</RegisterMarketSearchRow>
-
-  <DualListBox/>
-  {/* 등록상품 정보 */}
-<FolderLayout>
-  <FolderTabs>
-    <InfoTab>등록 상품 정보</InfoTab>
-    <EmptyTab/>
-    </FolderTabs>
-
-<TableContainer component={Paper} sx={{  minWidth: "100%",maxWidth: "100%",boxShadow: 'none'}}>
-        <Table
-        size="small"
-      aria-label="simple table">
-          <StyledDialogTableHead>
-            <TableRow>
-              <StyledDialogTableCell align="center">번호</StyledDialogTableCell>
-              <StyledDialogTableCell align="center">상품명</StyledDialogTableCell>
-              <StyledDialogTableCell align="center">판매가</StyledDialogTableCell>
-              <StyledDialogTableCell align="center">수집일</StyledDialogTableCell>
-            
-            </TableRow>
-          </StyledDialogTableHead>
-         {/* 1.데이터가 있는경우 */}
-         <TableBody
-       
-          >
-
-           {rows2.slice(0,4).map((row,index) => (
-              <TableRow
-                key={row.name}
-                sx={{ '&:last-child td, &:last-child th': { 
-                  
-                  border: 0 } }}
-              >
-             
-                <TableCell align="center"    sx={{
-                  height:"24px"
-                }}>{3-index}</TableCell>
-                <TableCell align="center"    sx={{
-                  height:"24px"
-                }}>스마트 스토어</TableCell>
-                <TableCell align="center"    sx={{
-                  height:"24px"
-                }}>
-                64,000
-                </TableCell>
-                <TableCell align="center"    sx={{
-                  height:"24px"
-                }}>
-                2023.12.25 14:00
-                </TableCell>
-            
-           
-
-              </TableRow>
-            ))}
-          </TableBody>
     
-        </Table>     
-
-        {/* 2.데이터가 없는 경우 */}
-         {/* <NoDataPaper>
-<span>수집중입니다.</span>
-<span>수집률: 0%</span>
-</NoDataPaper>  */}
-        
-      </TableContainer>
-</FolderLayout>
-  {/* 등록 상태 ->테이블 버전*/}
-  {/* <FolderLayout>
-  <FolderTabs>
-    <InfoTab>등록 상태</InfoTab>
-    <EmptyTab/>
-    </FolderTabs>
-
-<TableContainer component={Paper} sx={{  minWidth: "100%",maxWidth: "100%",boxShadow: 'none'}}>
-        <Table
-        size="small"
-      aria-label="simple table">
-          <StyledDialogTableHead>
-            <TableRow>
-              <StyledDialogTableCell align="center">작업일시</StyledDialogTableCell>
-              <StyledDialogTableCell align="center">작업내용</StyledDialogTableCell>
-              <StyledDialogTableCell align="center"></StyledDialogTableCell>
-              <StyledDialogTableCell align="center"></StyledDialogTableCell>
-            </TableRow>
-          </StyledDialogTableHead>
-     
-         <TableBody
-       
-          >
-
-            {rows2.slice(0,4).map((row,index) => (
-              <TableRow
-                key={row.name}
-                sx={{ '&:last-child td, &:last-child th': { 
-                  
-                  border: 0 } }}
-              >
-             
-                <TableCell align="center"
-                sx={{
-                  height:"24px"
-                }}
-                >2023.12.25 14:00</TableCell>
-                <TableCell align="center"
-                sx={{
-                  height:"24px"
-                }}
-                >[상품명][등록마켓]등록</TableCell>
-                <TableCell align="center"
-                sx={{
-                  height:"24px"
-                }}
-                >
-                </TableCell>
-                <TableCell align="center"    sx={{
-                  height:"24px"
-                }}>
-                </TableCell>
-              </TableRow>
-            ))} 
-       
-    
-          </TableBody>
-    
-        </Table>     
-
-    
-        
-      </TableContainer>
-</FolderLayout> */}
-{/* 등록상태->텍스트에리어 버전 */}
-<StyledTextarea
- value={logs.join('\n')} 
- readOnly
- ref={logsEndRef}  // 로그창 스크롤을 위해 ref 설정
-/>
-<Flex/>
-<RegisterBtns>
-{/* <Flex/> */}
-  <StartBtn onClick={handleStartButtonClick}>
-    <span>등록시작</span>
-    <PlayArrow/>
-    </StartBtn>
-    <PauseBtn>
-    <span>등록정지</span>
-    <Pause/>
-    </PauseBtn>
-    <EndBtn onClick={handleEndButtonClick}><span>등록종료</span>
-    <Stop/>
-    </EndBtn>
-    <Flex/>
-    <CloseBtn onClick={onClickCloseRegisterDialog}>닫기</CloseBtn>
-</RegisterBtns>
- {/* 알럿 다이얼로그 */}
- <Dialog open={alertOpen} onClose={handleAlertClose}>
-        <DialogContent>
-          <span>마켓 등록을 중지하시겠습니까?</span>
-        </DialogContent>
-        <DialogActions>
-          <CancelBtn onClick={handleAlertClose} color="primary">
-            취소
-          </CancelBtn>
-          <AgreeBtn onClick={handleConfirm} color="primary">
-            확인
-          </AgreeBtn>
-        </DialogActions>
-      </Dialog>
-</RegisterRight>
-        </DialogContent>
-      </Dialog>
         {/* 상품마켓등록 창 */}
         <Dialog
         open={openMarketDialog}
@@ -935,7 +711,7 @@ placeholder='URL 입력'
       /> */}
     {/* 전체선택  */}
 <AllRow>
-  <CustomRadio checked/>
+  <CustomRadio />
   <span>전체선택(4/11)</span>
 <DeleteBtn>전체삭제</DeleteBtn>
 </AllRow>
@@ -956,7 +732,7 @@ onClick={onOpenUpload}
     </GiftCheckLayout>
   );
 }
-const StyledTextarea = styled(TextareaAutosize)`
+export const StyledTextarea = styled(TextareaAutosize)`
 margin-top: 19px;
   width: 100%;
   min-height: 200px;
@@ -1203,62 +979,8 @@ justify-content: flex-end;
 cursor: pointer;
 margin-top: 30px;
 `
-const FolderTabs=styled.div`
-display: flex;
-flex-direction: row;
-`
-const EmptyTab=styled.div`
-width: 100%;
-height: 37px;
-border-bottom : 1px solid #d9d9d9;
-`
-const InfoTab=styled.div`
-background-color: white;
-width: 246px;
-height: 37px;
-display: flex;
-align-items: center;
-justify-content: center; 
-font-size: 18px;
-font-weight: 400;
-color: #101010;
-border-right: 1px solid #d9d9d9;
-border-bottom: 1px solid white;
-`
-const FolderLayout=styled.div`
-width: 100%;
-display: flex;
-flex-direction: column;
-margin-top: 19px;
-border: 1px solid #d9d9d9;
-background-color: #f9f9f9;
-`
-const SearchBtn=styled.button`
-width: 71px;
-height: 34px;
-border-radius: 8px;
-border: none;
-cursor: pointer;
-background-color: #37508B;
-font-size: 14px;
-font-weight: 700;
-color: white;
-`
-const RegisterMarketSearchInput=styled.input`
-width: 100%;
-height: 34px;
-border: 1px solid #d9d9d9;
-border-radius: 5px;
-text-indent: 16px;
-`
-const RegisterMarketSearchRow=styled.div`
-display: flex;
-flex-direction: row;
-align-items: center;
-margin-bottom: 8px;
-gap: 25px;
-width: 455.5px;
-`
+
+
 const RegisterMarketTitle=styled.div`
 text-indent: 19px;
 font-size: 20px;
@@ -1318,22 +1040,7 @@ display: flex;
 flex-direction: column;
 
 `
-const SameTimeSelect=styled.select`
-width: 228px;
-height: 34px;
-border: 1px solid #d9d9d9;
-color: #666666;
-border-radius: 5px;
-`
-const SameTimeRow=styled.div`
-display: flex;
-flex-direction: row;
-align-items: center;
-gap: 10px;
-font-size: 14px;
-font-weight: 400;
-color: #333333;
-`
+
 const OptionRow=styled.div`
 display: flex;
 flex-direction: row;
@@ -1342,41 +1049,8 @@ gap: 37px;
 margin-top: 15px;
 margin-bottom: 24px;
 `
-const RegisterChkRow=styled.div`
-display: flex;
-flex-direction: row;
-align-items: center;
-gap: 9px;
-font-size: 14px;
-color: #333333;
-margin-bottom: 16px;
-`
-const RegisterOptionTitle=styled.div`
-margin-top: 35px;
-font-size: 20px;
-font-weight: 700;
-color: #666666;
-margin-bottom: 15px;
-`
-const MarketRegisterSelect=styled.select`
-width: 347px;
-height: 34px;
-border: 1px solid #d9d9d9;
-color: #666666;
-border-radius: 5px;
-`
-const ChartWrapper = styled.div`
-  width: 531px;
-  height: 360px;
-`;
-const MarketRegisterTitle=styled.div`
-margin-top: 46px;
-margin-bottom: 8px;
-font-family: Satoshi;
-font-size: 20px;
-font-weight: 700;
-color: #666666;
-`
+
+
 const RegisterLeft=styled.div`
 display: flex;
 flex-direction: column;
@@ -1611,13 +1285,14 @@ flex-direction: row;
 gap: 11px;
 `
 const FileSampleBtn=styled.button`
-border: 1px solid #37508B;
+cursor: pointer;
+border: none;
 color:white;
 border-radius: 8px;
 font-size: 14px;
 font-weight: 700;
 height: 40px;
-background-color: #7599EF;
+background-color: ${blue7};
 // width: 98px;
 `
 const FileSelBtn=styled.button`
@@ -1802,9 +1477,7 @@ const StyledTableCell = styled(TableCell)`
   // border-top: 1px solid #6a6a6a;
   font-weight: bold !important; 
 `;
-const StyledDialogTableCell = styled(TableCell)`
-  border-top: none;
-`;
+
 function createData(
   name: string,
   calories: number,

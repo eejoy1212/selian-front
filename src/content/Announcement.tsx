@@ -86,10 +86,10 @@ export function Announcement(props: IAnnouncementProps) {
 
         <Tab>
           <span>공지사항</span>
-          <Indicators>
+          {/* <Indicators>
             <ActiveIndicator />
             <InActiveIndicator />
-          </Indicators>
+          </Indicators> */}
         </Tab>
         <UnselectedTab>TIP</UnselectedTab>
         <EmptyTab>DDD</EmptyTab>
@@ -168,6 +168,7 @@ const Tab = styled.button`
 `;
 
 const UnselectedTab = styled.button`
+  cursor: pointer;
   color: #101010;
   font-weight: 400;
   font-size: 20px;

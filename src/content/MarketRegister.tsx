@@ -15,6 +15,7 @@ import MemoSrc from '../images/market/memo.png'
 import PadlockSrc from '../images/market/padlock.png'
 import { CustomCheckbox } from '../components/Btn/CustomCheckbox';
 import { InitBtn, RegisterChip, SearchBtn } from './BanManage';
+import { grey2, grey5, grey6 } from '../const/colors';
 export interface MarketRegisterProps {}
 
 export function MarketRegister(props: MarketRegisterProps) {
@@ -80,11 +81,11 @@ export function MarketRegister(props: MarketRegisterProps) {
      <span>번</span>
      <RadioSet>
       <span>이상</span>
-      <CustomRadio checked/>
+      <CustomRadio />
      </RadioSet>
      <RadioSet>
       <span>이하</span>
-      <CustomRadio checked={false}/>
+      <CustomRadio />
      </RadioSet>
 <Flex/>
      <InitBtn>초기화</InitBtn>
@@ -355,18 +356,18 @@ border: 1px solid #d9d9d9;
 `
 const DelBtn=styled.button`
 cursor: pointer;
-border: 1px solid #666666;
-background-color: white;
-color:#666666;
+border: none;
+background-color: ${grey6};
+color: ${grey2};
 height: 30px;
 font-size: 14px;
 border-radius: 5px;
 `
 const LockBtn=styled.button`
 cursor: pointer;
-border: 1px solid #666666;
-background-color: white;
-color:#666666;
+border: none;
+background-color: ${grey5};
+color:white;
 height: 30px;
 min-width: 64px;
 font-size: 14px;
@@ -374,9 +375,9 @@ border-radius: 5px;
 `
 const ShowBtn=styled.button`
 cursor: pointer;
-border: 1px solid #666666;
-background-color: white;
-color:#666666;
+border: none;
+background-color: ${grey5};
+color:white;
 height: 30px;
 min-width: 64px;
 font-size: 14px;

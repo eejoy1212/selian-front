@@ -254,6 +254,7 @@ gap: 30px;
 width: 100%;
 `
 export const CopyBtn=styled.button`
+cursor: pointer;
 width: 100%;
 height: 45px;
 top: 797px;
@@ -267,6 +268,7 @@ background-color: white;
 margin-bottom: 17px;
 `
 export const AddBtn=styled.button`
+cursor: pointer;
 width: 100%;
 height: 45px;
 top: 797px;
@@ -313,12 +315,14 @@ text-indent: 11px;
 font-size: 16px;
 color: #666666;
 `
+
 export const FeeRow=styled.div`
 display: flex;
 flex-direction: row;
-align-items: flex-end;
+align-items: center;
 gap: 22px;
 margin-bottom: 10px;
+margin-top: 10px;
 `
 export const OptionUl=styled.ul`
 display: flex;

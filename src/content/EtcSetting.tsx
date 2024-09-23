@@ -1,14 +1,27 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { CustomRadio } from '../components/Btn/CustomRadio';
-import { Dialog, DialogContent, DialogTitle, IconButton } from '@mui/material';
-import { CloseSharp } from '@mui/icons-material';
+import { CircularProgress, Dialog, DialogContent, DialogTitle, IconButton } from '@mui/material';
+import { Check, CloseSharp } from '@mui/icons-material';
+import { blue2, blue5, blue6, blue7, grey1, grey2, grey3, grey5, red1 } from '../const/colors';
 
 export interface IEtcSettingProps {
 }
 
 export function EtcSetting (props: IEtcSettingProps) {
     const [openTranslate,setOpenTranslate]=React.useState(false)
+    const [isLoading, setIsLoading] = React.useState(false); // 로딩 상태값
+    const [isChecked, setIsChecked] = React.useState(false); // 체크 여부 상태값
+  
+    const onClickCheckAPI = () => {
+      setIsLoading(true); // 로딩 시작
+      // 버튼을 클릭한 후 1초 있다가 체크 모양 아이콘으로 변경
+      setTimeout(() => {
+        setIsLoading(false); // 로딩 완료
+        setIsChecked(true); // 체크 아이콘 표시
+      }, 1000);
+    };
+
     const onClickOpenTrans=()=>{
 
         setOpenTranslate(true)
@@ -46,6 +59,7 @@ export function EtcSetting (props: IEtcSettingProps) {
           cursor:"default"
         }}
         >
+       
           <CloseSharp sx={{
             width:"20px"
           }}/>
@@ -70,17 +84,20 @@ export function EtcSetting (props: IEtcSettingProps) {
             <span>API키 리스트</span><APIBtn>API키 추가</APIBtn>
             </DialogAPITitle>
             <APIRow>
-                <APIFileInput placeholder='파일명'/>
+                {/* <APIFileInput placeholder='파일명'/> */}
                 <APIKeyInput placeholder='API키 입력'/>
-                <APIDelBtn>삭제</APIDelBtn>
-                <APIChkBtn>API키 확인사이트 접속</APIChkBtn>
+                <DelBtn>삭제</DelBtn>
+                <APIChkBtn onClick={onClickCheckAPI}>
+        {isLoading ? (
+          <CircularProgress size={20} sx={{ color: 'white' }} />
+        ) : isChecked ? (
+          <Check sx={{ fontSize: 20 }} />
+        ) : (
+          'API키 확인사이트 접속'
+        )}
+      </APIChkBtn>
             </APIRow>
-            <APIRow>
-                <APIFileInput placeholder='파일명'/>
-                <APIKeyInput placeholder='API키 입력'/>
-                <APIDelBtn>삭제</APIDelBtn>
-                <APIChkBtn>API키 확인사이트 접속</APIChkBtn>
-            </APIRow>
+            
             <DialogConfirmRow>
        <DialogConfirmBtn>확인</DialogConfirmBtn>
 
@@ -156,12 +173,12 @@ export function EtcSetting (props: IEtcSettingProps) {
     <EtcSettingFormContentWrapper>
 <RadioSetRow>
     <RadioSet><CustomRadio
-    checked
+  
     />
     <span>원가</span>
     </RadioSet>
     <RadioSet><CustomRadio
-    checked={false}
+ 
     />
     <span>판매가</span>
     </RadioSet>
@@ -169,19 +186,19 @@ export function EtcSetting (props: IEtcSettingProps) {
     </EtcSettingFormContentWrapper>
 </EtcSettingFormRow>
 {/* 세번째 줄 */}
-<EtcSettingFormRow>
+{/* <EtcSettingFormRow>
     <EtcSettingFormTitle>상품명 추가(앞)</EtcSettingFormTitle>
     <EtcSettingFormContentWrapper>
 <GiftAddInput placeholder='[상품명 앞에 추가할 멘트를 입력해 주세요.]'/>
     </EtcSettingFormContentWrapper>
-</EtcSettingFormRow>
+</EtcSettingFormRow> */}
 {/* 네번째 줄 */}
-<EtcSettingFormRow>
+{/* <EtcSettingFormRow>
     <EtcSettingFormTitle>상품명 추가(뒤)</EtcSettingFormTitle>
     <EtcSettingFormContentWrapper>
     <GiftAddInput placeholder='[상품명 뒤에 추가할 멘트를 입력해 주세요.]'/>
     </EtcSettingFormContentWrapper>
-</EtcSettingFormRow>
+</EtcSettingFormRow> */}
 {/* 다섯번째 줄 */}
 <EtcSettingFormRow>
     <EtcSettingFormTitle>번역툴 설정</EtcSettingFormTitle>
@@ -202,12 +219,12 @@ export function EtcSetting (props: IEtcSettingProps) {
     <EtcSettingFormContentWrapper>
     <RadioSetRow>
     <RadioSet><CustomRadio
-    checked
+  
     />
     <span>On</span>
     </RadioSet>
     <RadioSet><CustomRadio
-    checked={false}
+ 
     />
     <span>Off</span>
     </RadioSet>
@@ -220,12 +237,12 @@ export function EtcSetting (props: IEtcSettingProps) {
     <EtcSettingFormContentWrapper>
     <RadioSetRow>
     <RadioSet><CustomRadio
-    checked
+
     />
     <span>On</span>
     </RadioSet>
     <RadioSet><CustomRadio
-    checked={false}
+
     />
     <span>Off</span>
     </RadioSet>
@@ -249,8 +266,8 @@ width: 100%;
 justify-content: center;
 `
 const DialogConfirmBtn=styled.button`
-background-color: #87A2E3;
-width: 410px;
+background-color: ${blue2};
+width: 100%;
 height: 40px;
 border-radius: 5px;
 color:white;
@@ -259,16 +276,54 @@ font-weight: 700;
 border: none;
 margin-top: 61px;
 `
-const APIChkBtn=styled.button`
-background-color: #7599EF;
-width: 170;
-height: 40px;
-border-radius: 5px;
-color:white;
-font-size: 14px;
-font-weight: 700;
-border: 1px solid #335A97;
-`
+const CheckIconWrapper = styled.div`
+  position: absolute;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  opacity: 0;
+  transform: translateY(10px);
+
+  &.fadeIn {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  &.fadeOut {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+`;
+const APIChkBtn = styled.button`
+  cursor: pointer;
+  background-color: ${blue7};
+  width: 170px;
+  height: 40px;
+  border-radius: 5px;
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  span {
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .fadeOut {
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+  }
+
+  .fadeIn {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
 const APIDelBtn=styled.button`
 background-color: #DCDCDC;
 width: 53px;
@@ -310,6 +365,17 @@ text-indent: 12px;
     border-color: #888; /* 포커스 시 테두리 색 변경 */
   }
 `
+
+const DelBtn=styled.button`
+cursor: pointer;
+width: 53px;
+height: 40px;
+border-radius: 5px;
+border: 1px solid ${red1};
+color: white;
+font-size: 14px;
+background-color: ${red1} ;
+`
 const APIRow=styled.div`
 display: flex;
 flex-direction: row;
@@ -318,7 +384,7 @@ align-items: center;
 margin-bottom: 10px;
 `
 const APIBtn=styled.button`
-background-color: #335A97;
+background-color: ${blue2};
 width: 94px;
 height: 30px;
 border-radius: 5px;
@@ -367,22 +433,24 @@ gap: 22px;
 align-items: center;
 `
 const EditBtn=styled.button`
-width: 93px;
+cursor: pointer;
+width: 90px;
 height: 30px;
 border-radius: 5px;
-border: 1px solid #335A97;
+border: none;
 color: white;
 font-size: 14px;
 background-color: #335A97 ;
 `
 const CancelBtn=styled.button`
-width: 82px;
+cursor: pointer;
+width: 90px;
 height: 30px;
 border-radius: 5px;
-border: 1px solid #335A97;
-color: #335A97;
+border: none;
+color: white;
 font-size: 14px;
-background-color: white;
+background-color: ${grey5};
 `
 const EtcSettingBtns=styled.div`
 width: 100%;

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { blue2, blue3 } from '../const/colors';
+import { blue2, blue3, grey7 } from '../const/colors';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import LogoSrc from '../images/logo/with-txt-logo.png';
 import ProfileSrc from '../images/lcons/profile.svg';
@@ -277,10 +277,12 @@ export function Dashboard(props: IDashboardProps) {
         </SideBar>
         {/* 옵션필터 */}
       {(location.pathname==="/gift-check")&&  <OptionFilter>
-          <OptionWrapper>
+                <OptionFilterTop>옵션 필터</OptionFilterTop>
+                <OptionWrapper>
+      
             {/* 소싱사이트 */}
             <SourcingSiteSet>
-              <span>소싱사이트</span>
+              <OptionMainTitle>소싱사이트</OptionMainTitle>
               <SrcSelect
               >
              
@@ -291,7 +293,7 @@ export function Dashboard(props: IDashboardProps) {
             </SourcingSiteSet>
             {/* 수집키워드 입력 */}
             <KeywordSet>
-              <span>수집키워드 입력</span>
+              <OptionMainTitle>수집명</OptionMainTitle>
               <KeywordInput/>
               <KeywordUl>
                 <KeywordLi>
@@ -313,11 +315,11 @@ export function Dashboard(props: IDashboardProps) {
               </KeywordUl>
             </KeywordSet>
             {/* 수집갯수 제한 */}
-            <MenuLine/>
+           
             <NumSet>
               <ChkTitle>
                 <CustomCheckbox/>
-                <span>수집갯수 제한</span>
+                <OptionMainTitle>수집갯수 제한</OptionMainTitle>
               </ChkTitle>
               <RangeTxtFields>
                 <NumInput
@@ -333,7 +335,7 @@ export function Dashboard(props: IDashboardProps) {
             <NumSet>
               <ChkTitle>
                 <CustomCheckbox/>
-                <span>가격필터 사용</span>
+                <OptionMainTitle>가격필터 사용</OptionMainTitle>
               </ChkTitle>
               <RangeTxtFields>
               <NumInput
@@ -347,20 +349,23 @@ export function Dashboard(props: IDashboardProps) {
             </NumSet>
             {/* 번역 api 선택 */}
             <TranslateSet>
-              <span>번역 API 선택</span>
+              <OptionMainTitle>번역 API 선택</OptionMainTitle>
               
               <ChkTitle>
-                <CustomRadio checked/>
+                <CustomRadio />
                 <span>파파고</span>
-                <CustomRadio checked={false}/>
+                <CustomRadio />
                 <span>Google</span>
-              </ChkTitle>
-              <ChkTitle>
-                <CustomRadio checked={false}/>
+                <CustomRadio />
                 <span>DeepL</span>
               </ChkTitle>
+              {/* <ChkTitle>
+                <CustomRadio checked={false}/>
+                <span>DeepL</span>
+              </ChkTitle> */}
               
             </TranslateSet>
+            
             {/* 버튼들 */}
             <Btns>
             <Btn>판매가 설정</Btn>
@@ -384,7 +389,7 @@ export function Dashboard(props: IDashboardProps) {
             </Btns>
             <SaveBtns>
                   <InitBtn>초기화</InitBtn>
-                  <GetBtn>수집</GetBtn>
+                  <GetBtn>적용</GetBtn>
             </SaveBtns>
           </OptionWrapper>
         </OptionFilter>}
@@ -543,7 +548,7 @@ height: 30px;
 font-size: 12px;
 `
 const SaveBtns=styled.div`
-margin-top: 10px;
+margin-top: 20px;
 width: 100%;
 display: flex;
 align-items: center;
@@ -551,19 +556,25 @@ justify-content: flex-end;
 gap: 15px;
 `
 const Btn=styled.button`
+cursor: pointer;
 width: 100px;
-border : 1px solid #bfbfbf;
+border : none;
 font-size: 12px;
-color: #555555;
+font-weight: 400;
+color: #333333;
 height: 30px;
 border-radius: 5px;
 white-space: nowrap;
+background-color: #DBDBDB;
+height: 30px;
 `
 const SmallTxtBtn=styled.button`
+cursor: pointer;
 width: 100px;
-border : 1px solid #bfbfbf;
+border : none;
 font-size: 11px;
-color: #555555;
+color: #333333;
+background-color: #DBDBDB;
 height: 30px;
 border-radius: 5px;
 white-space: nowrap;
@@ -571,9 +582,9 @@ white-space: nowrap;
 const Btns=styled.div`
 // width: 200px;
 display: flex;
-// gap: 15px;
+gap: 15px;
 justify-content: space-between;
-margin-bottom: 10px;
+margin-top: 20px;
 `
 
 const CustomChk = styled(Checkbox)`
@@ -587,6 +598,7 @@ const CustomChk = styled(Checkbox)`
 const RangeTxtFields = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: center;
   gap: 4px;
 `;
 
@@ -604,7 +616,7 @@ const TranslateSet = styled.div`
   gap: 11px;
   margin-top: 15px;
   font-size: 14px;
-  margin-bottom: 20px;
+  // margin-bottom: 20px;
 `;
 
 const KeywordLi = styled.li`
@@ -672,10 +684,22 @@ const SourcingSiteSet = styled.div`
   margin-bottom: 18px;
   font-size: 14px;
 `;
-
+const OptionMainTitle=styled.span`
+font-size: 16px;
+font-weight: 500;
+`
+const OptionFilterTop=styled.div`
+width: 100%;
+height: 50px;
+background-color:${grey7};
+font-size: 16px;
+display: flex;
+align-items: center;
+justify-content: center;
+`
 const OptionWrapper = styled.div`
   margin-top: 16px;
-  width: calc(100% - 14px - 14px);
+  // width: calc(100% - 14px - 14px);
   display: flex;
   flex-direction: column;
 `;

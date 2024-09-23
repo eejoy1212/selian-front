@@ -16,6 +16,7 @@ import TaobaoSrc from '../images/company/taobao.png'
 import AmazonSrc from '../images/company/amazon.png'
 import { ActivePageBtn, InactivePageBtn, PageBtns, PageBtnsWrapper } from './AllGift';
 import { ShowSelect } from './MarketRegister';
+import { grey2, grey6 } from '../const/colors';
 export interface IGiftCheckProps {}
 
 export function GiftCheck(props: IGiftCheckProps) {
@@ -81,9 +82,9 @@ export function GiftCheck(props: IGiftCheckProps) {
         <SearchInput placeholder='수집명 미입력 시 “소싱사이트+ URL 내 검색단어”로 자동입력 됩니다.' />
         <RadioSet>
           <span>URL입력</span>
-          <CustomRadio checked />
+          <CustomRadio />
           <span>검색어입력</span>
-          <CustomRadio checked={false} />
+          <CustomRadio  />
         </RadioSet>
       </SearchRow>
    
@@ -203,7 +204,7 @@ export function GiftCheck(props: IGiftCheckProps) {
       /> */}
     {/* 전체선택  */}
 <AllRow>
-  <CustomRadio checked/>
+  <CustomRadio />
   <span>전체선택(4/11)</span>
 <DeleteBtn>전체삭제</DeleteBtn>
 </AllRow>
@@ -230,9 +231,9 @@ align-items: center;
 `
 const DelBtn=styled.button`
 cursor: pointer;
-border: 1px solid #666666;
-background-color: white;
-color:#666666;
+border: none;
+background-color: ${grey6};
+color: ${grey2};
 height: 30px;
 font-size: 14px;
 border-radius: 5px;
@@ -262,7 +263,7 @@ flex-direction: row;
 gap: 11px;
 `
 const FileSampleBtn=styled.button`
-border: 1px solid #37508B;
+border: none;
 color:white;
 border-radius: 8px;
 font-size: 14px;

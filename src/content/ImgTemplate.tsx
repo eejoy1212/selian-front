@@ -79,9 +79,9 @@ export function ImgTemplate (props: IImgTemplateProps) {
          <DialogSubTitle>이미지 첨부</DialogSubTitle>
          <RadioRow>
 <span>URL</span>
-<CustomRadio checked={false}/>
+<CustomRadio />
 <span>이미지 파일</span>
-<CustomRadio checked/>
+<CustomRadio />
 </RadioRow>
 <PreviewRow>
     <span>상단</span>

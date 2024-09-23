@@ -13,6 +13,7 @@ import { CustomCheck } from '../components/Btn/CustomCheck';
 import { IoClose } from 'react-icons/io5';
 import { OptionRow } from './GiftCheck';
 import { CollectName, ShowSelect } from './MarketRegister';
+import { grey2, grey5, grey6 } from '../const/colors';
 export interface AllGiftProps {}
 
 export function AllGift(props: AllGiftProps) {
@@ -811,7 +812,7 @@ border: 1px solid #d9d9d9;
 `
 const LinkBtn=styled.button`
 cursor: pointer;
-border: 1px solid #666666;
+border: none;
 background-color: #E8E8E8;
 color:#666666;
 height: 30px;
@@ -820,9 +821,9 @@ border-radius: 5px;
 `
 const DelBtn=styled.button`
 cursor: pointer;
-border: 1px solid #666666;
-background-color: white;
-color:#666666;
+border: none;
+background-color: ${grey5};
+color:white;
 height: 30px;
 font-size: 14px;
 border-radius: 5px;

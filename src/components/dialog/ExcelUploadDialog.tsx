@@ -2,6 +2,7 @@ import { CloseSharp } from '@mui/icons-material';
 import { Dialog, DialogContent, DialogTitle, IconButton } from '@mui/material';
 import * as React from 'react';
 import styled from 'styled-components';
+import { blue7 } from '../../const/colors';
 
 export interface IExcelUploadDialogProps {
     openUload:boolean;
@@ -102,12 +103,13 @@ flex-direction: row;
 gap: 11px;
 `
 const FileSampleBtn=styled.button`
-border: 1px solid #37508B;
+cursor: pointer;
+border: none;
 color:white;
 border-radius: 8px;
 font-size: 14px;
 font-weight: 700;
 height: 40px;
-background-color: #7599EF;
+background-color: ${blue7};
 // width: 98px;
 `

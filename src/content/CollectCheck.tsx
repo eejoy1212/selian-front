@@ -18,11 +18,15 @@ import { CustomCheckbox } from '../components/Btn/CustomCheckbox';
 import { ExcelUploadDialog } from '../components/dialog/ExcelUploadDialog';
 import { OptionRow } from './GiftCheck';
 import { ShowSelect } from './MarketRegister';
+import { blue2, blue3, blue7, blue8, grey1, grey2, grey3, grey4, grey5, grey6, red1 } from '../const/colors';
+import { MarketRegister } from '../components/dialog/MarketRegister';
 export interface CollectCheckProps {}
 
 export function CollectCheck(props: CollectCheckProps) {
+   
   const [openUload,setOpenUpload]=React.useState(false)
   const [openMarketDialog,setOpenMarketDialog]=React.useState(false)
+  const [registerOpen,setRegisterOpen]=React.useState(false)
   const onClickOpenMarketDialog=()=>{
     setOpenMarketDialog(true)
   }
@@ -35,7 +39,15 @@ export function CollectCheck(props: CollectCheckProps) {
   const onCloseUpload=()=>{
     setOpenUpload(false)
   }
+
+  const onClickOpenRegisterDialog=()=>{
+    setRegisterOpen(true)
+  }
+  const onClickCloseRegisterDialog=()=>{
+    setRegisterOpen(false)
+  }
   return (<CollectCheckWrapper>
+    <MarketRegister open={registerOpen} onOpen={onClickOpenRegisterDialog} onClose={onClickCloseRegisterDialog}/>
   {/* 첫번째 대시보드 */}
    <GiftCheckLayout>
         {/* 상품마켓등록 창 */}
@@ -279,7 +291,7 @@ placeholder='URL 입력'
                 <TableCell align="center">0</TableCell>
                 <TableCell align="center">수집중</TableCell>
                 <TableCell align="center">6,000</TableCell>
-                <TableCell align="center"><EditBtn onClick={onClickOpenMarketDialog}>수정하기</EditBtn></TableCell>
+                <TableCell align="center"><EditBtn onClick={onClickOpenRegisterDialog}>수정하기</EditBtn></TableCell>
                 <TableCell align="center"><DelBtn>삭제하기</DelBtn></TableCell>
                 <TableCell align="center"><LinkBtn>링크열기</LinkBtn></TableCell>
 
@@ -303,7 +315,7 @@ placeholder='URL 입력'
     }}
     >
     <UploadsWrapper>
-    <AllChkBtn>상품수집</AllChkBtn>
+    <AllChkBtn onClick={onClickOpenRegisterDialog}>상품수집</AllChkBtn>
     <UploadBtn
 onClick={onOpenUpload}
 >엑셀파일 업로드</UploadBtn>
@@ -905,17 +917,17 @@ border: 1px solid #d9d9d9;
 `
 const LinkBtn=styled.button`
 cursor: pointer;
-border: 1px solid #666666;
-background-color: #E8E8E8;
-color:#666666;
+border: none;
+background-color: ${grey1};
+color:${grey2};
 height: 30px;
 font-size: 14px;
 border-radius: 5px;
 `
 const EditBtn=styled.button`
 cursor: pointer;
-border: 1px solid #999999;
-background-color: #999999;
+border: none;
+background-color: ${grey5};
 color:white;
 height: 30px;
 font-size: 14px;
@@ -923,9 +935,9 @@ border-radius: 5px;
 `
 const DelBtn=styled.button`
 cursor: pointer;
-border: 1px solid #666666;
-background-color: white;
-color:#666666;
+border: none;
+background-color: ${grey6};
+color: ${grey2};
 height: 30px;
 font-size: 14px;
 border-radius: 5px;
@@ -955,13 +967,13 @@ flex-direction: row;
 gap: 11px;
 `
 const FileSampleBtn=styled.button`
-border: 1px solid #37508B;
+border: none;
 color:white;
 border-radius: 8px;
 font-size: 14px;
 font-weight: 700;
 height: 40px;
-background-color: #7599EF;
+background-color: ${blue7};
 // width: 98px;
 `
 const FileSelBtn=styled.button`
@@ -990,6 +1002,7 @@ gap: 8px;
 margin-top:10px;
 `
 const DownloadBtn=styled.button`
+cursor: pointer;
 height: 30px;
 font-size: 14px;
 border-radius: 5px;
@@ -998,10 +1011,12 @@ border: 1px solid #1F7145;
 background-color: #1F7145;
 `
 const UploadBtn=styled.button`
+cursor: pointer;
 height: 30px;
 font-size: 14px;
 border-radius: 5px;
 color: #1F7145;
+background-color: #E7F9F0;
 border: 1px solid #1F7145;
 background-color: white;
 `
@@ -1018,24 +1033,24 @@ border: 1px solid #335A97;
 background-color: #335A97;
 `
 const SelectChkBtn=styled.button`
-// width: 82px;
+width: 80px;
 height: 30px;
 font-size: 14px;
 border-radius: 5px;
-color: #335A97;
-border: 1px solid #335A97;
-background-color: #E6EEFA;
+color: white;
+border: none;
+background-color: ${blue2};
 margin-right: 15px;
 cursor: pointer;
 `
 const AllChkBtn=styled.button`
-width: 75px;
+width: 80px;
 height: 30px;
 font-size: 14px;
 border-radius: 5px;
-color: #335A97;
-border: 1px solid #335A97;
-background-color: white;
+color: ${blue2};
+border: 1px solid ${blue2};
+background-color: ${blue8};
 margin-right: 15px;
 cursor: pointer;
 `

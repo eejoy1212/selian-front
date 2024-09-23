@@ -12,6 +12,7 @@ import { AddBtn, CopyBtn, CostInput, CostRow, CostTitle, DialogBtns, DialogSubTi
 import { CustomRadio } from '../components/Btn/CustomRadio';
 import { ExcelUploadDialog } from '../components/dialog/ExcelUploadDialog';
 import { ShowSelect } from './MarketRegister';
+import { blue7 } from '../const/colors';
 
 export interface IMarginTemplateProps {
 }
@@ -88,17 +89,16 @@ export function MarginTemplate (props: IMarginTemplateProps) {
          {/* 이미지 첨부 */}
          <DialogSubTitle>마진 기준 추가</DialogSubTitle>
          {/* 배송비 */}
-<FeeRow>
-<FeeSet>
-    <span>기준 상품 가격</span>
-    <FeeInput placeholder='기준 상품 가격'/>
-</FeeSet>
-<FeeSet>
-    <span>추가 금액 마진</span>
-    <FeeInput placeholder='추가 마진'/>
-</FeeSet>
-<ChangeBtn>변경</ChangeBtn>
-</FeeRow>
+         <SubAddTitle>기준 상품 가격</SubAddTitle>
+         <FeeRow>  <FeeInput placeholder='시작 상품 가격'/>
+         ~ <FeeInput placeholder='종료 상품 가격'/>
+         </FeeRow>
+
+
+    <SubAddTitle>추가 금액 마진</SubAddTitle>
+    <FeeRow>  <FeeInput placeholder='추가 마진'/>  <ChangeBtn>추가</ChangeBtn> </FeeRow>
+
+
  
 <MarginInfoTitle>마진 정보</MarginInfoTitle>
 {/* 테이블 */}
@@ -108,13 +108,13 @@ export function MarginTemplate (props: IMarginTemplateProps) {
         sx={{ minHeight:320}} aria-label="simple table">
           <StyledTableHead>
             <TableRow>
-              <StyledTableCell align="left">선택</StyledTableCell>
-              <StyledTableCell align="left">No.</StyledTableCell>
+              {/* <StyledTableCell align="left">선택</StyledTableCell>
+              <StyledTableCell align="left">No.</StyledTableCell> */}
               <StyledTableCell align="center">기준 상품 가격</StyledTableCell>
               <StyledTableCell align="center">추가마진</StyledTableCell>
-              <StyledTableCell align="center">수정</StyledTableCell>
+              {/* <StyledTableCell align="center">수정</StyledTableCell> */}
               <StyledTableCell align="center">삭제</StyledTableCell>
-              <StyledTableCell align="center">복사</StyledTableCell>
+              {/* <StyledTableCell align="center">복사</StyledTableCell> */}
      
             </TableRow>
           </StyledTableHead>
@@ -130,21 +130,21 @@ export function MarginTemplate (props: IMarginTemplateProps) {
                   
                   border: 0 } }}
               >
-                <TableCell align="left"
+                {/* <TableCell align="left"
                 
                 scope="row">
                   <CustomCheck
                   checked={true}
                   />
                 </TableCell>
-                <TableCell align="left">{rows2.length-index}</TableCell>
+                <TableCell align="left">{rows2.length-index}</TableCell> */}
                 <TableCell align="center">5,000원 이상</TableCell>
                 <TableCell align="center">
                 500원
                 </TableCell>
-                <TableCell align="center"><DelBtn>수정</DelBtn></TableCell>
+                {/* <TableCell align="center"><DelBtn>수정</DelBtn></TableCell> */}
                 <TableCell align="center"><DelBtn>삭제</DelBtn></TableCell>
-                <TableCell align="center"><DelBtn>복사</DelBtn></TableCell>
+                {/* <TableCell align="center"><DelBtn>복사</DelBtn></TableCell> */}
              
 
               </TableRow>
@@ -273,7 +273,11 @@ onClick={onClickOpenTemplateAdd}>마진 템플릿 추가하기</TemplateBtn>
             </BanManagePaper></BanManageLayout>
   );
 }
-
+const SubAddTitle=styled.span`
+text-indent: 11px;
+font-size: 16px;
+color: #666666;
+`
 export const TagInput=styled.input`
 width: 489px;
 height: 45px;
@@ -323,13 +327,14 @@ background-color:#335A97;
 color: white;
 `
 const ChangeBtn=styled.button`
+cursor: pointer;
 width: 47px;
 height: 40px;
 font-size: 14px;
 font-weight: 700;
 border-radius: 8px;
-border: 1px solid #335A97;
-background-color:#7599EF;
+border: none;
+background-color:${blue7};
 color: white;
 `
 const PreviewRow=styled.div `

@@ -72,10 +72,10 @@ export function SiteApi (props: ISiteApiProps) {
           <MarketFormContentWrapper>
         <RadioRow>
           <RadioSet><span>URL</span>
-          <CustomRadio checked/>
+          <CustomRadio />
           </RadioSet>
           <RadioSet><span>이미지 파일</span>
-          <CustomRadio checked={false}/>
+          <CustomRadio />
           </RadioSet>
         </RadioRow>
         <ImgTxtfieldRow>

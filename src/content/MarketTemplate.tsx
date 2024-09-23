@@ -109,9 +109,9 @@ export function MarketTemplate (props: IMarketTemplateProps) {
 </FailRow>
 <RadioRow>
 <span>원산지 소싱 사이트 국가로 설정</span>
-<CustomRadio checked={false}/>
+<CustomRadio />
 <span>원산지 기타/해외로 설정</span>
-<CustomRadio checked/>
+<CustomRadio />
 </RadioRow>
 <DialogBtns><CopyBtn>기존 템플릿에서 복제하기</CopyBtn>
 <AddBtn>추가하기</AddBtn></DialogBtns>
