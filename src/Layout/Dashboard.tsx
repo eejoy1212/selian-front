@@ -9,23 +9,36 @@ import { Select, MenuItem, TextField, Checkbox, Radio } from '@mui/material';
 import RabbitSrc from '../images/rabbit.jpg'
 import { CustomCheckbox } from '../components/Btn/CustomCheckbox';
 import { CustomRadio } from '../components/Btn/CustomRadio';
+import { PlanDialog } from '../components/dialog/PlanDialog';
 export interface IDashboardProps {}
 
 export function Dashboard(props: IDashboardProps) {
   const navigate = useNavigate();
   const location = useLocation();
   const [openProfile,setOpenProfile]=React.useState(false)
-
+const [openPlan,setOpenPlan]=React.useState(false)
   const [openNoti,setOpenNoti]=React.useState(false)
+  const onOpenPlan=()=>{
+    setOpenPlan(true)
+  }
+  const onClosePlan=()=>{
+    setOpenPlan(false)
+  }
   const onClickNoti=()=>{
     setOpenNoti(p=>!p)
   }
   const onClickProfile=()=>{
     setOpenProfile(p=>!p)
   }
-  
+   // 로그아웃 함수
+   const handleLogout = (): void => {
+    localStorage.removeItem('isAutoLogin');
+    localStorage.removeItem('userId');
+navigate("/")
+  };
   return (
     <DashboardLayout>
+      <PlanDialog open={openPlan} onClose={onClosePlan}/>
       <DashAppBar>
         <LogoImg src={LogoSrc} />
         <Flex />
@@ -37,7 +50,7 @@ export function Dashboard(props: IDashboardProps) {
             <ProfileLi>
               wonny
             </ProfileLi>
-            <ProfileLi>
+            <ProfileLi onClick={onOpenPlan}>
               결제플랜: 베이직
             </ProfileLi>
             <ProfileLi
@@ -53,7 +66,7 @@ export function Dashboard(props: IDashboardProps) {
   <ProfileImg src={RabbitSrc}/>
 </ProfileCircle>
           </ProfileRow>
-          <LogoutBtn>로그아웃</LogoutBtn>
+          <LogoutBtn onClick={handleLogout}>로그아웃</LogoutBtn>
         
           </ProfilePaper>}
        {openNoti&& <NotiPaper>

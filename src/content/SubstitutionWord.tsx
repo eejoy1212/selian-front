@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { BanOptionRow } from './BanManage';
 import { ShowSelect } from './MarketRegister';
 import { blue8, grey2, grey6 } from '../const/colors';
+import { ShowTableSelect } from '../components/Select/ShowTableSelect';
 
 export interface ISubstitutionWordManageProps {
 }
@@ -18,6 +19,10 @@ export function SubstitutionWordManage (props: ISubstitutionWordManageProps) {
   const [openUpload,setOpenUpload]=React.useState(false)
   const [leftInput,setLeftInput]=React.useState("")
     const [rightInput,setRightInput]=React.useState("")
+    const [rowNum,setRowNum]=React.useState(10)
+    const onChangeRowNum=(v:number)=>{
+  setRowNum(v)
+    }
     const onChangeLeftInput=(event: React.ChangeEvent<HTMLInputElement>)=>{
     setLeftInput(event.target.value)
   }
@@ -106,11 +111,7 @@ export function SubstitutionWordManage (props: ISubstitutionWordManageProps) {
 </SearchBtnRow>
 <BanOptionRow>
            <Flex/>
-        <ShowSelect>
-      <option>
-        10개씩보기
-      </option>
-      </ShowSelect></BanOptionRow>
+        <ShowTableSelect onChange={onChangeRowNum}/></BanOptionRow>
 {/* 테이블 */}
 <TableWrapper> 
       <TableContainer 
@@ -135,7 +136,7 @@ export function SubstitutionWordManage (props: ISubstitutionWordManageProps) {
        
           >
 
-           {rows2.map((row,index) => (
+           {[...rows2,...rows2,...rows2].slice(0,rowNum).map((row,index) => (
               <TableRow
                 key={row.name}
                 sx={{ '&:last-child td, &:last-child th': { 
@@ -149,7 +150,7 @@ export function SubstitutionWordManage (props: ISubstitutionWordManageProps) {
                   checked={true}
                   />
                 </TableCell>
-                <TableCell align="left">{rows2.length-index}</TableCell>
+                <TableCell align="left">{index+1}</TableCell>
                 <TableCell align="center">변경 전 단어</TableCell>
                 <TableCell align="center">변경 후 단어</TableCell>
                 <TableCell align="center">

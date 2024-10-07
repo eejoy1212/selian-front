@@ -13,24 +13,36 @@ import { CustomRadio } from '../components/Btn/CustomRadio';
 import { ExcelUploadDialog } from '../components/dialog/ExcelUploadDialog';
 import { TagInput } from './MarginTemplate';
 import { ShowSelect } from './MarketRegister';
+import { ShowTableSelect } from '../components/Select/ShowTableSelect';
 
 export interface ITagTemplateProps {
 }
 
 export function TagTemplate (props: ITagTemplateProps) {
-    const [openTempladeAdd,setTemplateAdd]=React.useState(false)
-    const [openExcel,setExcel]=React.useState(false)
+  const [openTempladeAdd,setTemplateAdd]=React.useState(false)
+  const [openTempladeEdit,setTemplateEdit]=React.useState(false)
+  const [openExcel,setExcel]=React.useState(false)
+    const [rowNum,setRowNum]=React.useState(10)
     const onClickOpenTemplateAdd=()=>{
         setTemplateAdd(true)
     }
     const onClickCloseTemplateAdd=()=>{
         setTemplateAdd(false)
     }
+    const onClickOpenTemplateEdit=()=>{
+      setTemplateEdit(true)
+  }
+  const onClickCloseTemplateEdit=()=>{
+      setTemplateEdit(false)
+  }
     const onClickOpenExcel=()=>{
         setExcel(true)
     }
     const onClickCloseExcel=()=>{
         setExcel(false)
+    }
+    const onChaneRowNum=(v:number)=>{
+      setRowNum(v)
     }
   return (
     <BanManageLayout>
@@ -124,6 +136,94 @@ export function TagTemplate (props: ITagTemplateProps) {
           
             </DialogContent>
         </Dialog>
+            {/*태그 템플릿 수정 */}
+            <Dialog
+        open={openTempladeEdit}
+        sx={{
+            '& .MuiDialog-paper': {
+              
+              width: '840px', // 다이얼로그 창의 너비를 685px로 지정
+              maxWidth: 'none', // 최대 너비 제한을 없애기 위해 설정
+            },
+          }}
+        >
+             <DialogTitle sx={{
+                // padding:1,
+        color:"black",
+        fontWeight:700,
+        display:"flex",
+        alignItems:"center",
+        justifyContent:"space-between"
+        
+      }}>
+        <IconButton
+        sx={{
+          opacity:0,
+          cursor:"default"
+        }}
+        >
+          <CloseSharp sx={{
+            width:"20px"
+          }}/>
+        </IconButton>
+        <span>태그 템플릿 수정</span>
+        <IconButton
+        
+        onClick={onClickCloseTemplateEdit}>
+          <CloseSharp sx={{
+            width:"20px"
+          }}/>
+        </IconButton>
+        </DialogTitle>
+            <DialogContent
+            sx={{
+                display:"flex",
+                alignItems:"center",
+                justifyContent:"center"
+            }}
+            >
+                <TemplateDialogWrapper>
+    {/* 템플릿 이름 */}
+    <DialogSubTitle>템플릿 이름</DialogSubTitle>
+<TemplateNameInput placeholder='템플릿 이름을 입력해주세요.'/>
+         {/* 이미지 첨부 */}
+         <DialogSubTitle>태그 추가</DialogSubTitle>
+      <PreviewRow>
+      <TagInput placeholder='추가할 태그명을 입력해주세요'/>
+      <ChangeBtn>추가</ChangeBtn>
+      </PreviewRow>
+<TagUl>
+    <TagLi>
+        <span>태그명1</span>
+        <DelBtn>삭제</DelBtn>
+    </TagLi>
+    <TagLi>
+        <span>태그명1</span>
+        <DelBtn>삭제</DelBtn>
+    </TagLi>
+    <TagLi>
+        <span>태그명1</span>
+        <DelBtn>삭제</DelBtn>
+    </TagLi>
+    <TagLi>
+        <span>태그명1</span>
+        <DelBtn>삭제</DelBtn>
+    </TagLi>
+    <TagLi>
+        <span>태그명1</span>
+        <DelBtn>삭제</DelBtn>
+    </TagLi>
+    <TagLi>
+        <span>태그명1</span>
+        <DelBtn>삭제</DelBtn>
+    </TagLi>
+</TagUl>
+<DialogBtns><CopyBtn>기존 템플릿에서 복제하기</CopyBtn>
+<AddBtn>추가하기</AddBtn></DialogBtns>
+                </TemplateDialogWrapper>
+          
+            </DialogContent>
+        </Dialog>
         {/* 배송템플릿 추가 */}
 <TemplateTabs/>
           <BanManagePaper>
@@ -132,11 +232,7 @@ export function TagTemplate (props: ITagTemplateProps) {
 <TemplateBtn
 onClick={onClickOpenTemplateAdd}>태그 템플릿 추가하기</TemplateBtn>
   <Flex/>
-        <ShowSelect>
-      <option>
-        10개씩보기
-      </option>
-      </ShowSelect>
+        <ShowTableSelect onChange={onChaneRowNum}/>
             </TemplateBtnRow>
 <TableWrapper> 
       <TableContainer 
@@ -162,7 +258,7 @@ onClick={onClickOpenTemplateAdd}>태그 템플릿 추가하기</TemplateBtn>
        
           >
 
-           {rows2.map((row,index) => (
+           {[...rows2,...rows2,...rows2].slice(0,rowNum).map((row,index) => (
               <TableRow
                 key={row.name}
                 sx={{ '&:last-child td, &:last-child th': { 
@@ -176,12 +272,12 @@ onClick={onClickOpenTemplateAdd}>태그 템플릿 추가하기</TemplateBtn>
                   checked={true}
                   />
                 </TableCell>
-                <TableCell align="left">{rows2.length-index}</TableCell>
+                <TableCell align="left">{index+1}</TableCell>
                 <TableCell align="center">태그 템플릿</TableCell>
                 <TableCell align="center">
                 2023.12.25 14:00
                 </TableCell>
-                <TableCell align="center"><DelBtn>수정</DelBtn></TableCell>
+                <TableCell align="center"><DelBtn onClick={onClickOpenTemplateEdit}>수정</DelBtn></TableCell>
                 <TableCell align="center"><DelBtn>삭제</DelBtn></TableCell>
                 <TableCell align="center"><DelBtn>복사</DelBtn></TableCell>
              

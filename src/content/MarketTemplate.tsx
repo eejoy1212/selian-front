@@ -11,17 +11,29 @@ import { CustomCheckbox } from '../components/Btn/CustomCheckbox';
 import { AddBtn, CopyBtn, CostInput, CostRow, CostTitle, DialogBtns, DialogSubTitle, ExcelDownloadBtn, ExcelDownloadRow, FeeInput, FeeRow, FeeSet, FreeInput, FreeRow, OptionLi, OptionUl, TemplateBtn, TemplateBtnRow, TemplateDelBtn, TemplateDialogWrapper, TemplateNameInput } from './Template';
 import { CustomRadio } from '../components/Btn/CustomRadio';
 import { ShowSelect } from './MarketRegister';
+import { ShowTableSelect } from '../components/Select/ShowTableSelect';
 
 export interface IMarketTemplateProps {
 }
 
 export function MarketTemplate (props: IMarketTemplateProps) {
     const [openTempladeAdd,setTemplateAdd]=React.useState(false)
+    const [openTempladeEdit,setTemplateEdit]=React.useState(false)
+    const [rowNum,setRowNum]=React.useState(10)
     const onClickOpenTemplateAdd=()=>{
         setTemplateAdd(true)
     }
     const onClickCloseTemplateAdd=()=>{
         setTemplateAdd(false)
+    }
+    const onClickOpenTemplateEdit=()=>{
+      setTemplateEdit(true)
+  }
+  const onClickCloseTemplateEdit=()=>{
+      setTemplateEdit(false)
+  }
+    const onChaneRowNum=(v:number)=>{
+      setRowNum(v)
     }
   return (
     <BanManageLayout>
@@ -119,6 +131,100 @@ export function MarketTemplate (props: IMarketTemplateProps) {
           
             </DialogContent>
         </Dialog>
+         {/* 마켓등록 템플릿 수정 */}
+         <Dialog
+        open={openTempladeEdit}
+        sx={{
+            '& .MuiDialog-paper': {
+              
+              width: '840px', // 다이얼로그 창의 너비를 685px로 지정
+              maxWidth: 'none', // 최대 너비 제한을 없애기 위해 설정
+            },
+          }}
+        >
+             <DialogTitle sx={{
+                // padding:1,
+        color:"black",
+        fontWeight:700,
+        display:"flex",
+        alignItems:"center",
+        justifyContent:"space-between"
+        
+      }}>
+        <IconButton
+        sx={{
+          opacity:0,
+          cursor:"default"
+        }}
+        >
+          <CloseSharp sx={{
+            width:"20px"
+          }}/>
+        </IconButton>
+        <span>마켓등록 템플릿 수정</span>
+        <IconButton
+        
+        onClick={onClickCloseTemplateEdit}>
+          <CloseSharp sx={{
+            width:"20px"
+          }}/>
+        </IconButton>
+        </DialogTitle>
+            <DialogContent
+            sx={{
+                display:"flex",
+                alignItems:"center",
+                justifyContent:"center"
+            }}
+            >
+                <TemplateDialogWrapper>
+    {/* 템플릿 이름 */}
+    <DialogSubTitle>템플릿 이름</DialogSubTitle>
+<TemplateNameInput placeholder='템플릿 이름을 입력해주세요.'/>
+         {/* 템플릿 이름 */}
+         <DialogSubTitle>상품 가격 선택</DialogSubTitle>
+<CostRow>
+    <SourcingTitle>소싱 상품 가격 선택</SourcingTitle>
+    <SourcingInput placeholder='소싱서 판매가격(할인후 가격) 사용'/>
+</CostRow>
+
+<ViolationRow>
+    <CustomCheckbox />
+<span>마켓 정책 위반 시에만 판매가격 조정</span>
+</ViolationRow>
+<CostRow>
+    <SourcingTitle>판매 가격 조정 선택</SourcingTitle>
+    <SourcingInput placeholder='최저가 기준+정책 위반 옵션 제외'/>
+</CostRow>
+{/* 판매 옵션 */}
+<SaleOptionTitle>판매 옵션</SaleOptionTitle>
+<FeeRow>
+<FeeSet>
+    <span>메인 이미지 지정 방법</span>
+    <FeeInput placeholder='지정된 이미지 노출 설정'/>
+</FeeSet>
+<FeeSet>
+    <span>메인 이미지 설정</span>
+    <FeeInput placeholder='첫번째 이미지'/>
+</FeeSet>
+</FeeRow>
+
+<FailRow>
+    <CustomCheckbox />
+<span>모든 마켓 등록 실패 시 상품삭제</span>
+</FailRow>
+<RadioRow>
+<span>원산지 소싱 사이트 국가로 설정</span>
+<CustomRadio />
+<span>원산지 기타/해외로 설정</span>
+<CustomRadio />
+</RadioRow>
+<DialogBtns><CopyBtn>기존 템플릿에서 복제하기</CopyBtn>
+<AddBtn>추가하기</AddBtn></DialogBtns>
+                </TemplateDialogWrapper>
+          
+            </DialogContent>
+        </Dialog>
         {/* 배송템플릿 추가 */}
 <TemplateTabs/>
           <BanManagePaper>
@@ -127,11 +233,7 @@ export function MarketTemplate (props: IMarketTemplateProps) {
 <TemplateBtn
 onClick={onClickOpenTemplateAdd}>마켓 등록 템플릿 추가하기</TemplateBtn>
   <Flex/>
-        <ShowSelect>
-      <option>
-        10개씩보기
-      </option>
-      </ShowSelect>
+        <ShowTableSelect onChange={onChaneRowNum}/>
             </TemplateBtnRow>
 <TableWrapper> 
       <TableContainer 
@@ -157,7 +259,7 @@ onClick={onClickOpenTemplateAdd}>마켓 등록 템플릿 추가하기</TemplateB
        
           >
 
-           {rows2.map((row,index) => (
+           {[...rows2,...rows2,...rows2].slice(0,rowNum).map((row,index) => (
               <TableRow
                 key={row.name}
                 sx={{ '&:last-child td, &:last-child th': { 
@@ -171,12 +273,12 @@ onClick={onClickOpenTemplateAdd}>마켓 등록 템플릿 추가하기</TemplateB
                   checked={true}
                   />
                 </TableCell>
-                <TableCell align="left">{rows2.length-index}</TableCell>
+                <TableCell align="left">{index+1}</TableCell>
                 <TableCell align="center">마켓등록 템플릿</TableCell>
                 <TableCell align="center">
                 2023.12.25 14:00
                 </TableCell>
-                <TableCell align="center"><DelBtn>수정</DelBtn></TableCell>
+                <TableCell align="center"><DelBtn onClick={onClickOpenTemplateEdit}>수정</DelBtn></TableCell>
                 <TableCell align="center"><DelBtn>삭제</DelBtn></TableCell>
                 <TableCell align="center"><DelBtn>복사</DelBtn></TableCell>
              

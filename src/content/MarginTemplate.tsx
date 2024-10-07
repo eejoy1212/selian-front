@@ -13,13 +13,23 @@ import { CustomRadio } from '../components/Btn/CustomRadio';
 import { ExcelUploadDialog } from '../components/dialog/ExcelUploadDialog';
 import { ShowSelect } from './MarketRegister';
 import { blue7 } from '../const/colors';
+import { ShowTableSelect } from '../components/Select/ShowTableSelect';
 
 export interface IMarginTemplateProps {
 }
 
 export function MarginTemplate (props: IMarginTemplateProps) {
     const [openTempladeAdd,setTemplateAdd]=React.useState(false)
+    const [openTempladeEdit,setTemplateEdit]=React.useState(false)
+  
     const [openExcel,setExcel]=React.useState(false)
+    const [rowNum,setRowNum]=React.useState(10)
+    const onClickOpenTemplateEdit=()=>{
+      setTemplateEdit(true)
+  }
+  const onClickCloseTemplateEdit=()=>{
+      setTemplateEdit(false)
+  }
     const onClickOpenTemplateAdd=()=>{
         setTemplateAdd(true)
     }
@@ -31,6 +41,9 @@ export function MarginTemplate (props: IMarginTemplateProps) {
     }
     const onClickCloseExcel=()=>{
         setExcel(false)
+    }
+    const onChangeRowNum=(v:number)=>{
+      setRowNum(v)
     }
   return (
     <BanManageLayout>
@@ -166,6 +179,136 @@ export function MarginTemplate (props: IMarginTemplateProps) {
           
             </DialogContent>
         </Dialog>
+          {/*마진 템플릿 수정 */}
+          <Dialog
+        open={openTempladeEdit}
+        sx={{
+            '& .MuiDialog-paper': {
+              
+              width: '840px', // 다이얼로그 창의 너비를 685px로 지정
+              maxWidth: 'none', // 최대 너비 제한을 없애기 위해 설정
+            },
+          }}
+        >
+             <DialogTitle sx={{
+                // padding:1,
+        color:"black",
+        fontWeight:700,
+        display:"flex",
+        alignItems:"center",
+        justifyContent:"space-between"
+        
+      }}>
+        <IconButton
+        sx={{
+          opacity:0,
+          cursor:"default"
+        }}
+        >
+          <CloseSharp sx={{
+            width:"20px"
+          }}/>
+        </IconButton>
+        <span>마진 템플릿 수정</span>
+        <IconButton
+        
+        onClick={onClickCloseTemplateEdit}>
+          <CloseSharp sx={{
+            width:"20px"
+          }}/>
+        </IconButton>
+        </DialogTitle>
+            <DialogContent
+            sx={{
+                display:"flex",
+                alignItems:"center",
+                justifyContent:"center"
+            }}
+            >
+                <TemplateDialogWrapper>
+    {/* 템플릿 이름 */}
+    <DialogSubTitle>템플릿 이름</DialogSubTitle>
+<TemplateNameInput placeholder='템플릿 이름을 입력해주세요.'/>
+         {/* 이미지 첨부 */}
+         <DialogSubTitle>마진 기준 추가</DialogSubTitle>
+         {/* 배송비 */}
+         <SubAddTitle>기준 상품 가격</SubAddTitle>
+         <FeeRow>  <FeeInput placeholder='시작 상품 가격'/>
+         ~ <FeeInput placeholder='종료 상품 가격'/>
+         </FeeRow>
+
+
+    <SubAddTitle>추가 금액 마진</SubAddTitle>
+    <FeeRow>  <FeeInput placeholder='추가 마진'/>  <ChangeBtn>추가</ChangeBtn> </FeeRow>
+
+
+ 
+<MarginInfoTitle>마진 정보</MarginInfoTitle>
+{/* 테이블 */}
+      <TableContainer component={Paper} sx={{ boxShadow: 'none',marginBottom: "37px"}}>
+        <Table 
+        size='small'
+        sx={{ minHeight:320}} aria-label="simple table">
+          <StyledTableHead>
+            <TableRow>
+              {/* <StyledTableCell align="left">선택</StyledTableCell>
+              <StyledTableCell align="left">No.</StyledTableCell> */}
+              <StyledTableCell align="center">기준 상품 가격</StyledTableCell>
+              <StyledTableCell align="center">추가마진</StyledTableCell>
+              {/* <StyledTableCell align="center">수정</StyledTableCell> */}
+              <StyledTableCell align="center">삭제</StyledTableCell>
+              {/* <StyledTableCell align="center">복사</StyledTableCell> */}
+     
+            </TableRow>
+          </StyledTableHead>
+         {/* 1.데이터가 있는경우 */}
+         <TableBody
+       
+          >
+
+           {rows2.map((row,index) => (
+              <TableRow
+                key={row.name}
+                sx={{ '&:last-child td, &:last-child th': { 
+                  
+                  border: 0 } }}
+              >
+                {/* <TableCell align="left"
+                
+                scope="row">
+                  <CustomCheck
+                  checked={true}
+                  />
+                </TableCell>
+                <TableCell align="left">{rows2.length-index}</TableCell> */}
+                <TableCell align="center">5,000원 이상</TableCell>
+                <TableCell align="center">
+                500원
+                </TableCell>
+                {/* <TableCell align="center"><DelBtn>수정</DelBtn></TableCell> */}
+                <TableCell align="center"><DelBtn>삭제</DelBtn></TableCell>
+                {/* <TableCell align="center"><DelBtn>복사</DelBtn></TableCell> */}
+             
+
+              </TableRow>
+            ))}
+          </TableBody>
+    
+        </Table>     
+
+        {/* 2.데이터가 없는 경우 */}
+         {/* <NoDataPaper>
+<span>수집중입니다.</span>
+<span>수집률: 0%</span>
+</NoDataPaper>  */}
+        
+      </TableContainer>
+<DialogBtns><CopyBtn>기존 템플릿에서 복제하기</CopyBtn>
+<AddBtn>추가하기</AddBtn></DialogBtns>
+                </TemplateDialogWrapper>
+          
+            </DialogContent>
+        </Dialog>
         {/* 배송템플릿 추가 */}
 <TemplateTabs/>
           <BanManagePaper>
@@ -174,11 +317,7 @@ export function MarginTemplate (props: IMarginTemplateProps) {
 <TemplateBtn
 onClick={onClickOpenTemplateAdd}>마진 템플릿 추가하기</TemplateBtn>
   <Flex/>
-        <ShowSelect>
-      <option>
-        10개씩보기
-      </option>
-      </ShowSelect>
+        <ShowTableSelect onChange={onChangeRowNum}/>
             </TemplateBtnRow>
 <TableWrapper> 
       <TableContainer 
@@ -204,7 +343,7 @@ onClick={onClickOpenTemplateAdd}>마진 템플릿 추가하기</TemplateBtn>
        
           >
 
-           {rows2.map((row,index) => (
+           {[...rows2,...rows2,...rows2].slice(0,rowNum).map((row,index) => (
               <TableRow
                 key={row.name}
                 sx={{ '&:last-child td, &:last-child th': { 
@@ -218,12 +357,12 @@ onClick={onClickOpenTemplateAdd}>마진 템플릿 추가하기</TemplateBtn>
                   checked={true}
                   />
                 </TableCell>
-                <TableCell align="left">{rows2.length-index}</TableCell>
+                <TableCell align="left">{index+1}</TableCell>
                 <TableCell align="center">마진 템플릿</TableCell>
                 <TableCell align="center">
                 2023.12.25 14:00
                 </TableCell>
-                <TableCell align="center"><DelBtn>수정</DelBtn></TableCell>
+                <TableCell align="center"><DelBtn onClick={onClickOpenTemplateEdit}>수정</DelBtn></TableCell>
                 <TableCell align="center"><DelBtn>삭제</DelBtn></TableCell>
                 <TableCell align="center"><DelBtn>복사</DelBtn></TableCell>
              

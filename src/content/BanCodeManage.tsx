@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { EmptyTab } from './SubstitutionWord';
 import { BanOptionRow } from './BanManage';
 import { ShowSelect } from './MarketRegister';
+import { ShowTableSelect } from '../components/Select/ShowTableSelect';
 
 export interface IBanCodeManageProps {
 }
@@ -16,11 +17,15 @@ export interface IBanCodeManageProps {
 export function BanCodeManage (props: IBanCodeManageProps) {
   const navigate=useNavigate()
   const [openUpload,setOpenUpload]=React.useState(false)
+  const [rowNum,setRowNum]=React.useState(10)
   const onClickOpenUpload=()=>{
     setOpenUpload(true)
   }
   const onClickCloseUpload=()=>{
     setOpenUpload(false)
+  }
+  const onChangeRowNum=(v:number)=>{
+    setRowNum(v)
   }
     return (
     <BanManageLayout>
@@ -80,11 +85,7 @@ export function BanCodeManage (props: IBanCodeManageProps) {
 </SearchBtnRow>
 <BanOptionRow>
            <Flex/>
-        <ShowSelect>
-      <option>
-        10개씩보기
-      </option>
-      </ShowSelect></BanOptionRow>
+        <ShowTableSelect onChange={onChangeRowNum}/></BanOptionRow>
 {/* 테이블 */}
 <TableWrapper> 
       <TableContainer 
@@ -110,7 +111,7 @@ export function BanCodeManage (props: IBanCodeManageProps) {
        
           >
 
-           {rows2.map((row,index) => (
+           {[...rows2,...rows2,...rows2].slice(0,rowNum).map((row,index) => (
               <TableRow
                 key={row.name}
                 sx={{ '&:last-child td, &:last-child th': { 
@@ -124,7 +125,7 @@ export function BanCodeManage (props: IBanCodeManageProps) {
                   checked={true}
                   />
                 </TableCell>
-                <TableCell align="center">{rows2.length-index}</TableCell>
+                <TableCell align="center">{index+1}</TableCell>
                 <TableCell align="center">금지코드</TableCell>
                 <TableCell align="center">상품명</TableCell>
                 <TableCell align="center">아마존</TableCell>

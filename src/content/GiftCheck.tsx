@@ -17,15 +17,20 @@ import AmazonSrc from '../images/company/amazon.png'
 import { ActivePageBtn, InactivePageBtn, PageBtns, PageBtnsWrapper } from './AllGift';
 import { ShowSelect } from './MarketRegister';
 import { grey2, grey6 } from '../const/colors';
+import { ShowTableSelect } from '../components/Select/ShowTableSelect';
 export interface IGiftCheckProps {}
 
 export function GiftCheck(props: IGiftCheckProps) {
   const [openUload,setOpenUpload]=React.useState(false)
+  const [rowNum,setRowNum]=React.useState(10)
   const onOpenUpload=()=>{
     setOpenUpload(true)
   }
   const onCloseUpload=()=>{
     setOpenUpload(false)
+  }
+  const onChangeRowNum=(v:number)=>{
+    setRowNum(v)
   }
   return (
     <GiftCheckLayout>
@@ -90,11 +95,8 @@ export function GiftCheck(props: IGiftCheckProps) {
    
       <OptionRow>
            <Flex/>
-        <ShowSelect>
-      <option>
-        10개씩보기
-      </option>
-      </ShowSelect></OptionRow>
+      <ShowTableSelect onChange={onChangeRowNum}/>
+      </OptionRow>
       
       <TableWrapper> 
       <TableContainer 
@@ -130,7 +132,7 @@ export function GiftCheck(props: IGiftCheckProps) {
        
           >
 
-           {rows2.map((row,index) => (
+           {[...rows2,...rows2,...rows2].slice(0,rowNum).map((row,index) => (
               <TableRow
                 key={row.name}
                 sx={{ '&:last-child td, &:last-child th': { 
@@ -144,7 +146,7 @@ export function GiftCheck(props: IGiftCheckProps) {
                   checked
                   />
                 </TableCell>
-                <TableCell align="left">{rows2.length-index}</TableCell>
+                <TableCell align="left">{index+1}</TableCell>
                 <TableCell align="center">
                   <CompanyUl>
                     <li><img src={AmazonSrc}/></li>

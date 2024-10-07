@@ -4,13 +4,22 @@ import { blue2, blue4, orange1 } from '../const/colors';
 import RocketSrc from '../images/lcons/rocket.png'
 import PlanSrc from '../images/lcons/plan.svg'
 import { PlanIndicator } from '../components/indicator/PlanIndicator';
+import { PlanDialog } from '../components/dialog/PlanDialog';
 
 export interface UseInfoProps {
 }
 
 export function UseInfo(props: UseInfoProps) {
+    const [openPlan,setOpenPlan]=React.useState(false)
+    const onOpenPlan=()=>{
+        setOpenPlan(true)
+    }
+    const onClosePlan=()=>{
+        setOpenPlan(false)
+    }
     return (
         <UseInfoWrapper>
+            <PlanDialog open={openPlan} onClose={onClosePlan}/>
             {/* 타이틀 구간 */}
             <UseInfoTitleRow>
                 <UseInfoTitle>
@@ -23,7 +32,7 @@ export function UseInfo(props: UseInfoProps) {
                         src={RocketSrc}
                         />
                         <span>보너스 시간이 30% 더 많은 시니어 플랜으로</span>
-                        <PlanBtn>플랜 업그레이드</PlanBtn>
+                        <PlanBtn onClick={onOpenPlan}>플랜 업그레이드</PlanBtn>
                     </PlanRow>
             </UseInfoTitleRow>
         {/* 카드 */}

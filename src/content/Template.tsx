@@ -9,17 +9,22 @@ import styled from 'styled-components';
 import { ArrowBackIos, ArrowForwardIos, CloseSharp } from '@mui/icons-material';
 import { CustomCheckbox } from '../components/Btn/CustomCheckbox';
 import { ShowSelect } from './MarketRegister';
+import { ShowTableSelect } from '../components/Select/ShowTableSelect';
 
 export interface ITemplateProps {
 }
 
 export function Template (props: ITemplateProps) {
     const [openTempladeAdd,setTemplateAdd]=React.useState(false)
+    const [rowNum,setRowNum]=React.useState(10)
     const onClickOpenTemplateAdd=()=>{
         setTemplateAdd(true)
     }
     const onClickCloseTemplateAdd=()=>{
         setTemplateAdd(false)
+    }
+    const onChangeRowNum=(v:number)=>{
+      setRowNum(v)
     }
   return (
     <BanManageLayout>
@@ -144,11 +149,7 @@ export function Template (props: ITemplateProps) {
 <TemplateBtn
 onClick={onClickOpenTemplateAdd}>배송 템플릿 추가하기</TemplateBtn>
            <Flex/>
-        <ShowSelect>
-      <option>
-        10개씩보기
-      </option>
-      </ShowSelect>
+       <ShowTableSelect onChange={onChangeRowNum}/>
             </TemplateBtnRow>
             
 <TableWrapper> 
@@ -175,7 +176,7 @@ onClick={onClickOpenTemplateAdd}>배송 템플릿 추가하기</TemplateBtn>
        
           >
 
-           {rows2.map((row,index) => (
+           {[...rows2,...rows2,...rows2].slice(0,rowNum).map((row,index) => (
               <TableRow
                 key={row.name}
                 sx={{ '&:last-child td, &:last-child th': { 
@@ -189,7 +190,7 @@ onClick={onClickOpenTemplateAdd}>배송 템플릿 추가하기</TemplateBtn>
                   checked={true}
                   />
                 </TableCell>
-                <TableCell align="left">{rows2.length-index}</TableCell>
+                <TableCell align="left">{index+1}</TableCell>
                 <TableCell align="center">배송 템플릿1</TableCell>
                 <TableCell align="center">
                 2023.12.25 14:00

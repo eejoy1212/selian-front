@@ -11,17 +11,29 @@ import { CustomCheckbox } from '../components/Btn/CustomCheckbox';
 import { AddBtn, CopyBtn, CostInput, CostRow, CostTitle, DialogBtns, DialogSubTitle, ExcelDownloadBtn, ExcelDownloadRow, FeeInput, FeeRow, FeeSet, FreeInput, FreeRow, OptionLi, OptionUl, TemplateBtn, TemplateBtnRow, TemplateDelBtn, TemplateDialogWrapper, TemplateNameInput } from './Template';
 import { CustomRadio } from '../components/Btn/CustomRadio';
 import { ShowSelect } from './MarketRegister';
+import { ShowTableSelect } from '../components/Select/ShowTableSelect';
 
 export interface IImgTemplateProps {
 }
 
 export function ImgTemplate (props: IImgTemplateProps) {
     const [openTempladeAdd,setTemplateAdd]=React.useState(false)
+    const [rowNum,setRowNum]=React.useState(10)
+    const [openTempladeEdit,setTemplateEdit]=React.useState(false)
+    const onClickOpenTemplateEdit=()=>{
+         setTemplateEdit(true)
+     }
+     const onClickCloseTemplateEdit=()=>{
+         setTemplateEdit(false)
+     }
     const onClickOpenTemplateAdd=()=>{
         setTemplateAdd(true)
     }
     const onClickCloseTemplateAdd=()=>{
         setTemplateAdd(false)
+    }
+    const onChangeRowNum=(v:number)=>{
+      setRowNum(v)
     }
   return (
     <BanManageLayout>
@@ -106,6 +118,87 @@ export function ImgTemplate (props: IImgTemplateProps) {
           
             </DialogContent>
         </Dialog>
+          {/* 이미지 템플릿 수정 */}
+          <Dialog
+        open={openTempladeEdit}
+        sx={{
+            '& .MuiDialog-paper': {
+              
+              width: '840px', // 다이얼로그 창의 너비를 685px로 지정
+              maxWidth: 'none', // 최대 너비 제한을 없애기 위해 설정
+            },
+          }}
+        >
+             <DialogTitle sx={{
+                // padding:1,
+        color:"black",
+        fontWeight:700,
+        display:"flex",
+        alignItems:"center",
+        justifyContent:"space-between"
+        
+      }}>
+        <IconButton
+        sx={{
+          opacity:0,
+          cursor:"default"
+        }}
+        >
+          <CloseSharp sx={{
+            width:"20px"
+          }}/>
+        </IconButton>
+        <span>이미지 템플릿 수정</span>
+        <IconButton
+        
+        onClick={onClickCloseTemplateEdit}>
+          <CloseSharp sx={{
+            width:"20px"
+          }}/>
+        </IconButton>
+        </DialogTitle>
+            <DialogContent
+            sx={{
+                display:"flex",
+                alignItems:"center",
+                justifyContent:"center"
+            }}
+            >
+                <TemplateDialogWrapper>
+    {/* 템플릿 이름 */}
+    <DialogSubTitle>템플릿 이름</DialogSubTitle>
+<TemplateNameInput placeholder='템플릿 이름을 입력해주세요.'/>
+         {/* 이미지 첨부 */}
+         <DialogSubTitle>이미지 첨부</DialogSubTitle>
+         <RadioRow>
+<span>URL</span>
+<CustomRadio />
+<span>이미지 파일</span>
+<CustomRadio />
+</RadioRow>
+<PreviewRow>
+    <span>상단</span>
+    <PreviewInput
+    placeholder='파일명'
+    />
+    <ChangeBtn>변경</ChangeBtn>
+    <PreviewBtn>미리보기</PreviewBtn>
+</PreviewRow>
+<PreviewRow>
+    <span>하단</span>
+    <PreviewInput
+    placeholder='파일명'
+    />
+    <ChangeBtn>변경</ChangeBtn>
+    <PreviewBtn>미리보기</PreviewBtn>
+</PreviewRow>
+
+<DialogBtns><CopyBtn>기존 템플릿에서 복제하기</CopyBtn>
+<AddBtn>추가하기</AddBtn></DialogBtns>
+                </TemplateDialogWrapper>
+          
+            </DialogContent>
+        </Dialog>
         {/* 배송템플릿 추가 */}
 <TemplateTabs/>
           <BanManagePaper>
@@ -114,11 +207,7 @@ export function ImgTemplate (props: IImgTemplateProps) {
 <TemplateBtn
 onClick={onClickOpenTemplateAdd}>이미지 템플릿 추가하기</TemplateBtn>
   <Flex/>
-        <ShowSelect>
-      <option>
-        10개씩보기
-      </option>
-      </ShowSelect>
+        <ShowTableSelect onChange={onChangeRowNum}/>
             </TemplateBtnRow>
 <TableWrapper> 
       <TableContainer 
@@ -144,7 +233,7 @@ onClick={onClickOpenTemplateAdd}>이미지 템플릿 추가하기</TemplateBtn>
        
           >
 
-           {rows2.map((row,index) => (
+           {[...rows2,...rows2,...rows2].slice(0,rowNum).map((row,index) => (
               <TableRow
                 key={row.name}
                 sx={{ '&:last-child td, &:last-child th': { 
@@ -158,12 +247,12 @@ onClick={onClickOpenTemplateAdd}>이미지 템플릿 추가하기</TemplateBtn>
                   checked={true}
                   />
                 </TableCell>
-                <TableCell align="left">{rows2.length-index}</TableCell>
+                <TableCell align="left">{index+1}</TableCell>
                 <TableCell align="center">이미지 템플릿</TableCell>
                 <TableCell align="center">
                 2023.12.25 14:00
                 </TableCell>
-                <TableCell align="center"><DelBtn>수정</DelBtn></TableCell>
+                <TableCell align="center"><DelBtn onClick={onClickOpenTemplateEdit}>수정</DelBtn></TableCell>
                 <TableCell align="center"><DelBtn>삭제</DelBtn></TableCell>
                 <TableCell align="center"><DelBtn>복사</DelBtn></TableCell>
              

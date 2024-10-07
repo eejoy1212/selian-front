@@ -16,11 +16,13 @@ import PadlockSrc from '../images/market/padlock.png'
 import { CustomCheckbox } from '../components/Btn/CustomCheckbox';
 import { InitBtn, RegisterChip, SearchBtn } from './BanManage';
 import { grey2, grey5, grey6 } from '../const/colors';
+import { ShowTableSelect } from '../components/Select/ShowTableSelect';
 export interface MarketRegisterProps {}
 
 export function MarketRegister(props: MarketRegisterProps) {
   const [openUload,setOpenUpload]=React.useState(false)
   const [openMarketDialog,setOpenMarketDialog]=React.useState(false)
+  const [rowNum,setRowNum]=React.useState(10)
   const onClickOpenMarketDialog=()=>{
     setOpenMarketDialog(true)
   }
@@ -32,6 +34,9 @@ export function MarketRegister(props: MarketRegisterProps) {
   }
   const onCloseUpload=()=>{
     setOpenUpload(false)
+  }
+  const onChangeRowNum=(v:number)=>{
+setRowNum(v)
   }
   return (
 
@@ -116,11 +121,7 @@ export function MarketRegister(props: MarketRegisterProps) {
       <CollectRow>
       <CollectName>검색건수:0</CollectName>
       <Flex/>
-      <ShowSelect>
-      <option>
-        10개씩보기
-      </option>
-      </ShowSelect>
+      <ShowTableSelect onChange={onChangeRowNum}/>
 
       </CollectRow>
      
@@ -152,7 +153,7 @@ export function MarketRegister(props: MarketRegisterProps) {
        
           >
 
-           {rows2.map((row,index) => (
+           {[...rows2,...rows2,...rows2].slice(0,rowNum).map((row,index) => (
               <TableRow
                 key={row.name}
                 sx={{ '&:last-child td, &:last-child th': { 
@@ -166,7 +167,7 @@ export function MarketRegister(props: MarketRegisterProps) {
                   checked={false}
                   />
                 </TableCell>
-                <TableCell align="center">{rows2.length-index}</TableCell>
+                <TableCell align="center">{index+1}</TableCell>
                 <TableCell align="center">
                   
                  {index===1? <IconButton>

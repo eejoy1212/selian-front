@@ -14,11 +14,13 @@ import { IoClose } from 'react-icons/io5';
 import { OptionRow } from './GiftCheck';
 import { CollectName, ShowSelect } from './MarketRegister';
 import { grey2, grey5, grey6 } from '../const/colors';
+import { ShowTableSelect } from '../components/Select/ShowTableSelect';
 export interface AllGiftProps {}
 
 export function AllGift(props: AllGiftProps) {
     const [openDetail,setOpenDetail]=React.useState(false)
     const [openSearch,setOpenSearch]=React.useState(false)
+    const [rowNum,setRowNum]=React.useState(10)
     const onClickOpenDetail=()=>{
     setOpenDetail(true)
   }
@@ -31,7 +33,9 @@ export function AllGift(props: AllGiftProps) {
   const onClickCloseSearch=()=>{
     setOpenSearch(false)
   }
-
+const onChangeRowNum=(v:number)=>{
+  setRowNum(v)
+}
 
   return (
 
@@ -426,11 +430,7 @@ onClick={onClickOpenSearch}
       <OptionRow>
       <CollectName>검색건수:0</CollectName>
            <Flex/>
-        <ShowSelect>
-      <option>
-        10개씩보기
-      </option>
-      </ShowSelect></OptionRow>
+           <ShowTableSelect onChange={onChangeRowNum}/></OptionRow>
       <TableWrapper> 
       <TableContainer 
       variant='elevation'
@@ -461,7 +461,7 @@ onClick={onClickOpenSearch}
        
           >
 
-           {rows2.map((row,index) => (
+           {[...rows2,...rows2,...rows2].slice(0,rowNum).map((row,index) => (
               <TableRow
                 key={row.name}
                 sx={{ '&:last-child td, &:last-child th': { 
@@ -475,7 +475,7 @@ onClick={onClickOpenSearch}
                   checked={false}
                   />
                 </TableCell>
-                <TableCell align="left">{rows2.length-index}</TableCell>
+                <TableCell align="left">{index+1}</TableCell>
                 <TableCell align="left">태그</TableCell>
                 <TableCell align="center">
                 스마트스토어/옥션

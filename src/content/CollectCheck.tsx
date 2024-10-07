@@ -20,6 +20,7 @@ import { OptionRow } from './GiftCheck';
 import { ShowSelect } from './MarketRegister';
 import { blue2, blue3, blue7, blue8, grey1, grey2, grey3, grey4, grey5, grey6, red1 } from '../const/colors';
 import { MarketRegister } from '../components/dialog/MarketRegister';
+import { ShowTableSelect } from '../components/Select/ShowTableSelect';
 export interface CollectCheckProps {}
 
 export function CollectCheck(props: CollectCheckProps) {
@@ -27,6 +28,8 @@ export function CollectCheck(props: CollectCheckProps) {
   const [openUload,setOpenUpload]=React.useState(false)
   const [openMarketDialog,setOpenMarketDialog]=React.useState(false)
   const [registerOpen,setRegisterOpen]=React.useState(false)
+  const [firstRowNum,setFirstRowNum]=React.useState(10)
+  const [secondRowNum,setSecondRowNum]=React.useState(10)
   const onClickOpenMarketDialog=()=>{
     setOpenMarketDialog(true)
   }
@@ -45,6 +48,12 @@ export function CollectCheck(props: CollectCheckProps) {
   }
   const onClickCloseRegisterDialog=()=>{
     setRegisterOpen(false)
+  }
+  const onChangeFirstRowNum=(v:number)=>{
+    setFirstRowNum(v)
+  }
+  const onChangeSecondRowNum=(v:number)=>{
+    setSecondRowNum(v)
   }
   return (<CollectCheckWrapper>
     <MarketRegister open={registerOpen} onOpen={onClickOpenRegisterDialog} onClose={onClickCloseRegisterDialog}/>
@@ -219,11 +228,7 @@ placeholder='URL 입력'
       </GiftNumRow>
       <OptionRow>
            <Flex/>
-        <ShowSelect>
-      <option>
-        10개씩보기
-      </option>
-      </ShowSelect></OptionRow>
+           <ShowTableSelect onChange={onChangeFirstRowNum}/></OptionRow>
       <TableWrapper> 
       <TableContainer 
       variant='elevation'
@@ -257,7 +262,7 @@ placeholder='URL 입력'
        
           >
 
-           {rows2.map((row,index) => (
+           {[...rows2,...rows2,...rows2].slice(0,firstRowNum).map((row,index) => (
               <TableRow
                 key={row.name}
                 sx={{ '&:last-child td, &:last-child th': { 
@@ -271,7 +276,7 @@ placeholder='URL 입력'
                   checked={false}
                   />
                 </TableCell>
-                <TableCell align="left">{rows2.length-index}</TableCell>
+                <TableCell align="left">{index+1}</TableCell>
                 <TableCell align="left">태그</TableCell>
                 <TableCell align="center">
                   <CompanyUl>
@@ -482,11 +487,8 @@ placeholder='URL 입력'
       </GiftNumRow>
       <OptionRow>
            <Flex/>
-        <ShowSelect>
-      <option>
-        10개씩보기
-      </option>
-      </ShowSelect></OptionRow>
+        <ShowTableSelect onChange={onChangeSecondRowNum}/>
+        </OptionRow>
       <TableWrapper> 
       <TableContainer 
       variant='elevation'
@@ -519,7 +521,7 @@ placeholder='URL 입력'
        
           >
 
-           {rows2.map((row,index) => (
+           {[...rows2,...rows2,...rows2].slice(0,secondRowNum).map((row,index) => (
               <TableRow
                 key={row.name}
                 sx={{ '&:last-child td, &:last-child th': { 
@@ -533,7 +535,7 @@ placeholder='URL 입력'
                   checked={false}
                   />
                 </TableCell>
-                <TableCell align="left">{rows2.length-index}</TableCell>
+                <TableCell align="left">{index+1}</TableCell>
                 <TableCell align="left">태그</TableCell>
                 <TableCell align="center">
                   <CompanyUl>
