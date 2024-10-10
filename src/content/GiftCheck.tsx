@@ -223,8 +223,8 @@ export function GiftCheck(props: IGiftCheckProps) {
         <DeleteBtn>전체삭제</DeleteBtn>
       </AllRow>
       <CheckBtns>
-        <AllChkBtn>검수 완료</AllChkBtn>
-        <SelectChkBtn>선택상품 검수</SelectChkBtn>
+        <AllChkBtn>전체 상품 수집</AllChkBtn>
+        <SelectChkBtn>선택 상품 수집</SelectChkBtn>
         <BanCodeBtn>선택 일괄 금지코드 설정</BanCodeBtn>
         <Flex />
         <UploadBtn onClick={onOpenUpload}>엑셀파일 업로드</UploadBtn>
@@ -315,6 +315,7 @@ const DownloadBtn = styled.button`
   color: white;
   border: 1px solid #1f7145;
   background-color: #1f7145;
+  cursor: pointer;
 `;
 const UploadBtn = styled.button`
   height: 30px;
@@ -323,6 +324,7 @@ const UploadBtn = styled.button`
   color: #1f7145;
   border: 1px solid #1f7145;
   background-color: white;
+  cursor: pointer;
 `;
 const Flex = styled.div`
   flex: 1;
@@ -335,6 +337,7 @@ const BanCodeBtn = styled.button`
   color: white;
   border: 1px solid #335a97;
   background-color: #335a97;
+  cursor: pointer;
 `;
 const SelectChkBtn = styled.button`
   // width: 82px;
@@ -344,6 +347,7 @@ const SelectChkBtn = styled.button`
   color: #335a97;
   border: 1px solid #335a97;
   background-color: #e6eefa;
+  cursor: pointer;
 `;
 const AllChkBtn = styled.button`
   width: 75px;
@@ -353,6 +357,7 @@ const AllChkBtn = styled.button`
   color: #335a97;
   border: 1px solid #335a97;
   background-color: white;
+  cursor: pointer;
 `;
 const CheckBtns = styled.div`
   width: calc(100% - 60px - 60px);
